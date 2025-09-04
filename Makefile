@@ -10,14 +10,14 @@ RESET   = \033[0m
 
 # Compiler & Flags
 CC      	= cc
-INCLUDES 	= -Iincludes -I./includes/minilibx-linux
+INCLUDES 	= -Iincludes -Iminilibx-linux
 CFLAGS  	= -Wall -Wextra -Werror $(INCLUDES)
 MLXFLAGS	= -lmlx -lXext -lX11 -lm
 
 # Directories
 SRCDIR 	= src
 OBJDIR  = obj
-MLXDIR	= includes/minilibx-linux
+MLXDIR	= minilibx-linux
 
 # Sources & Objects
 SOURCES = main.c \

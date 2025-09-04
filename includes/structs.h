@@ -85,13 +85,13 @@ typedef struct s_raycast
 }				t_raycast;
 
 /* Main game structure */
-typedef struct s_game
+typedef struct s_data
 {
 	t_player	player;
 	t_map		map;
 	t_graphics	graphics;
 	t_config	config;
 	t_raycast	raycast;
-}				t_game;
+}				t_data;
 
 #endif
