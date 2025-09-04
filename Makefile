@@ -1,6 +1,4 @@
-# ==================== #
-#    Color Settings    #
-# ==================== #
+# Color Settings
 BOLD    = \033[1m
 RED     = \033[31m
 GREEN   = \033[32m
@@ -11,8 +9,9 @@ CYAN    = \033[36m
 RESET   = \033[0m
 
 # Compiler & Flags
-CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -Iincludes
+CC      	= cc
+INCLUDES 	= -Iincludes -Iminilibx-linux
+CFLAGS  	= -Wall -Wextra -Werror $(INCLUDES)
 MLXFLAGS	= -lmlx -lXext -lX11 -lm
 
 # Directories
@@ -20,23 +19,25 @@ SRCDIR 	= src
 OBJDIR  = obj
 MLXDIR	= minilibx-linux
 
-MLXLIB		= $(MLX_DIR)/libmlx.a
-
 # Sources & Objects
 SOURCES = main.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
-MLXLIB  = $(addprefix $(MLX_DIR)/, libmlx.a)
+MLXLIB  = $(addprefix $(MLXDIR)/, libmlx.a)
 
 # Output Binary
 NAME    = cub3d
 
 all: $(NAME)
 
-$(NAME): $(MLX_LIB) $(OBJS)
+$(MLXLIB):
+	@$(MAKE) -C $(MLXDIR) > /dev/null 2>&1
+	@echo "$(MAGENTA)Build complete: minilibx$(RESET)"
+
+$(NAME): $(MLXLIB) $(OBJS)
 	@echo "$(CYAN)Linking objects...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) -L $(MLX_DIR) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -L $(MLXDIR) $(MLXFLAGS) -o $(NAME)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
@@ -47,6 +48,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
 	@rm -rf $(OBJDIR)
+	@$(MAKE) -C $(MLXDIR) clean > /dev/null 2>&1
 
 fclean: clean
 	@echo "$(RED)Removing binary...$(RESET)"
