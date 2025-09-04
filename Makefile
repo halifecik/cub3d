@@ -10,14 +10,14 @@ RESET   = \033[0m
 
 # Compiler & Flags
 CC      	= cc
-INCLUDES 	= -Iincludes -Iminilibx-linux
+INCLUDES 	= -Iincludes -I./includes/minilibx-linux
 CFLAGS  	= -Wall -Wextra -Werror $(INCLUDES)
 MLXFLAGS	= -lmlx -lXext -lX11 -lm
 
 # Directories
 SRCDIR 	= src
 OBJDIR  = obj
-MLXDIR	= minilibx-linux
+MLXDIR	= includes/minilibx-linux
 
 # Sources & Objects
 SOURCES = main.c \
@@ -48,7 +48,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
 	@rm -rf $(OBJDIR)
-	@$(MAKE) -C $(MLXDIR) clean > /dev/null 2>&1
+	@$(MAKE) -C $(MLXDIR) clean
 
 fclean: clean
 	@echo "$(RED)Removing binary...$(RESET)"
