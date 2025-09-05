@@ -20,7 +20,8 @@ OBJDIR  = obj
 MLXDIR	= minilibx-linux
 
 # Sources & Objects
-SOURCES = main.c \
+SOURCES = 	main.c \
+			utils/initiliaze.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))

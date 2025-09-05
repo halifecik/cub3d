@@ -87,6 +87,7 @@ typedef struct s_raycast
 /* Main game structure */
 typedef struct s_data
 {
+	char 		*map_file;
 	t_player	player;
 	t_map		map;
 	t_graphics	graphics;
