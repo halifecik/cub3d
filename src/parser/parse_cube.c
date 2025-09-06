@@ -77,7 +77,7 @@ int	parse_cub(t_data *data, char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (EXIT_FAILURE); // dosya açılamadı
-	free_old_grid(&data->map);
+	// free_old_grid(&data->map);
 	if (read_file(fd, data) != EXIT_SUCCESS)
 	{
 		close(fd);

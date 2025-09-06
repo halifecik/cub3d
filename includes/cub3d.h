@@ -4,6 +4,7 @@
 # include "constants.h"
 # include "structures.h"
 # include "graphics.h"
+# include "gnl/get_next_line.h"
 
 /* utils/initiliaze */
 int	init_data(t_data *data);
