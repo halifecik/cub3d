@@ -15,7 +15,11 @@ void    parse_identifier(char *line, t_config *config);
 /* parser/parse_cube */
 int	parse_cub(t_data *data, char *filename);
 
+/* parser/flood_fill */
+int	validate_map(t_map *map);
+
 /* main.c */
 int	print_error(char *msg);
+
 
 #endif

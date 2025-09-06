@@ -22,6 +22,9 @@ MLXDIR	= minilibx-linux
 # Sources & Objects
 SOURCES = 	main.c \
 			utils/initiliaze.c \
+			parser/flood_fill.c \
+			parser/parse_cube.c \
+			parser/parse_identifier.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
