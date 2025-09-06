@@ -1,17 +1,5 @@
 #include "cub3d.h"
 
-static void	init_player(t_player *p)
-{
-	p->pos_x = -1;
-	p->pos_y = -1;
-	p->dir_x = 0;
-	p->dir_y = 0;
-	p->plane_x = 0;
-	p->plane_y = 0;
-	p->move_speed = 0.08;
-	p->rot_speed = 0.05;
-}
-
 static void	init_map(t_map *m)
 {
 	m->grid = NULL;

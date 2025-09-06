@@ -39,7 +39,10 @@ int	main(int argc, char **argv)
 	data->map_file = argv[1];
 	if (init_data(data))
 		return (print_error("Failed to initialize data"));
-	if (parse_cub(data, data->map_file))
+	if (parse_map(data, data->map_file))
 		return (print_error("Failed to parse .cub file"));
+	if (validate_map(&data->map))
+		return (print_error("Invalid map"));
+	init_player_location(&data->player, &data->map);
 	return (EXIT_SUCCESS);
 }
