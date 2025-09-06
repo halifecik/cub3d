@@ -67,7 +67,7 @@ static int	read_file(int fd, t_data *data)
 		free(line);
 	}
 	free(line);
-	return (0);
+	return (EXIT_SUCCESS);  // read_file başarılı tamamlandı
 }
 
 int	parse_cub(t_data *data, char *filename)
@@ -76,12 +76,15 @@ int	parse_cub(t_data *data, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (0);
-	if (read_file(fd, data))
+		return (EXIT_FAILURE); // dosya açılamadı
+	free_old_grid(&data->map);
+	if (read_file(fd, data) != EXIT_SUCCESS)
 	{
 		close(fd);
-		return (0);
+		return (EXIT_FAILURE); // okuma hatası
 	}
 	close(fd);
-	return (validate_map(&data->map));
+	if (!validate_map(&data->map))
+		return (EXIT_FAILURE); // map validasyonu başarısız
+	return (EXIT_SUCCESS); // her şey başarılı
 }

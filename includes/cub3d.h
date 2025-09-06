@@ -15,4 +15,7 @@ void    parse_identifier(char *line, t_config *config);
 /* parser/parse_cube */
 int	parse_cub(t_data *data, char *filename);
 
+/* main.c */
+int	print_error(char *msg);
+
 #endif
