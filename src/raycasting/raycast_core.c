@@ -21,30 +21,33 @@ static void	init_ray(t_data *data, int x)
 	ray->hit = 0;
 }
 
-static void	calculate_step_and_sidedist(t_data *data)
+static void	calculate_step_and_sidedist(t_data *data, double *side_dist_x,
+	double *side_dist_y)
 {
-	double	side_dist_x;
-	double	side_dist_y;
+	t_raycast	*ray;
 
-	if (data->raycast.ray_dir_x < 0)
+	ray = &data->raycast;
+	if (ray->ray_dir_x < 0)
 	{
-		data->raycast.step_x = -1;
-		side_dist_x = (data->player.pos_x - data->raycast.map_x) * data->raycast.delta_dist_x;
+		ray->step_x = -1;
+		*side_dist_x = (data->player.pos_x - ray->map_x) * ray->delta_dist_x;
 	}
 	else
 	{
-		data->raycast.step_x = 1;
-		side_dist_x = (data->raycast.map_x + 1.0 - data->player.pos_x) * data->raycast.delta_dist_x;
+		ray->step_x = 1;
+		*side_dist_x = (ray->map_x + 1.0 - data->player.pos_x)
+			* ray->delta_dist_x;
 	}
-	if (data->raycast.ray_dir_y < 0)
+	if (ray->ray_dir_y < 0)
 	{
-		data->raycast.step_y = -1;
-		side_dist_y = (data->player.pos_y - data->raycast.map_y) * data->raycast.delta_dist_y;
+		ray->step_y = -1;
+		*side_dist_y = (data->player.pos_y - ray->map_y) * ray->delta_dist_y;
 	}
 	else
 	{
-		data->raycast.step_y = 1;
-		side_dist_y = (data->raycast.map_y + 1.0 - data->player.pos_y) * data->raycast.delta_dist_y;
+		ray->step_y = 1;
+		*side_dist_y = (ray->map_y + 1.0 - data->player.pos_y)
+			* ray->delta_dist_y;
 	}
 }
 
