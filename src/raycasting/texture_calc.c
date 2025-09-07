@@ -23,11 +23,16 @@ static int	get_texture_num(t_data *data)
 
 static void	calculate_wall_x(t_data *data)
 {
-	if (data->raycast.side == 0)
-		data->raycast.wall_x = data->player.pos_y + data->raycast.perp_wall_dist * data->raycast.ray_dir_y;
+	t_raycast	*ray;
+
+	ray = &data->raycast;
+	if (ray->side == 0)
+		ray->wall_x = data->player.pos_y + ray->perp_wall_dist
+			* ray->ray_dir_y;
 	else
-		data->raycast.wall_x = data->player.pos_x + data->raycast.perp_wall_dist * data->raycast.ray_dir_x;
-	data->raycast.wall_x -= floor(data->raycast.wall_x);
+		ray->wall_x = data->player.pos_x + ray->perp_wall_dist
+			* ray->ray_dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 }
 
 static void	calculate_tex_x(t_data *data)
