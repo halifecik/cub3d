@@ -1,0 +1,59 @@
+#include "cub3d.h"
+
+static void	put_pixel(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+	int		offset;
+
+	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
+	{
+		offset = y * data->graphics.line_length + x * (data->graphics.bits_per_pixel / 8);
+		dst = data->graphics.img_data + offset;
+		*(unsigned int *)dst = color;
+	}
+}
+
+static void	draw_vertical_line(t_data *data, int x)
+{
+	int		y;
+	int		tex_y;
+	int		color;
+	double	step;
+	double	tex_pos;
+
+	calculate_texture_coordinates(data);
+	step = 1.0 * data->graphics.textures[data->raycast.tex_num].height / data->raycast.line_height;
+	tex_pos = (data->raycast.draw_start - SCREEN_HEIGHT / 2 + data->raycast.line_height / 2) * step;
+	y = 0;
+	while (y < data->raycast.draw_start)
+	{
+		put_pixel(data, x, y, data->config.ceiling_color);
+		y++;
+	}
+	while (y <= data->raycast.draw_end)
+	{
+		tex_y = (int)tex_pos & (data->graphics.textures[data->raycast.tex_num].height - 1);
+		tex_pos += step;
+		color = get_texture_color(data, tex_y);
+		put_pixel(data, x, y, color);
+		y++;
+	}
+	while (y < SCREEN_HEIGHT)
+	{
+		put_pixel(data, x, y, data->config.floor_color);
+		y++;
+	}
+}
+
+void	render_frame(t_data *data)
+{
+	int	x;
+
+	x = 0;
+	while (x < SCREEN_WIDTH)
+	{
+		cast_ray(data, x);
+		draw_vertical_line(data, x);
+		x++;
+	}
+}
