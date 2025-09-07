@@ -90,17 +90,22 @@ static void	perform_dda(t_data *data)
 
 static void	calculate_wall_distance(t_data *data)
 {
-	if (data->raycast.side == 0)
-		data->raycast.perp_wall_dist = (data->raycast.map_x - data->player.pos_x + (1 - data->raycast.step_x) / 2) / data->raycast.ray_dir_x;
+	t_raycast	*ray;
+
+	ray = &data->raycast;
+	if (ray->side == 0)
+		ray->perp_wall_dist = (ray->map_x - data->player.pos_x
+				+ (1 - ray->step_x) / 2) / ray->ray_dir_x;
 	else
-		data->raycast.perp_wall_dist = (data->raycast.map_y - data->player.pos_y + (1 - data->raycast.step_y) / 2) / data->raycast.ray_dir_y;
-	data->raycast.line_height = (int)(SCREEN_HEIGHT / data->raycast.perp_wall_dist);
-	data->raycast.draw_start = -data->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
-	if (data->raycast.draw_start < 0)
-		data->raycast.draw_start = 0;
-	data->raycast.draw_end = data->raycast.line_height / 2 + SCREEN_HEIGHT / 2;
-	if (data->raycast.draw_end >= SCREEN_HEIGHT)
-		data->raycast.draw_end = SCREEN_HEIGHT - 1;
+		ray->perp_wall_dist = (ray->map_y - data->player.pos_y
+				+ (1 - ray->step_y) / 2) / ray->ray_dir_y;
+	ray->line_height = (int)(SCREEN_HEIGHT / ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (ray->draw_end >= SCREEN_HEIGHT)
+		ray->draw_end = SCREEN_HEIGHT - 1;
 }
 
 void	cast_ray(t_data *data, int x)
