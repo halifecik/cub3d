@@ -2,16 +2,19 @@
 
 static int	get_texture_num(t_data *data)
 {
-	if (data->raycast.side == 0)
+	t_raycast	*ray;
+
+	ray = &data->raycast;
+	if (ray->side == 0)
 	{
-		if (data->raycast.ray_dir_x > 0)
+		if (ray->ray_dir_x > 0)
 			return (EAST_TEX);
 		else
 			return (WEST_TEX);
 	}
 	else
 	{
-		if (data->raycast.ray_dir_y > 0)
+		if (ray->ray_dir_y > 0)
 			return (SOUTH_TEX);
 		else
 			return (NORTH_TEX);
@@ -20,23 +23,30 @@ static int	get_texture_num(t_data *data)
 
 static void	calculate_wall_x(t_data *data)
 {
-	if (data->raycast.side == 0)
-		data->raycast.wall_x = data->player.pos_y + data->raycast.perp_wall_dist * data->raycast.ray_dir_y;
+	t_raycast	*ray;
+
+	ray = &data->raycast;
+	if (ray->side == 0)
+		ray->wall_x = data->player.pos_y + ray->perp_wall_dist
+			* ray->ray_dir_y;
 	else
-		data->raycast.wall_x = data->player.pos_x + data->raycast.perp_wall_dist * data->raycast.ray_dir_x;
-	data->raycast.wall_x -= floor(data->raycast.wall_x);
+		ray->wall_x = data->player.pos_x + ray->perp_wall_dist
+			* ray->ray_dir_x;
+	ray->wall_x -= floor(ray->wall_x);
 }
 
 static void	calculate_tex_x(t_data *data)
 {
-	int	tex_width;
+	int			tex_width;
+	t_raycast	*ray;
 
-	tex_width = data->graphics.textures[data->raycast.tex_num].width;
-	data->raycast.tex_x = (int)(data->raycast.wall_x * (double)tex_width);
-	if (data->raycast.side == 0 && data->raycast.ray_dir_x > 0)
-		data->raycast.tex_x = tex_width - data->raycast.tex_x - 1;
-	if (data->raycast.side == 1 && data->raycast.ray_dir_y < 0)
-		data->raycast.tex_x = tex_width - data->raycast.tex_x - 1;
+	ray = &data->raycast;
+	tex_width = data->graphics.textures[ray->tex_num].width;
+	ray->tex_x = (int)(ray->wall_x * (double)tex_width);
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		ray->tex_x = tex_width - ray->tex_x - 1;
+	if (ray->side == 1 && ray->ray_dir_y < 0)
+		ray->tex_x = tex_width - ray->tex_x - 1;
 }
 
 void	calculate_texture_coordinates(t_data *data)
@@ -50,16 +60,15 @@ int	get_texture_color(t_data *data, int tex_y)
 {
 	t_texture	*texture;
 	int			color;
-	int			tex_width;
-	int			tex_height;
+	int			offset;
 
 	texture = &data->graphics.textures[data->raycast.tex_num];
-	tex_width = texture->width;
-	tex_height = texture->height;
 	if (tex_y < 0)
 		tex_y = 0;
-	if (tex_y >= tex_height)
-		tex_y = tex_height - 1;
-	color = *(int *)(texture->data + (tex_y * texture->line_length + data->raycast.tex_x * (texture->bits_per_pixel / 8)));
+	if (tex_y >= texture->height)
+		tex_y = texture->height - 1;
+	offset = tex_y * texture->line_length + data->raycast.tex_x
+		* (texture->bits_per_pixel / 8);
+	color = *(int *)(texture->data + offset);
 	return (color);
 }
