@@ -18,35 +18,42 @@ MLXFLAGS	= -lmlx -lXext -lX11 -lm
 SRCDIR 	= src
 OBJDIR  = obj
 MLXDIR	= minilibx-linux
+LIBFTDIR = includes/libft
 
 # Sources & Objects
 SOURCES = 	main.c \
-			init_player.c \
-			init_structs.c \
-
-			parse_map.c \
-			flood_fill.c \
-			validate_map.c \
-			parse_identifier.c \
-
-			parser_tools.c \
+			init/init_player.c \
+			init/init_structs.c \
+			parser/parse_map.c \
+			parser/flood_fill.c \
+			parser/validate_map.c \
+			parser/parse_identifier.c \
+			utils/parser_tools.c \
+			raycasting/raycast_core.c \
+			raycasting/texture_calc.c \
+			raycasting/render.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
 MLXLIB  = $(addprefix $(MLXDIR)/, libmlx.a)
+LIBFT   = $(addprefix $(LIBFTDIR)/, libft.a)
 
 # Output Binary
 NAME    = cub3d
 
 all: $(NAME)
 
+$(LIBFT):
+	@$(MAKE) -C $(LIBFTDIR)
+	@echo "$(MAGENTA)Build complete: libft$(RESET)"
+
 $(MLXLIB):
 	@$(MAKE) -C $(MLXDIR) > /dev/null 2>&1
 	@echo "$(MAGENTA)Build complete: minilibx$(RESET)"
 
-$(NAME): $(MLXLIB) $(OBJS)
+$(NAME): $(LIBFT) $(MLXLIB) $(OBJS)
 	@echo "$(CYAN)Linking objects...$(RESET)"
-	@$(CC) $(CFLAGS) $(OBJS) -L $(MLXDIR) $(MLXFLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) -L $(MLXDIR) -L $(LIBFTDIR) $(MLXFLAGS) -lft -o $(NAME)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
@@ -58,6 +65,7 @@ clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
 	@rm -rf $(OBJDIR)
 	@$(MAKE) -C $(MLXDIR) clean
+	@$(MAKE) -C $(LIBFTDIR) clean
 
 fclean: clean
 	@echo "$(RED)Removing binary...$(RESET)"
