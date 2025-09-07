@@ -51,36 +51,40 @@ static void	calculate_step_and_sidedist(t_data *data, double *side_dist_x,
 	}
 }
 
+static int	is_wall_hit(t_data *data, int map_x, int map_y)
+{
+	if (map_x < 0 || map_x >= data->map.width || map_y < 0
+		|| map_y >= data->map.height)
+		return (1);
+	if (data->map.grid[map_y][map_x] == '1')
+		return (1);
+	return (0);
+}
+
 static void	perform_dda(t_data *data)
 {
-	double	side_dist_x;
-	double	side_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	t_raycast	*ray;
 
-	calculate_step_and_sidedist(data);
-	if (data->raycast.ray_dir_x < 0)
-		side_dist_x = (data->player.pos_x - data->raycast.map_x) * data->raycast.delta_dist_x;
-	else
-		side_dist_x = (data->raycast.map_x + 1.0 - data->player.pos_x) * data->raycast.delta_dist_x;
-	if (data->raycast.ray_dir_y < 0)
-		side_dist_y = (data->player.pos_y - data->raycast.map_y) * data->raycast.delta_dist_y;
-	else
-		side_dist_y = (data->raycast.map_y + 1.0 - data->player.pos_y) * data->raycast.delta_dist_y;
-	while (data->raycast.hit == 0)
+	ray = &data->raycast;
+	calculate_step_and_sidedist(data, &side_dist_x, &side_dist_y);
+	while (ray->hit == 0)
 	{
 		if (side_dist_x < side_dist_y)
 		{
-			side_dist_x += data->raycast.delta_dist_x;
-			data->raycast.map_x += data->raycast.step_x;
-			data->raycast.side = 0;
+			side_dist_x += ray->delta_dist_x;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
 		}
 		else
 		{
-			side_dist_y += data->raycast.delta_dist_y;
-			data->raycast.map_y += data->raycast.step_y;
-			data->raycast.side = 1;
+			side_dist_y += ray->delta_dist_y;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
 		}
-		if (data->map.grid[data->raycast.map_y][data->raycast.map_x] == '1')
-			data->raycast.hit = 1;
+		if (is_wall_hit(data, ray->map_x, ray->map_y))
+			ray->hit = 1;
 	}
 }
 
