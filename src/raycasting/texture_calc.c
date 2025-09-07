@@ -2,16 +2,19 @@
 
 static int	get_texture_num(t_data *data)
 {
-	if (data->raycast.side == 0)
+	t_raycast	*ray;
+
+	ray = &data->raycast;
+	if (ray->side == 0)
 	{
-		if (data->raycast.ray_dir_x > 0)
+		if (ray->ray_dir_x > 0)
 			return (EAST_TEX);
 		else
 			return (WEST_TEX);
 	}
 	else
 	{
-		if (data->raycast.ray_dir_y > 0)
+		if (ray->ray_dir_y > 0)
 			return (SOUTH_TEX);
 		else
 			return (NORTH_TEX);
