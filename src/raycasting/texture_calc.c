@@ -60,16 +60,15 @@ int	get_texture_color(t_data *data, int tex_y)
 {
 	t_texture	*texture;
 	int			color;
-	int			tex_width;
-	int			tex_height;
+	int			offset;
 
 	texture = &data->graphics.textures[data->raycast.tex_num];
-	tex_width = texture->width;
-	tex_height = texture->height;
 	if (tex_y < 0)
 		tex_y = 0;
-	if (tex_y >= tex_height)
-		tex_y = tex_height - 1;
-	color = *(int *)(texture->data + (tex_y * texture->line_length + data->raycast.tex_x * (texture->bits_per_pixel / 8)));
+	if (tex_y >= texture->height)
+		tex_y = texture->height - 1;
+	offset = tex_y * texture->line_length + data->raycast.tex_x
+		* (texture->bits_per_pixel / 8);
+	color = *(int *)(texture->data + offset);
 	return (color);
 }
