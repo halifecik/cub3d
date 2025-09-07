@@ -37,14 +37,16 @@ static void	calculate_wall_x(t_data *data)
 
 static void	calculate_tex_x(t_data *data)
 {
-	int	tex_width;
+	int			tex_width;
+	t_raycast	*ray;
 
-	tex_width = data->graphics.textures[data->raycast.tex_num].width;
-	data->raycast.tex_x = (int)(data->raycast.wall_x * (double)tex_width);
-	if (data->raycast.side == 0 && data->raycast.ray_dir_x > 0)
-		data->raycast.tex_x = tex_width - data->raycast.tex_x - 1;
-	if (data->raycast.side == 1 && data->raycast.ray_dir_y < 0)
-		data->raycast.tex_x = tex_width - data->raycast.tex_x - 1;
+	ray = &data->raycast;
+	tex_width = data->graphics.textures[ray->tex_num].width;
+	ray->tex_x = (int)(ray->wall_x * (double)tex_width);
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		ray->tex_x = tex_width - ray->tex_x - 1;
+	if (ray->side == 1 && ray->ray_dir_y < 0)
+		ray->tex_x = tex_width - ray->tex_x - 1;
 }
 
 void	calculate_texture_coordinates(t_data *data)
