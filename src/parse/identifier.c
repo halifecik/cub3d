@@ -1,24 +1,5 @@
 #include "cub3d.h"
 
-int	ft_is_identifier(char *line)
-{
-	if (!line)
-		return (0);
-	if (ft_strncmp(line, "NO ", 3) == 0)
-		return (1);
-	if (ft_strncmp(line, "SO ", 3) == 0)
-		return (1);
-	if (ft_strncmp(line, "WE ", 3) == 0)
-		return (1);
-	if (ft_strncmp(line, "EA ", 3) == 0)
-		return (1);
-	if (ft_strncmp(line, "F ", 2) == 0)
-		return (1);
-	if (ft_strncmp(line, "C ", 2) == 0)
-		return (1);
-	return (0);
-}
-
 static int	ft_atoi_color(char *str)
 {
 	int	r;
@@ -43,6 +24,25 @@ static int	ft_atoi_color(char *str)
 	if (b < 0 || b > 255)
 		return (-1);
 	return ((r << 16) | (g << 8) | b);
+}
+
+int	ft_is_identifier(char *line)
+{
+	if (!line)
+		return (0);
+	if (ft_strncmp(line, "NO ", 3) == 0)
+		return (1);
+	if (ft_strncmp(line, "SO ", 3) == 0)
+		return (1);
+	if (ft_strncmp(line, "WE ", 3) == 0)
+		return (1);
+	if (ft_strncmp(line, "EA ", 3) == 0)
+		return (1);
+	if (ft_strncmp(line, "F ", 2) == 0)
+		return (1);
+	if (ft_strncmp(line, "C ", 2) == 0)
+		return (1);
+	return (0);
 }
 
 void	ft_parse_identifier(char *line, t_config *config)
