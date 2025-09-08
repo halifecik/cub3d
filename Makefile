@@ -21,17 +21,7 @@ MLXDIR	= minilibx-linux
 LIBFTDIR = includes/libft
 
 # Sources & Objects
-SOURCES = 	main.c \
-			init/init_player.c \
-			init/init_structs.c \
-			parser/parse_map.c \
-			parser/flood_fill.c \
-			parser/validate_map.c \
-			parser/parse_identifier.c \
-			utils/parser_tools.c \
-			raycasting/raycast_core.c \
-			raycasting/texture_calc.c \
-			raycasting/render.c \
+SOURCES =	main.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
