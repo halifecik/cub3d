@@ -34,6 +34,17 @@ int		ft_validate_map(t_map *map);
 int		ft_parse_map(t_data *data, char *filename);
 
 // raycast
+void	ft_calculate_step(t_data *data);
+void	ft_wall_distance(t_data *data);
+void	ft_wall_x(t_data *data);
+void	ft_texture_x(t_data *data);
+void	ft_cast_ray(t_data *data, int x);
+void	ft_texture_coordinates(t_data *data);
+int		ft_texture_color(t_data *data, int tex_y);
+void	ft_side_distance(t_data *data, double *side_dist_x,
+			double *side_dist_y);
+
+void	ft_render_frame(t_data *data);
 
 // utils
 
