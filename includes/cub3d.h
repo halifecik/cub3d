@@ -21,7 +21,7 @@ void	ft_player_south(t_data *data);
 void	ft_initialize_player(t_player *player);
 void	ft_initialize_player_location(t_data *data, t_map *map);
 void	ft_initialize_ray(t_data *data, int x);
-
+void    ft_initialize_map(t_map *map);
 int		ft_initialize_game(t_data *data);
 
 // parse
@@ -47,6 +47,6 @@ void	ft_side_distance(t_data *data, double *side_dist_x,
 void	ft_render_frame(t_data *data);
 
 // utils
-int		ft_is_whitespace(char c);
+int	ft_is_whitespace(char c);
 
 #endif
