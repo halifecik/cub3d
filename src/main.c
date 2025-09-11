@@ -43,6 +43,6 @@ int	main(int argc, char **argv)
 		return (ft_print_error("Failed to parse .cub file"));
 	if (ft_validate_map(&data->map))
 		return (ft_print_error("Invalid map"));
-	ft_initialize_player_location(&data->player, &data->map);
+	ft_initialize_player_location(data, &data->map);
 	return (EXIT_SUCCESS);
 }

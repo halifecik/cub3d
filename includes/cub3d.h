@@ -47,5 +47,6 @@ void	ft_side_distance(t_data *data, double *side_dist_x,
 void	ft_render_frame(t_data *data);
 
 // utils
+int		ft_is_whitespace(char c);
 
 #endif

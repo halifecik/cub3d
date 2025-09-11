@@ -15,14 +15,13 @@ static int	ft_is_map_line(char *line)
 
 static char	*ft_clean_line_with_check(char *line)
 {
-	char	*result;
 	int		i;
 
 	if (!line)
 		return (NULL);
 	i = -1;
 	while (line[i])
-		if (!ft_strchr("01NSEW", line[i]) && !is_whitespace(line[i]))
+		if (!ft_strchr("01NSEW", line[i]) && !ft_is_whitespace(line[i]))
 			return (NULL);
 	return (ft_strdup(line));
 }
@@ -51,8 +50,8 @@ static int	ft_add_line_to_map(t_map *map, char *line)
 	if (map->grid)
 		free(map->grid);
 	map->grid = new_grid;
-	if (ft_strlen(clean) > map->width)
-		map->width = ft_strlen(clean);
+	if ((int)ft_strlen(clean) > map->width)
+		map->width = (int)ft_strlen(clean);
 	return (EXIT_SUCCESS);
 }
 
@@ -61,7 +60,8 @@ static int	ft_read_line(int fd, t_data *data, int *map_started)
 	char	*line;
 	int		status;
 
-	if (get_next_line(fd, &line) <= 0)
+	line = get_next_line(fd);
+	if (!line)
 		return (0);
 	status = 0;
 	if (!*map_started)

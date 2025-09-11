@@ -9,7 +9,7 @@ static int	ft_check_chars(t_map *map)
 	while (y < map->height)
 	{
 		x = 0;
-		while (x < ft_strlen(map->grid[y]))
+		while (x < (int)ft_strlen(map->grid[y]))
 		{
 			if (!ft_strchr("01NSEW", map->grid[y][x]))
 				return (EXIT_FAILURE);
@@ -31,7 +31,7 @@ static int	ft_check_player(t_map *map)
 	while (y < map->height)
 	{
 		x = 0;
-		while (x < ft_strlen(map->grid[y]))
+		while (x < (int)ft_strlen(map->grid[y]))
 		{
 			if (ft_strchr("NSEW", map->grid[y][x]))
 			{

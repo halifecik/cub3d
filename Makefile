@@ -47,7 +47,7 @@ $(NAME): $(LIBFT) $(MLXLIB) $(OBJS)
 	@echo "$(GREEN)Build complete: $(NAME)$(RESET)"
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@mkdir -p $(OBJDIR)
+	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $<...$(RESET)"
 	@$(CC) $(CFLAGS) -c $< -o $@
 
