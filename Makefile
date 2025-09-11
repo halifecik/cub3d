@@ -20,11 +20,25 @@ OBJDIR  = obj
 MLXDIR	= minilibx-linux
 LIBFTDIR = includes/libft
 
+# GNL (get_next_line) kaynak ve obje dosyaları
+GNL_DIR = includes/gnl
+GNL_SRC = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
+GNL_OBJ = $(GNL_SRC:.c=.o)
+
 # Sources & Objects
 SOURCES =	main.c \
+            init/map.c \
+            init/player.c \
+            init/direction.c \
+            init/initialize.c \
+            parse/parse_map.c \
+            parse/identifier.c \
+            parse/flood_fill.c \
+            parse/validate_map.c \
+            utils/parser_tools.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
-OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o))
+OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o)) $(GNL_OBJ)
 MLXLIB  = $(addprefix $(MLXDIR)/, libmlx.a)
 LIBFT   = $(addprefix $(LIBFTDIR)/, libft.a)
 
@@ -54,6 +68,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
 	@rm -rf $(OBJDIR)
+	@rm -f $(GNL_DIR)/*.o
 	@$(MAKE) -C $(MLXDIR) clean
 	@$(MAKE) -C $(LIBFTDIR) clean
 

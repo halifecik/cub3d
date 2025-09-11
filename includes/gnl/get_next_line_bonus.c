@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fxc <fxc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:20:45 by mugenan           #+#    #+#             */
-/*   Updated: 2025/02/19 03:35:25 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/11 17:30:26 by fxc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ char	*get_update(char *getline)
 		free(getline);
 		return (NULL);
 	}
-	buffer = malloc(sizeof(char) * (ft_strlen(getline) - i));
+	buffer = malloc(sizeof(char) * (ftstrlen(getline) - i));
 	if (!buffer)
 		return (NULL);
 	i++;

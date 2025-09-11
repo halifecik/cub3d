@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fxc <fxc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 18:44:32 by mugenan           #+#    #+#             */
-/*   Updated: 2025/02/22 20:58:26 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/11 17:32:23 by fxc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*get_read(char *getline, int fd)
 	if (!keeper)
 		return (NULL);
 	check = 1;
-	while (!ft_strchr(getline, '\n') && check != 0)
+	while (!ftstrchr(getline, '\n') && check != 0)
 	{
 		check = read(fd, keeper, BUFFER_SIZE);
 		if (check == -1)
@@ -54,7 +54,7 @@ char	*get_read(char *getline, int fd)
 			return (NULL);
 		}
 		keeper[check] = '\0';
-		getline = ft_strjoin(getline, keeper);
+		getline = ftstrjoin(getline, keeper);
 	}
 	free(keeper);
 	return (getline);
@@ -103,7 +103,7 @@ char	*get_update(char *getline)
 		free(getline);
 		return (NULL);
 	}
-	buffer = malloc(sizeof(char) * (ft_strlen(getline) - i));
+	buffer = malloc(sizeof(char) * (ftstrlen(getline) - i));
 	if (!buffer)
 		return (NULL);
 	i++;

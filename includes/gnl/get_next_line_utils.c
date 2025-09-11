@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fxc <fxc@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 18:44:29 by mugenan           #+#    #+#             */
-/*   Updated: 2024/12/16 19:55:35 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/11 17:32:33 by fxc              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+int	ftstrlen(const char *str)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ftstrchr(const char *s, int c)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ftstrjoin(char *s1, char const *s2)
 {
 	char	*str;
 	int		i;
@@ -53,7 +53,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 		s1 = malloc(1 * sizeof(char));
 		*s1 = '\0';
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = (char *)malloc(sizeof(char) * (ftstrlen(s1) + ftstrlen(s2) + 1));
 	if (!str)
 		return (NULL);
 	while (s1[++i] != '\0')
