@@ -60,6 +60,7 @@ int	ft_validate_map(t_map *map)
 	valid = 1;
 	ft_flood_fill(map, map->player_y, map->player_x, &valid);
 	ft_reset_flood_fill(map);
+	printf("a\n");
 	if (!valid)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

@@ -32,6 +32,12 @@ void	ft_side_distance(t_data *data, double *side_dist_x, double *side_dist_y)
 			* ray->delta_dist_y;
 }
 
+void	ft_calculate_side_dist(t_data *data, double *side_dist_x,
+	double *side_dist_y)
+{
+	ft_side_distance(data, side_dist_x, side_dist_y);
+}
+
 void	ft_wall_distance(t_data *data)
 {
 	t_raycast	*ray;

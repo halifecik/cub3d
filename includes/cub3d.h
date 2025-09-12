@@ -1,17 +1,25 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "constants.h"
-# include "gnl/get_next_line.h"
-# include "graphics.h"
-# include "libft/libft.h"
-# include "structs.h"
-# include <fcntl.h>
 # include <math.h>
+# include <fcntl.h>
+# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "structs.h"
+# include "graphics.h"
+# include "constants.h"
+# include "libft/libft.h"
+# include "gnl/get_next_line.h"
+# include "../minilibx-linux/mlx.h"
 
 // game
+
+// graphics
+int		ft_game_loop(t_data *data);
+int		ft_key_press(int keycode, t_data *data);
+int		ft_close_window(t_data *data);
+void	ft_cleanup(t_data *data);
 
 // init
 void	ft_player_east(t_data *data);
@@ -23,6 +31,8 @@ void	ft_initialize_player_location(t_data *data, t_map *map);
 void	ft_initialize_ray(t_data *data, int x);
 void    ft_initialize_map(t_map *map);
 int		ft_initialize_game(t_data *data);
+int		ft_initialize_graphics(t_data *data);
+void	ft_initialize_config(t_config *config);
 
 // parse
 void	ft_flood_fill(t_map *map, int y, int x, int *valid);
@@ -43,8 +53,22 @@ void	ft_texture_coordinates(t_data *data);
 int		ft_texture_color(t_data *data, int tex_y);
 void	ft_side_distance(t_data *data, double *side_dist_x,
 			double *side_dist_y);
+void	ft_calculate_side_dist(t_data *data, double *side_dist_x,
+			double *side_dist_y);
 
 void	ft_render_frame(t_data *data);
+
+// graphics
+int		ft_initialize_graphics(t_data *data);
+void	ft_cleanup_graphics(t_data *data);
+
+// game loop
+int		ft_game_loop(t_data *data);
+int		ft_handle_keypress(int keycode, t_data *data);
+int		ft_handle_close(t_data *data);
+void	ft_handle_keypress_2(int keycode, t_data *data);
+void	ft_handle_rotation(int keycode, t_data *data);
+int		ft_is_valid_position(t_data *data, double x, double y);
 
 // utils
 int	ft_is_whitespace(char c);
