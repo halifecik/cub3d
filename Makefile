@@ -31,11 +31,22 @@ SOURCES =	main.c \
             init/player.c \
             init/direction.c \
             init/initialize.c \
+            init/raycast.c \
+            init/graphics.c \
+            init/config.c \
             parse/parse_map.c \
             parse/identifier.c \
             parse/flood_fill.c \
             parse/validate_map.c \
             utils/parser_tools.c \
+            raycast/raycast.c \
+            raycast/calculate.c \
+            raycast/render.c \
+            raycast/texture.c \
+            game/movement.c \
+            game/rotation.c \
+            game/game_loop.c \
+            game/events.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o)) $(GNL_OBJ)
