@@ -35,13 +35,7 @@ int		ft_initialize_graphics(t_data *data);
 void	ft_initialize_config(t_config *config);
 
 // parse
-void	ft_flood_fill(t_map *map, int y, int x, int *valid);
-void	ft_reset_flood_fill(t_map *map);
-int		ft_is_identifier(char *line);
-void	ft_parse_identifier(char *line, t_config *config);
-int		ft_validate_map(t_map *map);
-
-int		ft_parse_map(t_data *data, char *filename);
+int	ft_cub_extension(char *filename);
 
 // raycast
 void	ft_calculate_step(t_data *data);
@@ -72,5 +66,6 @@ int		ft_is_valid_position(t_data *data, double x, double y);
 
 // utils
 int	ft_is_whitespace(char c);
+void	ft_rtrim(char *line);
 
 #endif

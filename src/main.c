@@ -1,19 +1,5 @@
 #include "cub3d.h"
 
-static int	ft_cub_extension(char *filename)
-{
-	size_t	len;
-
-	if (!filename)
-		return (0);
-	len = ft_strlen(filename);
-	if (len < 4)
-		return (1);
-	if (ft_strncmp(filename + len - 4, ".cub", 4) == 0)
-		return (0);
-	return (1);
-}
-
 int	ft_print_error(char *msg)
 {
 	int i = 0;
@@ -39,10 +25,8 @@ int	main(int argc, char **argv)
 	data->map_file = argv[1];
 	if (ft_initialize_game(data))
 		return (ft_print_error("Failed to initialize data"));
-	if (ft_parse_map(data, data->map_file))
+	if (ft_parse_map(data))
 		return (ft_print_error("Failed to parse .cub file"));
-	if (ft_validate_map(&data->map))
-		return (ft_print_error("Invalid map"));
 	ft_initialize_player_location(data, &data->map);
 	if (ft_initialize_graphics(data))
 		return (ft_print_error("Failed to initialize graphics"));
