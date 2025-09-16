@@ -3,7 +3,7 @@
 static int	ft_grid_append_line(t_map *map, char *line)
 {
 	char	**new_grid;
-	size_t	i;
+	int	i;
 
 	map->height++;
 	if ((int)ft_strlen(line) > map->width)
@@ -34,7 +34,7 @@ static int	ft_read_map_lines(t_map *map, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!is_fully_space(line))
+		if (!is_line_empty(line))
 		{
 			ft_rtrim(line);
 			if (ft_grid_append_line(map, line))
@@ -63,17 +63,3 @@ int	ft_parse_map(t_data *data)
 		return (1);
 	return (0);
 }
-
-
-// int ft_parse_map(t_data *data)
-// {
-//     //need to read map file
-//     ft_read_map(&data->map);
-    
-//     //if map need to edit then edit
-//     //ft_trim etc.
-
-//     //check map for subject qualifications and flood_fill
-//     ft_check_map(&data->map);
-
-// }

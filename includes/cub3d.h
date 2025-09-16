@@ -36,6 +36,8 @@ void	ft_initialize_config(t_config *config);
 
 // parse
 int	ft_cub_extension(char *filename);
+int	ft_parse_map(t_data *data);
+int	ft_check_map(t_map *map);
 
 // raycast
 void	ft_calculate_step(t_data *data);
@@ -68,5 +70,8 @@ int		ft_is_valid_position(t_data *data, double x, double y);
 int	ft_is_whitespace(char c);
 void	ft_rtrim(char *line);
 int	is_line_empty(char *str);
+char	**copy_grid(char **grid, int height);
+void	free_grid(char **grid);
+int	ft_print_error(char *msg);
 
 #endif

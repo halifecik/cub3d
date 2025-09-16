@@ -39,3 +39,43 @@ int	is_line_empty(char *str)
 	}
 	return (1); // true
 }
+
+char	**copy_grid(char **grid, int height)
+{
+	char	**cpy;
+	int		i;
+
+	cpy = malloc(sizeof(char *) * (height + 1));
+	if (!cpy)
+		return (NULL);
+	i = 0;
+	while (i < height)
+	{
+		cpy[i] = ft_strdup(grid[i]);
+		if (!cpy[i])
+		{
+			while (i-- > 0)
+				free(cpy[i]);
+			free(cpy);
+			return (NULL);
+		}
+		i++;
+	}
+	cpy[i] = NULL;
+	return (cpy);
+}
+
+void	free_grid(char **grid)
+{
+	int	i;
+
+	if (!grid)
+		return ;
+	i = 0;
+	while (grid[i])
+	{
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
+}
