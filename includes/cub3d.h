@@ -67,11 +67,12 @@ void	ft_handle_rotation(int keycode, t_data *data);
 int		ft_is_valid_position(t_data *data, double x, double y);
 
 // utils
-int	ft_is_whitespace(char c);
-void	ft_rtrim(char *line);
-int	is_line_empty(char *str);
+int		ft_is_whitespace(char c);
+int		is_line_empty(char *str);
+int		ft_print_error(char *msg);
 char	**copy_grid(char **grid, int height);
+char	**copy_map_lines(t_map *map, int *cpy_height);
+void	ft_rtrim(char *line);
 void	free_grid(char **grid);
-int	ft_print_error(char *msg);
 
 #endif

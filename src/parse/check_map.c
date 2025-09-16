@@ -14,7 +14,7 @@ int	ft_cub_extension(char *filename)
 	return (1);
 }
 
-static int	check_chars(t_map *map)
+static int	check_chars(char **grid, int height)
 {
 	int	i;
 	int	j;
@@ -22,16 +22,17 @@ static int	check_chars(t_map *map)
 
 	i = 0;
 	player_count = 0;
-	while (i < map->height)
+	while (i < height)
 	{
 		j = 0;
-		while (j < (int)ft_strlen(map->grid[i]))
+		while (grid[i][j])
 		{
-			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S' ||
-				map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
+			if (grid[i][j] == 'N' || grid[i][j] == 'S' ||
+				grid[i][j] == 'E' || grid[i][j] == 'W')
 				player_count++;
-			else if (map->grid[i][j] != '0' && map->grid[i][j] != '1' &&
-				map->grid[i][j] != ' ')
+			else if (!ft_is_whitespace(grid[i][j]) &&
+					 grid[i][j] != '0' &&
+					 grid[i][j] != '1')
 				return (ft_print_error("Invalid character in map"));
 			j++;
 		}
@@ -42,7 +43,7 @@ static int	check_chars(t_map *map)
 	return (0);
 }
 
-static int	find_player_start(t_map *map, int *player_x, int *player_y)
+static int	find_player_start(char **grid, int height, int *player_x, int *player_y)
 {
 	int	i;
 	int	j;
@@ -50,13 +51,13 @@ static int	find_player_start(t_map *map, int *player_x, int *player_y)
 
 	i = -1;
 	found = 0;
-	while (++i < map->height)
+	while (++i < height)
 	{
 		j = -1;
-		while (++j < (int)ft_strlen(map->grid[i]))
+		while (grid[i][++j])
 		{
-			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S' ||
-				map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
+			if (grid[i][j] == 'N' || grid[i][j] == 'S' ||
+				grid[i][j] == 'E' || grid[i][j] == 'W')
 			{
 				*player_x = j;
 				*player_y = i;
@@ -71,25 +72,25 @@ static int	find_player_start(t_map *map, int *player_x, int *player_y)
 	return (0);
 }
 
-static int	flood_fill(char **grid, int x, int y, t_map *map)
+static int	flood_fill(char **grid, int x, int y, int height)
 {
 	int	width;
 
-	if (!grid || x < 0 || y < 0 || y >= map->height)
+	if (!grid || x < 0 || y < 0 || y >= height)
 		return (1);
 	width = (int)ft_strlen(grid[y]);
 	if (x >= width)
 		return (1);
-	if (grid[y][x] != '0' && grid[y][x] != 'N' && grid[y][x] != 'S' &&
-		grid[y][x] != 'E' && grid[y][x] != 'W')
+	if (grid[y][x] != '0' && grid[y][x] != 'N' &&
+		grid[y][x] != 'S' && grid[y][x] != 'E' && grid[y][x] != 'W')
 		return (0);
-	if (x == 0 || y == 0 || y == map->height - 1 || x == width - 1)
+	if (x == 0 || y == 0 || y == height - 1 || x == width - 1)
 		return (1);
 	grid[y][x] = 'F';
-	if (flood_fill(grid, x + 1, y, map)
-		|| flood_fill(grid, x - 1, y, map)
-		|| flood_fill(grid, x, y + 1, map)
-		|| flood_fill(grid, x, y - 1, map))
+	if (flood_fill(grid, x + 1, y, height) ||
+		flood_fill(grid, x - 1, y, height) ||
+		flood_fill(grid, x, y + 1, height) ||
+		flood_fill(grid, x, y - 1, height))
 		return (1);
 	return (0);
 }
@@ -98,22 +99,23 @@ int	ft_check_map(t_map *map)
 {
 	int		player_x;
 	int		player_y;
-	char	**grid_copy;
+	int		cpy_height;
+	char	**cpy_map;
 
 	if (!map || !map->grid)
 		return (ft_print_error("Empty map"));
-	if (check_chars(map))
-		return (1);
-	if (find_player_start(map, &player_x, &player_y))
-		return (1);
-	grid_copy = copy_grid(map->grid, map->height);
-	if (!grid_copy)
-		return (ft_print_error("Malloc fail"));
-	if (flood_fill(grid_copy, player_x, player_y, map))
+	cpy_map = copy_map_lines(map, &cpy_height);
+	if (!cpy_map)
+		return (ft_print_error("No map found or malloc fail"));
+	if (check_chars(cpy_map, cpy_height))
+		return (free_grid(cpy_map), 1);
+	if (find_player_start(cpy_map, cpy_height, &player_x, &player_y))
+		return (free_grid(cpy_map), 1);
+	if (flood_fill(cpy_map, player_x, player_y, cpy_height))
 	{
-		free_grid(grid_copy);
+		free_grid(cpy_map);
 		return (ft_print_error("Map not closed by walls"));
 	}
-	free_grid(grid_copy);
+	free_grid(cpy_map);
 	return (0);
 }

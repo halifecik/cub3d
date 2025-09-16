@@ -62,4 +62,5 @@ int	ft_parse_map(t_data *data)
 	if (ft_check_map(&data->map))
 		return (1);
 	return (0);
+    //rgb and textures needs to be initialize with map grid
 }
