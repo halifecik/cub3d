@@ -67,5 +67,6 @@ int		ft_is_valid_position(t_data *data, double x, double y);
 // utils
 int	ft_is_whitespace(char c);
 void	ft_rtrim(char *line);
+int	is_line_empty(char *str);
 
 #endif
