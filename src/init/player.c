@@ -12,13 +12,11 @@ static void	ft_initialize_player(t_player *player)
 	player->rot_speed = ROT_SPEED;
 }
 
-int	ft_initialize_player_location(t_data *data, t_map *map)
+int	ft_set_player_location(t_data *data, t_map *map)
 {
 	ft_initialize_player(&data->player);
 	data->player.pos_x = map->player_x + 0.5;
 	data->player.pos_y = map->player_y + 0.5;
-	data->player.move_speed = MOVE_SPEED;
-	data->player.rot_speed = ROT_SPEED;
 	if (map->player_dir == 'N')
 		return(ft_player_north(data), 0);
 	else if (map->player_dir == 'S')

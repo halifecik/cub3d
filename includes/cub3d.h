@@ -30,7 +30,7 @@ void    ft_initialize_map(t_map *map);
 void	ft_initialize_ray(t_data *data, int x);
 void	ft_initialize_config(t_config *config);
 int		ft_initialize_graphics(t_data *data);
-int		ft_initialize_player_location(t_data *data, t_map *map);
+int		ft_set_player_location(t_data *data, t_map *map);
 
 int	ft_set_config(t_map *map, t_config *config);
 
