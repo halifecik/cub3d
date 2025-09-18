@@ -23,8 +23,6 @@ int	main(int argc, char **argv)
 	if (!data)
 		return (ft_print_error("Failed to allocate t_data"));
 	data->map_file = argv[1];
-	if (ft_initialize_game(data))
-		return (ft_print_error("Failed to initialize data"));
 	if (ft_parse_map(data))
 		return (ft_print_error("Failed to parse .cub file"));
 	ft_initialize_player_location(data, &data->map);

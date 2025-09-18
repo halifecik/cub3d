@@ -30,7 +30,6 @@ SOURCES =	main.c \
             init/map.c \
             init/player.c \
             init/direction.c \
-            init/initialize.c \
             init/raycast.c \
             init/graphics.c \
             init/config.c \
