@@ -26,12 +26,13 @@ void	ft_player_east(t_data *data);
 void	ft_player_west(t_data *data);
 void	ft_player_north(t_data *data);
 void	ft_player_south(t_data *data);
-void	ft_initialize_player_location(t_data *data, t_map *map);
-void	ft_initialize_ray(t_data *data, int x);
 void    ft_initialize_map(t_map *map);
-int		ft_initialize_game(t_data *data);
-int		ft_initialize_graphics(t_data *data);
+void	ft_initialize_ray(t_data *data, int x);
 void	ft_initialize_config(t_config *config);
+int		ft_initialize_graphics(t_data *data);
+int		ft_initialize_player_location(t_data *data, t_map *map);
+
+int	ft_set_config(t_map *map, t_config *config);
 
 // parse
 int	ft_cub_extension(char *filename);

@@ -62,6 +62,9 @@ int	ft_parse_map(t_data *data)
 	close(fd);
 	if (ft_check_map(&data->map))
 		return (1);
+	if (ft_initialize_player_location(data, &data->map))
+		return (ft_print_error("Initialize player location error"));
+	if (ft_set_config(&data->map, &data->config))
+		return (ft_print_error("Config textures error"));
 	return (0);
-    //rgb and textures needs to be initialize with map grid
 }

@@ -1,22 +1,17 @@
 #include "cub3d.h"
 
-#include <stdlib.h>
-#include <string.h>
-
-// ft_is_whitespace senin verdiğin fonksiyon
 int	ft_is_whitespace(char c)
 {
 	return (c == ' ' || (c >= 9 && c <= 13));
 }
 
-// Satırın sağındaki boşlukları kaldıran fonksiyon
 void	ft_rtrim(char *str)
 {
 	int	len;
 
 	if (!str)
-		return;
-	len = strlen(str) - 1;
+		return ;
+	len = (int)ft_strlen(str) - 1;
 	while (len >= 0 && ft_is_whitespace(str[len]))
 	{
 		str[len] = '\0';
@@ -29,15 +24,15 @@ int	is_line_empty(char *str)
 	int	i;
 
 	if (!str)
-		return (0); // false
+		return (0);
 	i = 0;
 	while (str[i])
 	{
 		if (!ft_is_whitespace(str[i]))
-			return (0); // false
+			return (0);
 		i++;
 	}
-	return (1); // true
+	return (1);
 }
 
 char	**copy_grid(char **grid, int height)
@@ -128,6 +123,7 @@ char	**copy_map_lines(t_map *map, int *cpy_height)
 	start = find_map_start(map);
 	if (start == -1)
 		return (NULL);
+	map->map_index = start;
 	*cpy_height = map->height - start;
 	copy = ft_calloc(*cpy_height + 1, sizeof(char *));
 	if (!copy)

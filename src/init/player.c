@@ -12,7 +12,7 @@ static void	ft_initialize_player(t_player *player)
 	player->rot_speed = ROT_SPEED;
 }
 
-void	ft_initialize_player_location(t_data *data, t_map *map)
+int	ft_initialize_player_location(t_data *data, t_map *map)
 {
 	ft_initialize_player(&data->player);
 	data->player.pos_x = map->player_x + 0.5;
@@ -20,11 +20,12 @@ void	ft_initialize_player_location(t_data *data, t_map *map)
 	data->player.move_speed = MOVE_SPEED;
 	data->player.rot_speed = ROT_SPEED;
 	if (map->player_dir == 'N')
-		ft_player_north(data);
+		return(ft_player_north(data), 0);
 	else if (map->player_dir == 'S')
-		ft_player_south(data);
+		return(ft_player_south(data), 0);
 	else if (map->player_dir == 'E')
-		ft_player_east(data);
+		return(ft_player_east(data), 0);
 	else if (map->player_dir == 'W')
-		ft_player_west(data);
+		return(ft_player_west(data), 0);
+	return(1);
 }

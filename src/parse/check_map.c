@@ -43,7 +43,7 @@ static int	check_chars(char **grid, int height)
 	return (0);
 }
 
-static int	find_player_start(char **grid, int height, int *player_x, int *player_y)
+static int	find_player_start(t_map *map, char **grid, int height)
 {
 	int	i;
 	int	j;
@@ -59,8 +59,9 @@ static int	find_player_start(char **grid, int height, int *player_x, int *player
 			if (grid[i][j] == 'N' || grid[i][j] == 'S' ||
 				grid[i][j] == 'E' || grid[i][j] == 'W')
 			{
-				*player_x = j;
-				*player_y = i;
+				map->player_x = j;
+				map->player_y = i;
+				map->player_dir = grid[i][j];
 				found++;
 			}
 		}
@@ -97,8 +98,6 @@ static int	flood_fill(char **grid, int x, int y, int height)
 
 int	ft_check_map(t_map *map)
 {
-	int		player_x;
-	int		player_y;
 	int		cpy_height;
 	char	**cpy_map;
 
@@ -106,12 +105,12 @@ int	ft_check_map(t_map *map)
 		return (ft_print_error("Empty map"));
 	cpy_map = copy_map_lines(map, &cpy_height);
 	if (!cpy_map)
-		return (ft_print_error("No map found or malloc fail"));
+		return (ft_print_error("cpy_map malloc fail"));
 	if (check_chars(cpy_map, cpy_height))
 		return (free_grid(cpy_map), 1);
-	if (find_player_start(cpy_map, cpy_height, &player_x, &player_y))
+	if (find_player_start(map, cpy_map, cpy_height))
 		return (free_grid(cpy_map), 1);
-	if (flood_fill(cpy_map, player_x, player_y, cpy_height))
+	if (flood_fill(cpy_map, map->player_x, map->player_y, cpy_height))
 	{
 		free_grid(cpy_map);
 		return (ft_print_error("Map not closed by walls"));
