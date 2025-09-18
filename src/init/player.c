@@ -14,6 +14,7 @@ void	ft_initialize_player(t_player *player)
 
 void	ft_initialize_player_location(t_data *data, t_map *map)
 {
+	ft_initialize_player(&data->player);
 	data->player.pos_x = map->player_x + 0.5;
 	data->player.pos_y = map->player_y + 0.5;
 	data->player.move_speed = MOVE_SPEED;

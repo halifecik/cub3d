@@ -56,6 +56,7 @@ int	ft_parse_map(t_data *data)
 	fd = open(data->map_file, O_RDONLY);
 	if (fd < 0)
 		return (ft_print_error("Cannot open .cub file"));
+	ft_initialize_map(&data->map);
 	if (ft_read_map_lines(&data->map, fd))
 		return (close(fd), 1);
 	close(fd);
