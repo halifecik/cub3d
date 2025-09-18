@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	ft_initialize_player(t_player *player)
+static void	ft_initialize_player(t_player *player)
 {
 	player->pos_x = 0.0;
 	player->pos_y = 0.0;
