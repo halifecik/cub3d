@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:42:41 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 21:15:29 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,14 @@
 # define CONSTANTS_H
 
 /* Screen dimensions */
-# define SCREEN_WIDTH 1024
-# define SCREEN_HEIGHT 768
+# define SCREEN_WIDTH 2880
+# define SCREEN_HEIGHT 1440
+
+/* Viewport dimensions (centered rendering area) */
+# define VIEWPORT_WIDTH 1440
+# define VIEWPORT_HEIGHT 1080
+# define VIEWPORT_OFFSET_X 720
+# define VIEWPORT_OFFSET_Y 180
 
 /* Game constants */
 # define MOVE_SPEED 0.05
@@ -35,14 +41,14 @@
 # define EAST_TEX 2
 # define WEST_TEX 3
 
-/* Key codes (may vary by system) */
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
+/* Key codes */
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
-# define KEY_ESC 53
+# define KEY_ESC 65307
 
 /* Pixel Colors */
 # define RED_PIXEL 0xFF0000
