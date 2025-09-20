@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:45 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:23:46 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:41:39 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 # define GRAPHICS_H
 
 # include "structs.h"
-
 
 #endif

@@ -6,12 +6,12 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:23:48 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:43:09 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTURES_H
-# define STRUCTURES_H
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 /* Texture structure */
 typedef struct s_texture
@@ -100,7 +100,7 @@ typedef struct s_raycast
 /* Main game structure */
 typedef struct s_data
 {
-	char 		*map_file;
+	char		*map_file;
 	t_player	player;
 	t_map		map;
 	t_graphics	graphics;
