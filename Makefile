@@ -20,10 +20,11 @@ OBJDIR  = obj
 MLXDIR	= minilibx-linux
 LIBFTDIR = includes/libft
 
-# GNL (get_next_line) kaynak ve obje dosyaları
+# GNL sources and objects
 GNL_DIR = includes/gnl
-GNL_SRC = $(GNL_DIR)/get_next_line.c $(GNL_DIR)/get_next_line_utils.c
-GNL_OBJ = $(GNL_SRC:.c=.o)
+GNL_SRC = $(GNL_DIR)/get_next_line.c \
+          $(GNL_DIR)/get_next_line_utils.c
+GNL_OBJ = $(OBJDIR)/gnl/get_next_line.o $(OBJDIR)/gnl/get_next_line_utils.o
 
 # Sources & Objects
 SOURCES =	main.c \
@@ -63,6 +64,16 @@ $(MLXLIB):
 	@$(MAKE) -C $(MLXDIR) > /dev/null 2>&1
 	@echo "$(MAGENTA)Build complete: minilibx$(RESET)"
 
+$(OBJDIR)/gnl/get_next_line.o: $(GNL_DIR)/get_next_line.c
+	@mkdir -p $(OBJDIR)/gnl
+	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+$(OBJDIR)/gnl/get_next_line_utils.o: $(GNL_DIR)/get_next_line_utils.c
+	@mkdir -p $(OBJDIR)/gnl
+	@echo "$(YELLOW)Compiling $<...$(RESET)"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 $(NAME): $(LIBFT) $(MLXLIB) $(OBJS)
 	@echo "$(CYAN)Linking objects...$(RESET)"
 	@$(CC) $(CFLAGS) $(OBJS) -L $(MLXDIR) -L $(LIBFTDIR) $(MLXFLAGS) -lft -o $(NAME)
@@ -76,9 +87,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
 	@rm -rf $(OBJDIR)
-	@rm -f $(GNL_DIR)/*.o
-	@$(MAKE) -C $(MLXDIR) clean
-	@$(MAKE) -C $(LIBFTDIR) clean
+	@$(MAKE) -C $(MLXDIR) clean > /dev/null 2>&1
+	@$(MAKE) -C $(LIBFTDIR) clean > /dev/null 2>&1
 
 fclean: clean
 	@echo "$(RED)Removing binary...$(RESET)"
