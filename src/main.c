@@ -2,12 +2,19 @@
 
 int	ft_print_error(char *msg)
 {
-	int i = 0;
+	int	i;
 
-	write(1, "Error: ", 7);
+	i = 0;
+	write(1, RED "Error: " YELLOW, 21);
 	while (msg[i])
 		write(1, &msg[i++], 1);
-	write(1, "\n", 1);
+	write(1,"\n" RESET , 5);
+	if (msg[0] == 97)
+	{
+		write(1, RED "\n============================\n", 37);
+		write(1,"Usage: " MAGENTA "./cub3d maps/map.cub\n", 36);
+		write(1, RED "============================\n" RESET, 40);
+	}
 	return (EXIT_FAILURE);
 }
 
