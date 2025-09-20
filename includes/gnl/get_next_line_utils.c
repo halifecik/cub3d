@@ -6,13 +6,13 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:23:27 by hademirc          #+#    #+#             */
-/*   Updated: 2025/01/04 23:51:12 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:46:08 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strlen(const char *str)
+int	ftstrlen(const char *str)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ftstrchr(const char *s, int c)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
-char	*ft_strjoin(char *s1, char const *s2)
+char	*ftstrjoin(char *s1, char const *s2)
 {
 	char	*str;
 	int		i;
@@ -53,7 +53,7 @@ char	*ft_strjoin(char *s1, char const *s2)
 		s1 = malloc(1 * sizeof(char));
 		*s1 = '\0';
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	str = (char *)malloc(sizeof(char) * (ftstrlen(s1) + ftstrlen(s2) + 1));
 	if (!str)
 		return (NULL);
 	while (s1[++i] != '\0')

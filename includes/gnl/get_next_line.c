@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 18:23:36 by hademirc          #+#    #+#             */
-/*   Updated: 2025/01/08 14:49:10 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:45:59 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*get_read(char *getline, int fd)
 	if (!temp)
 		return (NULL);
 	check = 1;
-	while (!ft_strchr(getline, '\n') && check != 0)
+	while (!ftstrchr(getline, '\n') && check != 0)
 	{
 		check = read(fd, temp, BUFFER_SIZE);
 		if (check == -1)
@@ -49,7 +49,7 @@ char	*get_read(char *getline, int fd)
 			return (NULL);
 		}
 		temp[check] = '\0';
-		getline = ft_strjoin(getline, temp);
+		getline = ftstrjoin(getline, temp);
 	}
 	free(temp);
 	return (getline);
@@ -97,7 +97,7 @@ char	*get_update(char *getline)
 		free(getline);
 		return (NULL);
 	}
-	buffer = malloc(sizeof(char) * (ft_strlen(getline) - i));
+	buffer = malloc(sizeof(char) * (ftstrlen(getline) - i));
 	if (!buffer)
 		return (NULL);
 	i++;
