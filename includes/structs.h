@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:43:09 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 21:00:28 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,18 @@ typedef struct s_raycast
 	int			tex_x;
 }				t_raycast;
 
+/* Key state tracking */
+typedef struct s_keys
+{
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			left;
+	int			right;
+	int			esc;
+}				t_keys;
+
 /* Main game structure */
 typedef struct s_data
 {
@@ -106,6 +118,7 @@ typedef struct s_data
 	t_graphics	graphics;
 	t_config	config;
 	t_raycast	raycast;
+	t_keys		keys;
 }				t_data;
 
 #endif

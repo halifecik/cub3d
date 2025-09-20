@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:42:30 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 21:16:25 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,34 @@
 # define CUB3D_H
 
 # include "../minilibx-linux/mlx.h"
-# include "constants.h"
 # include "gnl/get_next_line.h"
-# include "graphics.h"
 # include "libft/libft.h"
+# include "constants.h"
 # include "structs.h"
-# include <fcntl.h>
-# include <math.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
+# include <fcntl.h>
+# include <math.h>
 
 // game
 
 // graphics
 int		ft_game_loop(t_data *data);
 int		ft_key_press(int keycode, t_data *data);
+int		ft_key_release(int keycode, t_data *data);
+int		ft_mouse_press(int button, int x, int y, t_data *data);
+int		ft_mouse_move(int x, int y, t_data *data);
 int		ft_close_window(t_data *data);
 void	ft_cleanup(t_data *data);
+
+// movement
+void	ft_move_forward(t_data *data);
+void	ft_move_backward(t_data *data);
+void	ft_strafe_left(t_data *data);
+void	ft_strafe_right(t_data *data);
+void	ft_rotate_left(t_data *data);
+void	ft_rotate_right(t_data *data);
 
 // init
 void	ft_player_east(t_data *data);
