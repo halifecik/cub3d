@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fxc <fxc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:28:19 by mugenan           #+#    #+#             */
-/*   Updated: 2025/09/11 17:29:54 by fxc              ###   ########.fr       */
+/*   Created: 2025/01/03 18:23:40 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/20 18:37:32 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,17 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 42
 # endif
 
-int		ftstrlen(const char *str);
 char	*get_next_line(int fd);
 char	*get_swap(char *getline);
-char	*get_update(char *putline);
-char	*ftstrchr(const char *s, int c);
-char	*ftstrjoin(char *s1, char const *s2);
+char	*get_update(char *getline);
+int		ft_strlen(const char *str);
 char	*get_read(char *getline, int fd);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char const *s2);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fxc <fxc@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/09 18:44:32 by mugenan           #+#    #+#             */
-/*   Updated: 2025/09/11 17:32:23 by fxc              ###   ########.fr       */
+/*   Created: 2025/01/03 18:23:36 by hademirc          #+#    #+#             */
+/*   Updated: 2025/01/08 14:49:10 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,36 +27,31 @@ char	*get_next_line(int fd)
 	}
 	returnline = get_swap(getline);
 	getline = get_update(getline);
-	if (!getline || getline[0] == '\0' || getline[0] == '\n')
-	{
-		free(getline);
-		getline = NULL;
-	}
 	return (returnline);
 }
 
 char	*get_read(char *getline, int fd)
 {
-	char	*keeper;
+	char	*temp;
 	int		check;
 
-	keeper = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!keeper)
+	temp = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!temp)
 		return (NULL);
 	check = 1;
-	while (!ftstrchr(getline, '\n') && check != 0)
+	while (!ft_strchr(getline, '\n') && check != 0)
 	{
-		check = read(fd, keeper, BUFFER_SIZE);
+		check = read(fd, temp, BUFFER_SIZE);
 		if (check == -1)
 		{
-			free(keeper);
+			free(temp);
 			free(getline);
 			return (NULL);
 		}
-		keeper[check] = '\0';
-		getline = ftstrjoin(getline, keeper);
+		temp[check] = '\0';
+		getline = ft_strjoin(getline, temp);
 	}
-	free(keeper);
+	free(temp);
 	return (getline);
 }
 
@@ -70,7 +65,9 @@ char	*get_swap(char *getline)
 		return (NULL);
 	while (getline[i] != '\0' && getline[i] != '\n')
 		i++;
-	returnline = malloc(sizeof(char) * (i + 2));
+	if (getline[i] == '\n')
+		i++;
+	returnline = malloc(sizeof(char) * (i + 1));
 	if (!returnline)
 		return (NULL);
 	i = 0;
@@ -80,10 +77,7 @@ char	*get_swap(char *getline)
 		i++;
 	}
 	if (getline[i] == '\n')
-	{
-		returnline[i] = '\n';
-		i++;
-	}
+		returnline[i++] = '\n';
 	returnline[i] = '\0';
 	return (returnline);
 }
@@ -103,7 +97,7 @@ char	*get_update(char *getline)
 		free(getline);
 		return (NULL);
 	}
-	buffer = malloc(sizeof(char) * (ftstrlen(getline) - i));
+	buffer = malloc(sizeof(char) * (ft_strlen(getline) - i));
 	if (!buffer)
 		return (NULL);
 	i++;
