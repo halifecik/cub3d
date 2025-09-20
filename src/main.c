@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 00:00:00 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/20 17:42:18 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	ft_print_error(char *msg)
@@ -8,11 +20,11 @@ int	ft_print_error(char *msg)
 	write(1, RED "Error: " YELLOW, 21);
 	while (msg[i])
 		write(1, &msg[i++], 1);
-	write(1,"\n" RESET , 5);
+	write(1, "\n" RESET, 5);
 	if (msg[0] == 97)
 	{
 		write(1, RED "\n============================\n", 37);
-		write(1,"Usage: " MAGENTA "./cub3d maps/map.cub\n", 36);
+		write(1, "Usage: " MAGENTA "./cub3d maps/map.cub\n", 36);
 		write(1, RED "============================\n" RESET, 40);
 	}
 	return (EXIT_FAILURE);

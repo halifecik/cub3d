@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphics.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/20 18:48:12 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	ft_load_texture(t_data *data, char *path, int tex_index)
@@ -9,9 +21,8 @@ static int	ft_load_texture(t_data *data, char *path, int tex_index)
 			&texture->width, &texture->height);
 	if (!texture->img)
 		return (ERROR);
-	texture->data = mlx_get_data_addr(texture->img,
-			&texture->bits_per_pixel, &texture->line_length,
-			&texture->endian);
+	texture->data = mlx_get_data_addr(texture->img, &texture->bits_per_pixel,
+			&texture->line_length, &texture->endian);
 	if (!texture->data)
 		return (ERROR);
 	return (SUCCESS);
@@ -35,12 +46,12 @@ int	ft_initialize_graphics(t_data *data)
 	data->graphics.mlx = mlx_init();
 	if (!data->graphics.mlx)
 		return (ERROR);
-	data->graphics.window = mlx_new_window(data->graphics.mlx,
-			SCREEN_WIDTH, SCREEN_HEIGHT, "[cub3d] by f(x) = ax3 + bx2 + cx + d");
+	data->graphics.window = mlx_new_window(data->graphics.mlx, SCREEN_WIDTH,
+			SCREEN_HEIGHT, "[cub3d] by f(x) = ax3 + bx2 + cx + d");
 	if (!data->graphics.window)
 		return (ERROR);
-	data->graphics.img = mlx_new_image(data->graphics.mlx,
-			SCREEN_WIDTH, SCREEN_HEIGHT);
+	data->graphics.img = mlx_new_image(data->graphics.mlx, SCREEN_WIDTH,
+			SCREEN_HEIGHT);
 	if (!data->graphics.img)
 		return (ERROR);
 	data->graphics.img_data = mlx_get_data_addr(data->graphics.img,
@@ -137,8 +148,8 @@ void	ft_handle_rotation(int keycode, t_data *data)
 		old_dir_x = data->player.dir_x;
 		data->player.dir_x = data->player.dir_x * cos(ROT_SPEED)
 			- data->player.dir_y * sin(ROT_SPEED);
-		data->player.dir_y = old_dir_x * sin(ROT_SPEED)
-			+ data->player.dir_y * cos(ROT_SPEED);
+		data->player.dir_y = old_dir_x * sin(ROT_SPEED) + data->player.dir_y
+			* cos(ROT_SPEED);
 		old_plane_x = data->player.plane_x;
 		data->player.plane_x = data->player.plane_x * cos(ROT_SPEED)
 			- data->player.plane_y * sin(ROT_SPEED);
@@ -150,8 +161,8 @@ void	ft_handle_rotation(int keycode, t_data *data)
 		old_dir_x = data->player.dir_x;
 		data->player.dir_x = data->player.dir_x * cos(-ROT_SPEED)
 			- data->player.dir_y * sin(-ROT_SPEED);
-		data->player.dir_y = old_dir_x * sin(-ROT_SPEED)
-			+ data->player.dir_y * cos(-ROT_SPEED);
+		data->player.dir_y = old_dir_x * sin(-ROT_SPEED) + data->player.dir_y
+			* cos(-ROT_SPEED);
 		old_plane_x = data->player.plane_x;
 		data->player.plane_x = data->player.plane_x * cos(-ROT_SPEED)
 			- data->player.plane_y * sin(-ROT_SPEED);

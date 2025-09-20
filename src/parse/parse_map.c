@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/20 19:37:38 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+
 #include "cub3d.h"
 
 static int	ft_grid_append_line(t_map *map, char *line)
 {
 	char	**new_grid;
-	int	i;
+	int		i;
 
 	map->height++;
 	if ((int)ft_strlen(line) > map->width)

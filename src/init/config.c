@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   config.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/20 18:48:18 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_initialize_config(t_config *config)
@@ -50,7 +62,7 @@ static int	set_rgb_color(int *dst, char *line)
 
 int	ft_set_config(t_map *map, t_config *config)
 {
-	int		i;
+	int	i;
 
 	i = -1;
 	while (++i < map->map_index)
