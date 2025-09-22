@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 21:23:37 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:34:37 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_initialize_graphics(t_data *data)
 	if (!data->graphics.mlx)
 		return (ERROR);
 	data->graphics.window = mlx_new_window(data->graphics.mlx, SCREEN_WIDTH,
-			SCREEN_HEIGHT, MAGENTA"[cub3d] by f(x) = ax3 + bx2 + cx + d");
+			SCREEN_HEIGHT, "[cub3d] by f(x) = ax3 + bx2 + cx + d");
 	if (!data->graphics.window)
 		return (ERROR);
 	data->graphics.img = mlx_new_image(data->graphics.mlx, SCREEN_WIDTH,
