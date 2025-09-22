@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:36:38 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/22 21:23:37 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_initialize_graphics(t_data *data)
 	if (!data->graphics.mlx)
 		return (ERROR);
 	data->graphics.window = mlx_new_window(data->graphics.mlx, SCREEN_WIDTH,
-			SCREEN_HEIGHT, "[cub3d] by f(x) = ax3 + bx2 + cx + d");
+			SCREEN_HEIGHT, MAGENTA"[cub3d] by f(x) = ax3 + bx2 + cx + d");
 	if (!data->graphics.window)
 		return (ERROR);
 	data->graphics.img = mlx_new_image(data->graphics.mlx, SCREEN_WIDTH,
@@ -61,8 +61,8 @@ int	ft_initialize_graphics(t_data *data)
 		return (ERROR);
 	if (ft_load_textures(data))
 		return (ERROR);
-    mlx_mouse_hide(data->graphics.mlx, data->graphics.window);
-    mlx_mouse_move(data->graphics.mlx, data->graphics.window,
-                   SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	mlx_mouse_hide(data->graphics.mlx, data->graphics.window);
+	mlx_mouse_move(data->graphics.mlx, data->graphics.window, SCREEN_WIDTH / 2,
+		SCREEN_HEIGHT / 2);
 	return (SUCCESS);
 }
