@@ -43,8 +43,8 @@ SOURCES =	main.c \
             raycast/texture.c \
             game/movement.c \
             game/rotation.c \
-            game/game_loop.c \
-            game/events.c \
+            game/loop.c \
+            game/actions.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o)) $(GNL_OBJ)

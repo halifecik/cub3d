@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:47 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:39:30 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:17:17 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	ft_put_pixel(t_data *data, int x, int y, int color)
 
 	if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT)
 	{
-		offset = y * data->graphics.line_length + x * (data->graphics.bits_per_pixel / 8);
+		offset = y * data->graphics.line_length
+			+ x * (data->graphics.bits_per_pixel / 8);
 		dst = data->graphics.img_data + offset;
 		*(unsigned int *)dst = color;
 	}
@@ -34,8 +35,10 @@ static void	ft_draw_vertical_line(t_data *data, int x)
 	double	tex_pos;
 
 	ft_texture_coordinates(data);
-	step = 1.0 * data->graphics.textures[data->raycast.tex_num].height / data->raycast.line_height;
-	tex_pos = (data->raycast.draw_start - SCREEN_HEIGHT / 2 + data->raycast.line_height / 2) * step;
+	step = 1.0 * data->graphics.textures[data->raycast.tex_num].height
+		/ data->raycast.line_height;
+	tex_pos = (data->raycast.draw_start - SCREEN_HEIGHT
+			/ 2 + data->raycast.line_height / 2) * step;
 	y = -1;
 	while (++y < data->raycast.draw_start)
 		ft_put_pixel(data, x, y, data->config.ceiling_color);
