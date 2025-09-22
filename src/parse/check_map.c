@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:40 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 19:37:41 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 21:00:30 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	ft_check_map(t_map *map)
 		return (free_grid(cpy_map), 1);
 	if (find_player_start(map, cpy_map, cpy_height))
 		return (free_grid(cpy_map), 1);
+	map->grid[map->player_y + map->map_index][map->player_x] = '0';
 	if (flood_fill(cpy_map, map->player_x, map->player_y, cpy_height))
 	{
 		free_grid(cpy_map);
