@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 21:15:29 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:05:27 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 /* Game constants */
 # define MOVE_SPEED 0.05
 # define ROT_SPEED 0.03
+
+/* Sensitivity Constant */
+# define MOUSE_SENSITIVITY 0.0005
 
 /* Map characters */
 # define WALL '1'

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 20:59:33 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:03:39 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ int	ft_initialize_graphics(t_data *data)
 		return (ERROR);
 	if (ft_load_textures(data))
 		return (ERROR);
+    mlx_mouse_hide(data->graphics.mlx, data->graphics.window);
+    mlx_mouse_move(data->graphics.mlx, data->graphics.window,
+                   SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	return (SUCCESS);
 }
 

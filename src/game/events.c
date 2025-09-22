@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:33 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 21:03:19 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:00:50 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,20 @@ int	ft_mouse_press(int button, int x, int y, t_data *data)
 
 int	ft_mouse_move(int x, int y, t_data *data)
 {
-	static int	last_x = -1;
-	int			delta_x;
-	double		rotation_speed;
-	double		old_dir_x;
-	double		old_plane_x;
+	int		center_x;
+	int		center_y;
+	int		delta_x;
+	double	rotation_speed;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	(void)y;
-	if (last_x == -1)
-	{
-		last_x = x;
-		return (0);
-	}
-	delta_x = x - last_x;
-	last_x = x;
+	center_x = SCREEN_WIDTH / 2;
+	center_y = SCREEN_HEIGHT / 2;
+	delta_x = x - center_x;
 	if (delta_x == 0)
 		return (0);
-	rotation_speed = delta_x * 0.002;
+	rotation_speed = delta_x * MOUSE_SENSITIVITY;
 	old_dir_x = data->player.dir_x;
 	data->player.dir_x = data->player.dir_x * cos(rotation_speed)
 		- data->player.dir_y * sin(rotation_speed);
@@ -86,5 +83,7 @@ int	ft_mouse_move(int x, int y, t_data *data)
 		- data->player.plane_y * sin(rotation_speed);
 	data->player.plane_y = old_plane_x * sin(rotation_speed)
 		+ data->player.plane_y * cos(rotation_speed);
+	mlx_mouse_move(data->graphics.mlx, data->graphics.window,
+		center_x, center_y);
 	return (0);
 }
