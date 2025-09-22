@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:56 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 19:37:57 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:31:22 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	free_grid(char **grid)
 	}
 	free(grid);
 }
+
 static int	is_map_line(char *line)
 {
 	int	j;
@@ -97,8 +98,8 @@ static int	is_map_line(char *line)
 	valid = 0;
 	while (line[j])
 	{
-		if (line[j] == '0' || line[j] == '1' || line[j] == 'N' ||
-			line[j] == 'S' || line[j] == 'E' || line[j] == 'W')
+		if (line[j] == '0' || line[j] == '1' || line[j] == 'N'
+			|| line[j] == 'S' || line[j] == 'E' || line[j] == 'W')
 			valid = 1;
 		else if (!ft_is_whitespace(line[j]))
 			return (0);
