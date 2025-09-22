@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:45 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 19:37:51 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 21:00:31 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 static int	ft_hit_wall(t_data *data, int map_x, int map_y)
 {
 	if (map_x < 0 || map_y < 0 || map_x >= data->map.width
-		|| map_y >= data->map.height)
+		|| map_y + data->map.map_index >= data->map.height)
 		return (1);
-	if (data->map.grid[map_y][map_x] == '1')
+	if (data->map.grid[map_y + data->map.map_index][map_x] == '1')
 		return (1);
 	return (0);
 }
