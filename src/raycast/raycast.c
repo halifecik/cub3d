@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:45 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 21:00:31 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:07:54 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_dda_algorithm(t_data *data)
 
 	ray = &data->raycast;
 	ft_calculate_step(data);
-	ft_calculate_side_dist(data, &side_dist_x, &side_dist_y);
+	ft_side_distance(data, &side_dist_x, &side_dist_y);
 	while (ray->hit == 0)
 	{
 		if (side_dist_x < side_dist_y)

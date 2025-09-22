@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:39:34 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:04:06 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ void	ft_side_distance(t_data *data, double *side_dist_x, double *side_dist_y)
 	else
 		*side_dist_y = (ray->map_y + 1.0 - data->player.pos_y)
 			* ray->delta_dist_y;
-}
-
-void	ft_calculate_side_dist(t_data *data, double *side_dist_x,
-	double *side_dist_y)
-{
-	ft_side_distance(data, side_dist_x, side_dist_y);
 }
 
 void	ft_wall_distance(t_data *data)
