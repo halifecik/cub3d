@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:48:12 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 20:59:33 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ int	ft_is_valid_position(t_data *data, double x, double y)
 	map_x = (int)x;
 	map_y = (int)y;
 	if (map_x < 0 || map_y < 0 || map_x >= data->map.width
-		|| map_y >= data->map.height)
+		|| map_y + data->map.map_index >= data->map.height)
 		return (0);
-	if (data->map.grid[map_y][map_x] == '1')
+	if (data->map.grid[map_y + data->map.map_index][map_x] == '1')
 		return (0);
 	return (1);
 }
