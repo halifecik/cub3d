@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 21:24:48 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:39:34 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,13 @@ void	ft_wall_distance(t_data *data)
 	else
 		ray->perp_wall_dist = (ray->map_y - data->player.pos_y + (1
 					- ray->step_y) / 2) / ray->ray_dir_y;
-	ray->line_height = (int)(VIEWPORT_HEIGHT / ray->perp_wall_dist);
-	ray->draw_start = -ray->line_height / 2 + VIEWPORT_HEIGHT / 2;
+	ray->line_height = (int)(SCREEN_HEIGHT / ray->perp_wall_dist);
+	ray->draw_start = -ray->line_height / 2 + SCREEN_HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = ray->line_height / 2 + VIEWPORT_HEIGHT / 2;
-	if (ray->draw_end >= VIEWPORT_HEIGHT)
-		ray->draw_end = VIEWPORT_HEIGHT - 1;
+	ray->draw_end = ray->line_height / 2 + SCREEN_HEIGHT / 2;
+	if (ray->draw_end >= SCREEN_HEIGHT)
+		ray->draw_end = SCREEN_HEIGHT - 1;
 }
 
 void	ft_wall_x(t_data *data)

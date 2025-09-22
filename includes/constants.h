@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:05:27 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/22 19:39:28 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 # define CONSTANTS_H
 
 /* Screen dimensions */
-# define SCREEN_WIDTH 2880
-# define SCREEN_HEIGHT 1440
-
-/* Viewport dimensions (centered rendering area) */
-# define VIEWPORT_WIDTH 1440
-# define VIEWPORT_HEIGHT 1080
-# define VIEWPORT_OFFSET_X 720
-# define VIEWPORT_OFFSET_Y 180
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 920
 
 /* Game constants */
 # define MOVE_SPEED 0.05
