@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:31:44 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/20 21:24:47 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_initialize_ray(t_data *data, int x)
 	t_raycast	*ray;
 
 	ray = &data->raycast;
-	ray->camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
+	ray->camera_x = 2 * x / (double)VIEWPORT_WIDTH - 1;
 	ray->ray_dir_x = data->player.dir_x + data->player.plane_x * ray->camera_x;
 	ray->ray_dir_y = data->player.dir_y + data->player.plane_y * ray->camera_x;
 	ray->map_x = (int)data->player.pos_x;
