@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:40 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 21:00:30 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:21:46 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,18 @@ static int	check_chars(char **grid, int height)
 		j = 0;
 		while (grid[i][j])
 		{
-			if (grid[i][j] == 'N' || grid[i][j] == 'S' ||
-				grid[i][j] == 'E' || grid[i][j] == 'W')
+			if (grid[i][j] == 'N' || grid[i][j] == 'S' || grid[i][j] == 'E'
+				|| grid[i][j] == 'W')
 				player_count++;
-			else if (!ft_is_whitespace(grid[i][j]) &&
-					 grid[i][j] != '0' &&
-					 grid[i][j] != '1')
+			else if (!ft_is_whitespace(grid[i][j]) && grid[i][j] != '0'
+				&& grid[i][j] != '1')
 				return (ft_print_error("Invalid character in map"));
 			j++;
 		}
 		i++;
 	}
 	if (player_count != 1)
-		return (ft_print_error("Map must have exactly one player start"));
+		return (ft_print_error("Map must have exactly one player"));
 	return (0);
 }
 
@@ -61,15 +60,15 @@ static int	find_player_start(t_map *map, char **grid, int height)
 	int	j;
 	int	found;
 
-	i = -1;
 	found = 0;
+	i = -1;
 	while (++i < height)
 	{
 		j = -1;
 		while (grid[i][++j])
 		{
-			if (grid[i][j] == 'N' || grid[i][j] == 'S' ||
-				grid[i][j] == 'E' || grid[i][j] == 'W')
+			if (grid[i][j] == 'N' || grid[i][j] == 'S' || grid[i][j] == 'E'
+				|| grid[i][j] == 'W')
 			{
 				map->player_x = j;
 				map->player_y = i;
@@ -78,10 +77,8 @@ static int	find_player_start(t_map *map, char **grid, int height)
 			}
 		}
 	}
-	if (found == 0)
-		return (ft_print_error("No player start found"));
-	if (found > 1)
-		return (ft_print_error("Multiple player starts found"));
+	if (found != 1)
+		return (ft_print_error("Must only have singular player"));
 	return (0);
 }
 
@@ -94,16 +91,15 @@ static int	flood_fill(char **grid, int x, int y, int height)
 	width = (int)ft_strlen(grid[y]);
 	if (x >= width)
 		return (1);
-	if (grid[y][x] != '0' && grid[y][x] != 'N' &&
-		grid[y][x] != 'S' && grid[y][x] != 'E' && grid[y][x] != 'W')
+	if (grid[y][x] != '0' && grid[y][x] != 'N' && grid[y][x] != 'S'
+		&& grid[y][x] != 'E' && grid[y][x] != 'W')
 		return (0);
 	if (x == 0 || y == 0 || y == height - 1 || x == width - 1)
 		return (1);
 	grid[y][x] = 'F';
-	if (flood_fill(grid, x + 1, y, height) ||
-		flood_fill(grid, x - 1, y, height) ||
-		flood_fill(grid, x, y + 1, height) ||
-		flood_fill(grid, x, y - 1, height))
+	if (flood_fill(grid, x + 1, y, height) || flood_fill(grid, x - 1, y, height)
+		|| flood_fill(grid, x, y + 1, height) || flood_fill(grid, x, y - 1,
+			height))
 		return (1);
 	return (0);
 }
@@ -126,7 +122,7 @@ int	ft_check_map(t_map *map)
 	if (flood_fill(cpy_map, map->player_x, map->player_y, cpy_height))
 	{
 		free_grid(cpy_map);
-		return (ft_print_error("Map not closed by walls"));
+		return (ft_print_error("Map must be closed with walls"));
 	}
 	free_grid(cpy_map);
 	return (0);
