@@ -1,6 +1,6 @@
-NO ./textures/wall.xpm
-SO ./textures/wall.xpm
-WE ./textures/wall.xpm
+NO ./textures/wall_front.xpm
+SO ./textures/wall_front.xpm
+WE ./textures/wall_side.xpm
 
 F 220,100,0
 C 225,30,0
