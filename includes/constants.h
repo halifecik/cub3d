@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:39:28 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 20:38:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
 # define KEY_ESC 65307
 
 /* Pixel Colors */
