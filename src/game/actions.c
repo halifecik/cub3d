@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:33 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:00:50 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/22 19:49:46 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ int	ft_key_press(int keycode, t_data *data)
 		data->keys.a = 1;
 	else if (keycode == KEY_D)
 		data->keys.d = 1;
-	else if (keycode == KEY_LEFT)
-		data->keys.left = 1;
-	else if (keycode == KEY_RIGHT)
-		data->keys.right = 1;
 	return (0);
 }
 
@@ -41,10 +37,6 @@ int	ft_key_release(int keycode, t_data *data)
 		data->keys.a = 0;
 	else if (keycode == KEY_D)
 		data->keys.d = 0;
-	else if (keycode == KEY_LEFT)
-		data->keys.left = 0;
-	else if (keycode == KEY_RIGHT)
-		data->keys.right = 0;
 	return (0);
 }
 
@@ -59,17 +51,13 @@ int	ft_mouse_press(int button, int x, int y, t_data *data)
 
 int	ft_mouse_move(int x, int y, t_data *data)
 {
-	int		center_x;
-	int		center_y;
 	int		delta_x;
 	double	rotation_speed;
 	double	old_dir_x;
 	double	old_plane_x;
 
 	(void)y;
-	center_x = SCREEN_WIDTH / 2;
-	center_y = SCREEN_HEIGHT / 2;
-	delta_x = x - center_x;
+	delta_x = x - SCREEN_WIDTH / 2;
 	if (delta_x == 0)
 		return (0);
 	rotation_speed = delta_x * MOUSE_SENSITIVITY;
@@ -84,6 +72,6 @@ int	ft_mouse_move(int x, int y, t_data *data)
 	data->player.plane_y = old_plane_x * sin(rotation_speed)
 		+ data->player.plane_y * cos(rotation_speed);
 	mlx_mouse_move(data->graphics.mlx, data->graphics.window,
-		center_x, center_y);
+		SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	return (0);
 }

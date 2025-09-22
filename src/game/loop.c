@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:35 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 21:02:14 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:48:01 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,6 @@ int	ft_game_loop(t_data *data)
 		ft_strafe_left(data);
 	if (data->keys.d)
 		ft_strafe_right(data);
-	if (data->keys.left)
-		ft_rotate_left(data);
-	if (data->keys.right)
-		ft_rotate_right(data);
 	ft_render_frame(data);
 	mlx_put_image_to_window(data->graphics.mlx, data->graphics.window,
 		data->graphics.img, 0, 0);
