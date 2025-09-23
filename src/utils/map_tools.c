@@ -1,93 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_tools.c                                     :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/20 19:37:56 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 21:31:22 by mugenan          ###   ########.fr       */
+/*   Created: 2025/09/23 14:35:43 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/23 14:36:24 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_is_whitespace(char c)
-{
-	return (c == ' ' || (c >= 9 && c <= 13));
-}
-
-void	ft_rtrim(char *str)
-{
-	int	len;
-
-	if (!str)
-		return ;
-	len = (int)ft_strlen(str) - 1;
-	while (len >= 0 && ft_is_whitespace(str[len]))
-	{
-		str[len] = '\0';
-		len--;
-	}
-}
-
-int	is_line_empty(char *str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_is_whitespace(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-char	**copy_grid(char **grid, int height)
-{
-	char	**cpy;
-	int		i;
-
-	cpy = malloc(sizeof(char *) * (height + 1));
-	if (!cpy)
-		return (NULL);
-	i = 0;
-	while (i < height)
-	{
-		cpy[i] = ft_strdup(grid[i]);
-		if (!cpy[i])
-		{
-			while (i-- > 0)
-				free(cpy[i]);
-			free(cpy);
-			return (NULL);
-		}
-		i++;
-	}
-	cpy[i] = NULL;
-	return (cpy);
-}
-
-void	free_grid(char **grid)
-{
-	int	i;
-
-	if (!grid)
-		return ;
-	i = 0;
-	while (grid[i])
-	{
-		free(grid[i]);
-		i++;
-	}
-	free(grid);
-}
-
-static int	is_map_line(char *line)
+static int	ft_is_map_line(char *line)
 {
 	int	j;
 	int	valid;
@@ -117,14 +42,14 @@ static int	find_map_start(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (is_map_line(map->grid[i]))
+		if (ft_is_map_line(map->grid[i]))
 			return (i);
 		i++;
 	}
 	return (-1);
 }
 
-char	**copy_map_lines(t_map *map, int *cpy_height)
+char	**ft_copy_map_lines(t_map *map, int *cpy_height)
 {
 	char	**copy;
 	int		start;
@@ -148,3 +73,4 @@ char	**copy_map_lines(t_map *map, int *cpy_height)
 	copy[j] = NULL;
 	return (copy);
 }
+
