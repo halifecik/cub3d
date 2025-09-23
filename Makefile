@@ -36,7 +36,8 @@ SOURCES =	main.c \
             init/config.c \
             parse/parse_map.c \
             parse/check_map.c \
-            utils/parser_tools.c \
+            utils/utilities.c \
+			utils/map_tools.c \
             raycast/raycast.c \
             raycast/calculate.c \
             raycast/render.c \
