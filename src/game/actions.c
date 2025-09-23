@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   events.c                                           :+:      :+:    :+:   */
+/*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:33 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:49:46 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/23 16:55:32 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@ int	ft_key_press(int keycode, t_data *data)
 		data->keys.a = 1;
 	else if (keycode == KEY_D)
 		data->keys.d = 1;
+	else if (keycode == KEY_L)
+	{
+		if (data->keys.l)
+			data->keys.l = 0;
+		else 
+			data->keys.l = 1;
+	}
 	return (0);
 }
 
@@ -49,6 +56,17 @@ int	ft_mouse_press(int button, int x, int y, t_data *data)
 	return (0);
 }
 
+static void	ft_mouse_lock(t_data *data)
+{
+	if (!data->keys.l)
+	{
+		mlx_mouse_move(data->graphics.mlx, data->graphics.window,
+			SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	}
+	else
+		mlx_mouse_show(data->graphics.mlx, data->graphics.window);
+}
+
 int	ft_mouse_move(int x, int y, t_data *data)
 {
 	int		delta_x;
@@ -71,7 +89,6 @@ int	ft_mouse_move(int x, int y, t_data *data)
 		- data->player.plane_y * sin(rotation_speed);
 	data->player.plane_y = old_plane_x * sin(rotation_speed)
 		+ data->player.plane_y * cos(rotation_speed);
-	mlx_mouse_move(data->graphics.mlx, data->graphics.window,
-		SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
+	ft_mouse_lock(data);
 	return (0);
 }
