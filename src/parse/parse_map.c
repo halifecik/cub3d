@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 21:09:55 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:30:45 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,22 @@ static int	ft_grid_append_line(t_map *map, char *line)
 	return (0);
 }
 
+static	int	ft_line_empty(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_is_whitespace(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 static int	ft_read_map_lines(t_map *map, int fd)
 {
 	char	*line;
@@ -46,7 +62,7 @@ static int	ft_read_map_lines(t_map *map, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!is_line_empty(line))
+		if (!ft_line_empty(line))
 		{
 			ft_rtrim(line);
 			if (ft_grid_append_line(map, line))

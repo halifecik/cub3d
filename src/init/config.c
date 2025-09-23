@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:48:18 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:25:28 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_initialize_config(t_config *config)
 	config->ceiling_color = 0;
 }
 
-static int	set_texture_path(char **dst, char *line)
+static int	ft_set_texture_path(char **dst, char *line)
 {
 	line += 2;
 	while (*line && ft_is_whitespace(*line))
@@ -33,7 +33,7 @@ static int	set_texture_path(char **dst, char *line)
 	return (0);
 }
 
-static int	set_rgb_color(int *dst, char *line)
+static int	ft_set_rgb_color(int *dst, char *line)
 {
 	char	**color;
 	int		r;
@@ -47,13 +47,13 @@ static int	set_rgb_color(int *dst, char *line)
 	if (!color || !color[0] || !color[1] || !color[2])
 	{
 		if (color)
-			free_grid(color);
+			ft_free_grid(color);
 		return (ft_print_error("Invalid color format"));
 	}
 	r = ft_atoi(color[0]);
 	g = ft_atoi(color[1]);
 	b = ft_atoi(color[2]);
-	free_grid(color);
+	ft_free_grid(color);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (ft_print_error("RGB value out of range"));
 	*dst = (r << 16) | (g << 8) | b;
@@ -68,22 +68,22 @@ int	ft_set_config(t_map *map, t_config *config)
 	while (++i < map->map_index)
 	{
 		if (!ft_strncmp(map->grid[i], "NO", 2))
-			if (set_texture_path(&config->north_texture, map->grid[i]))
+			if (ft_set_texture_path(&config->north_texture, map->grid[i]))
 				return (1);
 		if (!ft_strncmp(map->grid[i], "SO", 2))
-			if (set_texture_path(&config->south_texture, map->grid[i]))
+			if (ft_set_texture_path(&config->south_texture, map->grid[i]))
 				return (1);
 		if (!ft_strncmp(map->grid[i], "WE", 2))
-			if (set_texture_path(&config->west_texture, map->grid[i]))
+			if (ft_set_texture_path(&config->west_texture, map->grid[i]))
 				return (1);
 		if (!ft_strncmp(map->grid[i], "EA", 2))
-			if (set_texture_path(&config->east_texture, map->grid[i]))
+			if (ft_set_texture_path(&config->east_texture, map->grid[i]))
 				return (1);
 		if (!ft_strncmp(map->grid[i], "F", 1))
-			if (set_rgb_color(&config->floor_color, map->grid[i]))
+			if (ft_set_rgb_color(&config->floor_color, map->grid[i]))
 				return (1);
 		if (!ft_strncmp(map->grid[i], "C", 1))
-			if (set_rgb_color(&config->ceiling_color, map->grid[i]))
+			if (ft_set_rgb_color(&config->ceiling_color, map->grid[i]))
 				return (1);
 	}
 	return (0);

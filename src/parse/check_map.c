@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:40 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 21:21:46 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:25:40 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,19 @@ int	ft_check_map(t_map *map)
 
 	if (!map || !map->grid)
 		return (ft_print_error("Empty map"));
-	cpy_map = copy_map_lines(map, &cpy_height);
+	cpy_map = ft_copy_map_lines(map, &cpy_height);
 	if (!cpy_map)
 		return (ft_print_error("cpy_map malloc fail"));
 	if (check_chars(cpy_map, cpy_height))
-		return (free_grid(cpy_map), 1);
+		return (ft_free_grid(cpy_map), 1);
 	if (find_player_start(map, cpy_map, cpy_height))
-		return (free_grid(cpy_map), 1);
+		return (ft_free_grid(cpy_map), 1);
 	map->grid[map->player_y + map->map_index][map->player_x] = '0';
 	if (flood_fill(cpy_map, map->player_x, map->player_y, cpy_height))
 	{
-		free_grid(cpy_map);
+		ft_free_grid(cpy_map);
 		return (ft_print_error("Map must be closed with walls"));
 	}
-	free_grid(cpy_map);
+	ft_free_grid(cpy_map);
 	return (0);
 }

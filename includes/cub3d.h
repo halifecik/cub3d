@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 21:16:25 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/23 14:37:14 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,9 @@ int		ft_is_valid_position(t_data *data, double x, double y);
 
 // utils
 void	ft_rtrim(char *line);
-void	free_grid(char **grid);
 int		ft_is_whitespace(char c);
-int		is_line_empty(char *str);
+void	ft_free_grid(char **grid);
 int		ft_print_error(char *msg);
-char	**copy_grid(char **grid, int height);
-char	**copy_map_lines(t_map *map, int *cpy_height);
+char	**ft_copy_map_lines(t_map *map, int *cpy_height);
 
 #endif
