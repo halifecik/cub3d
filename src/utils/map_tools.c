@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:35:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 16:22:45 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/23 22:52:18 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,25 @@ static int	ft_is_map_line(char *line)
 		j++;
 	}
 	return (valid);
+}
+
+int	ft_parse_color_value(char *str, int *value)
+{
+	int	i;
+
+	if (!str || !*str)
+		return (1);
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (1);
+		i++;
+	}
+	*value = ft_atoi(str);
+	if (*value < 0 || *value > 255)
+		return (1);
+	return (0);
 }
 
 static int	find_map_start(t_map *map)

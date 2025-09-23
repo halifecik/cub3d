@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 17:32:21 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/23 22:51:53 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,41 +22,65 @@ void	ft_initialize_config(t_config *config)
 	config->ceiling_color = 0;
 }
 
+int ft_check_config_complete(t_config *config)
+{
+    if (!config->north_texture || !config->south_texture
+        || !config->west_texture || !config->east_texture)
+        return (1);
+    if (config->floor_color == 0 && config->ceiling_color == 0)
+        return (1);
+    if (config->floor_color == 0)
+        return (1);
+    if (config->ceiling_color == 0)
+        return (1);
+    return (0);
+}
+
 static int	ft_set_texture_path(char **dst, char *line)
 {
+	int		fd;
+
 	line += 2;
 	while (*line && ft_is_whitespace(*line))
 		line++;
 	if (*dst != NULL)
-		return (1);
+		return (ft_print_error("Duplicate texture definition"));
+	if (*line == '\0')
+		return (ft_print_error("Missing texture path"));
+	if (!ft_strnstr(line, ".xpm", ft_strlen(line)))
+		return (ft_print_error("Texture must be a .xpm file"));
+	fd = open(line, O_RDONLY);
+	if (fd < 0)
+		return (ft_print_error("Texture file not found"));
+	close(fd);
 	*dst = ft_strdup(line);
 	if (!*dst)
-		return (1);
+		return (ft_print_error("Malloc fail in texture_path"));
 	return (0);
 }
 
 static int	ft_set_rgb_color(int *dst, char *line)
 {
-	char	**color;
+	char	**split;
 	int		r;
 	int		g;
 	int		b;
 
-	if (*dst != 0)
-		return (1);
-	line++;
+	line += 1;
 	while (*line && ft_is_whitespace(*line))
 		line++;
-	color = ft_split(line, ',');
-	if (!color || !color[0] || !color[1] || !color[2])
-		return (1);
-	r = ft_atoi(color[0]);
-	g = ft_atoi(color[1]);
-	b = ft_atoi(color[2]);
-	ft_free_grid(color);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (1);
+	split = ft_split(line, ',');
+	if (!split)
+		return (ft_print_error("Malloc fail in rgb"));
+	if (!split[0] || !split[1] || !split[2] || split[3])
+		return (ft_free_grid(split), ft_print_error("Invalid RGB format"));
+	if (ft_parse_color_value(split[0], &r)
+		|| ft_parse_color_value(split[1], &g)
+		|| ft_parse_color_value(split[2], &b))
+		return (ft_free_grid(split),
+			ft_print_error("RGB values must be numbers between 0 and 255"));
 	*dst = (r << 16) | (g << 8) | b;
+	ft_free_grid(split);
 	return (0);
 }
 
