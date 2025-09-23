@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 14:25:28 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/23 17:32:21 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ static int	ft_set_texture_path(char **dst, char *line)
 	line += 2;
 	while (*line && ft_is_whitespace(*line))
 		line++;
+	if (*dst != NULL)
+		return (1);
 	*dst = ft_strdup(line);
 	if (!*dst)
-		return (ft_print_error("Malloc fail in texture_path"));
+		return (1);
 	return (0);
 }
 
@@ -40,22 +42,20 @@ static int	ft_set_rgb_color(int *dst, char *line)
 	int		g;
 	int		b;
 
+	if (*dst != 0)
+		return (1);
 	line++;
 	while (*line && ft_is_whitespace(*line))
 		line++;
 	color = ft_split(line, ',');
 	if (!color || !color[0] || !color[1] || !color[2])
-	{
-		if (color)
-			ft_free_grid(color);
-		return (ft_print_error("Invalid color format"));
-	}
+		return (1);
 	r = ft_atoi(color[0]);
 	g = ft_atoi(color[1]);
 	b = ft_atoi(color[2]);
 	ft_free_grid(color);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-		return (ft_print_error("RGB value out of range"));
+		return (1);
 	*dst = (r << 16) | (g << 8) | b;
 	return (0);
 }
