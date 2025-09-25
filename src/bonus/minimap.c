@@ -1,8 +1,11 @@
 #include "cub3d.h"
 
-/* ------------------ Minimap Başlatma ------------------ */
 void	ft_initialize_minimap(t_minimap *minimap)
 {
+
+    minimap->half = 0;
+    minimap->start_x = 0;
+    minimap->start_y = 0;
 	minimap->cell_size = 30;
 	minimap->visible_cells = 10;
 	minimap->width = minimap->cell_size * minimap->visible_cells;
@@ -66,13 +69,10 @@ void	ft_draw_minimap(t_data *data)
 	int	map_y;
 	int	i;
 	int	j;
-	int	start_x;
-	int	start_y;
-	int	half;
 
-	half = data->minimap.visible_cells / 2;
-	start_x = (int)data->player.pos_x - half;
-	start_y = (int)data->player.pos_y - half;
+	data->minimap.half = data->minimap.visible_cells / 2;
+	data->minimap.start_x = (int)data->player.pos_x - data->minimap.half;
+	data->minimap.start_y = (int)data->player.pos_y - data->minimap.half;
 
 	i = 0;
 	while (i < data->minimap.visible_cells)
@@ -80,8 +80,8 @@ void	ft_draw_minimap(t_data *data)
 		j = 0;
 		while (j < data->minimap.visible_cells)
 		{
-			map_x = start_x + j;
-			map_y = start_y + i + data->map.map_index;
+			map_x = data->minimap.start_x + j;
+			map_y = data->minimap.start_y + i + data->map.map_index;
 			if (map_x >= 0 && map_x < data->map.width
 				&& map_y >= data->map.map_index && map_y < data->map.height)
 				ft_draw_minimap_cell(data, map_x, map_y,
@@ -90,5 +90,5 @@ void	ft_draw_minimap(t_data *data)
 		}
 		i++;
 	}
-	ft_draw_cell(data, half, half, 0xFF0000);
+	ft_draw_cell(data, data->minimap.half, data->minimap.half, 0xFF0000);
 }
