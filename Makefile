@@ -47,6 +47,7 @@ SOURCES =	main.c \
             game/loop.c \
             game/actions.c \
 			bonus/minimap.c \
+			bonus/full_minimap.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o)) $(GNL_OBJ)

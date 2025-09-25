@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 14:42:16 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:02:43 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,17 +105,21 @@ typedef struct s_keys
 	int			s;
 	int			d;
 	int			l;
+	int			tab;
+	int			esc;
 	int			left;
 	int			right;
-	int			esc;
 }				t_keys;
 
 typedef struct s_minimap
 {
-    int     cell_size;      // Her hücre kaç piksel
-    int     visible_cells;  // Ekranda kaç hücre gösterilecek
+	int		half;
     int     width;          // Toplam piksel genişliği
     int     height;         // Toplam piksel yüksekliği
+	int		start_x;
+	int		start_y;
+    int     cell_size;      // Her hücre kaç piksel
+    int     visible_cells;  // Ekranda kaç hücre gösterilecek
 }               t_minimap;
 
 /* Main game structure */
