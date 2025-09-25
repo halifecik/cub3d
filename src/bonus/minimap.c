@@ -1,9 +1,94 @@
 #include "cub3d.h"
 
-void    ft_initialize_minimap(t_minimap *minimap)
+/* ------------------ Minimap Başlatma ------------------ */
+void	ft_initialize_minimap(t_minimap *minimap)
 {
-    minimap->cell_size = 10;
-    minimap->visible_cells = 9;
-    minimap->width = minimap->cell_size * minimap->visible_cells;
-    minimap->height = minimap->width;
+	minimap->cell_size = 30;
+	minimap->visible_cells = 10;
+	minimap->width = minimap->cell_size * minimap->visible_cells;
+	minimap->height = minimap->width;
+}
+
+/* ------------------ Pixel ve Cell Fonksiyonları ------------------ */
+static void	ft_put_pixel(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
+		return ;
+	dst = data->graphics.img_data + (y * data->graphics.line_length
+			+ x * (data->graphics.bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+static void	ft_draw_cell(t_data *data, int cell_x, int cell_y, int color)
+{
+	int	x;
+	int	y;
+	int	start_x;
+	int	start_y;
+
+	start_x = cell_x * data->minimap.cell_size;
+	start_y = cell_y * data->minimap.cell_size;
+	y = 0;
+	while (y < data->minimap.cell_size)
+	{
+		x = 0;
+		while (x < data->minimap.cell_size)
+		{
+			ft_put_pixel(data, start_x + x, start_y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+/* ------------------ Minimap Hücre Çizim Fonksiyonu ------------------ */
+static void	ft_draw_minimap_cell(t_data *data, int map_x, int map_y, int cell_x)
+{
+	char	tile;
+	int		color;
+
+	tile = data->map.grid[map_y][map_x];
+	if (tile == '1')
+		color = 0x444444; // Duvar gri
+	else
+		color = 0xCCCCCC; // Boş alan açık gri
+
+	ft_draw_cell(data, cell_x % data->minimap.visible_cells,
+		cell_x / data->minimap.visible_cells, color);
+}
+
+/* ------------------ Minimap Çizim Fonksiyonu ------------------ */
+void	ft_draw_minimap(t_data *data)
+{
+	int	map_x;
+	int	map_y;
+	int	i;
+	int	j;
+	int	start_x;
+	int	start_y;
+	int	half;
+
+	half = data->minimap.visible_cells / 2;
+	start_x = (int)data->player.pos_x - half;
+	start_y = (int)data->player.pos_y - half;
+
+	i = 0;
+	while (i < data->minimap.visible_cells)
+	{
+		j = 0;
+		while (j < data->minimap.visible_cells)
+		{
+			map_x = start_x + j;
+			map_y = start_y + i + data->map.map_index;
+			if (map_x >= 0 && map_x < data->map.width
+				&& map_y >= data->map.map_index && map_y < data->map.height)
+				ft_draw_minimap_cell(data, map_x, map_y,
+					i * data->minimap.visible_cells + j);
+			j++;
+		}
+		i++;
+	}
+	ft_draw_cell(data, half, half, 0xFF0000);
 }
