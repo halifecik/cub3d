@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 17:26:57 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:05:36 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,6 @@ char	**ft_copy_map_lines(t_map *map, int *cpy_height);
 
 // minimap
 void	ft_draw_minimap(t_data *data);
+void	ft_draw_full_map(t_data *data);
 
 #endif

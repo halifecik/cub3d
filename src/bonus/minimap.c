@@ -44,29 +44,26 @@ static void	ft_draw_cell(t_data *data, int cell_x, int cell_y, int color)
 	}
 }
 
-static void	ft_draw_minimap_frame(t_data *data)
+static void	ft_draw_minimap_frame(t_data *data, int width, int height)
 {
 	int	i;
-	int	size;
-
-	size = data->minimap.visible_cells * data->minimap.cell_size;
 	i = 0;
-	while (i < size)
+	while (i < width)
 	{
 		ft_put_pixel(data, i, 0, 0x000000);          // TOP
-		ft_put_pixel(data, i, size - 1, 0x000000);   // BOTTOM
+		ft_put_pixel(data, i, height - 1, 0x000000); // BOTTOM
 		i++;
 	}
 	i = 0;
-	while (i < size)
+	while (i < height)
 	{
 		ft_put_pixel(data, 0, i, 0x000000);          // LEFT
-		ft_put_pixel(data, size - 1, i, 0x000000);   // RIGHT
+		ft_put_pixel(data, width - 1, i, 0x000000);  // RIGHT
 		i++;
 	}
 }
 
-static void	ft_draw_minimap_cell(t_data *data, int map_x, int map_y, int cell_x)
+static void	ft_draw_minimap_cell(t_data *data, int map_x, int map_y, int cell_x, int cell_y)
 {
 	char	tile;
 	int		color;
@@ -78,25 +75,26 @@ static void	ft_draw_minimap_cell(t_data *data, int map_x, int map_y, int cell_x)
 		if (tile == '1')
 			color = 0x444444; // GRAY
 		else
-			color = 0xCCCCCC; // BRIGTH GRAY
+			color = 0xCCCCCC; // LIGHT GRAY
 	}
 	else
-		color = 0x000000; // BLACK
+		color = 0x000000; // BLACK for map outside
 
-	ft_draw_cell(data, cell_x % data->minimap.visible_cells,
-		cell_x / data->minimap.visible_cells, color);
+	ft_draw_cell(data, cell_x, cell_y, color);
 }
 
 void	ft_draw_minimap(t_data *data)
 {
-	int	j;
 	int	i;
+	int	j;
 	int	map_x;
 	int	map_y;
+	int	half;
 
-	data->minimap.half = data->minimap.visible_cells / 2;
-	data->minimap.start_x = (int)data->player.pos_x - data->minimap.half;
-	data->minimap.start_y = (int)data->player.pos_y - data->minimap.half;
+	half = data->minimap.visible_cells / 2;
+	data->minimap.start_x = (int)data->player.pos_x - half;
+	data->minimap.start_y = (int)data->player.pos_y - half;
+
 	i = -1;
 	while (++i < data->minimap.visible_cells)
 	{
@@ -105,10 +103,80 @@ void	ft_draw_minimap(t_data *data)
 		{
 			map_x = data->minimap.start_x + j;
 			map_y = data->minimap.start_y + i + data->map.map_index;
-			ft_draw_minimap_cell(data, map_x, map_y,
-				i * data->minimap.visible_cells + j);
+			ft_draw_minimap_cell(data, map_x, map_y, j, i);
 		}
 	}
-	ft_draw_cell(data, data->minimap.half, data->minimap.half, 0xFF0000);
-	ft_draw_minimap_frame(data);
+	// Oyuncu ortada
+	ft_draw_cell(data, half, half, 0xFF0000);
+	ft_draw_minimap_frame(data, data->minimap.visible_cells * data->minimap.cell_size,
+		data->minimap.visible_cells * data->minimap.cell_size);
+}
+
+#include "cub3d.h"
+
+/* ------------------ Full Map Fonksiyonları ------------------ */
+
+static void	ft_draw_cell_screen(t_data *data, int start_x, int start_y,
+				int size, int color)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < size)
+	{
+		x = 0;
+		while (x < size)
+		{
+			ft_put_pixel(data, start_x + x, start_y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	ft_draw_full_map(t_data *data)
+{
+	int		x;
+	int		y;
+	int		map_width;
+	int		map_height;
+	int		cell_size;
+	int		offset_x;
+	int		offset_y;
+	char	tile;
+
+	map_width = data->map.width;
+	map_height = data->map.height - data->map.map_index;
+
+	cell_size = SCREEN_WIDTH / map_width;
+	if (cell_size > SCREEN_HEIGHT / map_height)
+		cell_size = SCREEN_HEIGHT / map_height;
+
+	offset_x = (SCREEN_WIDTH - (map_width * cell_size)) / 2;
+	offset_y = (SCREEN_HEIGHT - (map_height * cell_size)) / 2;
+
+	y = 0;
+	while (y < map_height)
+	{
+		x = 0;
+		while (x < map_width)
+		{
+			tile = data->map.grid[y + data->map.map_index][x];
+			ft_draw_cell_screen(data,
+				offset_x + x * cell_size,
+				offset_y + y * cell_size,
+				cell_size,
+				(tile == '1') ? 0x444444 : 0xCCCCCC);
+			x++;
+		}
+		y++;
+	}
+
+	/* Player pozisyonunu map_index ve offset ile doğru göstermek */
+	ft_draw_cell_screen(data,
+		offset_x + (int)data->player.pos_x * cell_size,
+		offset_y + (int)(data->player.pos_y - data->map.map_index) * cell_size,
+		cell_size,
+		0xFF0000);
 }
