@@ -57,7 +57,6 @@ static void	ft_draw_minimap_cell(t_data *data, int map_x, int map_y, int cell_x)
 		color = 0x444444; // Duvar gri
 	else
 		color = 0xCCCCCC; // Boş alan açık gri
-
 	ft_draw_cell(data, cell_x % data->minimap.visible_cells,
 		cell_x / data->minimap.visible_cells, color);
 }
@@ -65,20 +64,19 @@ static void	ft_draw_minimap_cell(t_data *data, int map_x, int map_y, int cell_x)
 /* ------------------ Minimap Çizim Fonksiyonu ------------------ */
 void	ft_draw_minimap(t_data *data)
 {
+	int	j;
+	int	i;
 	int	map_x;
 	int	map_y;
-	int	i;
-	int	j;
 
 	data->minimap.half = data->minimap.visible_cells / 2;
 	data->minimap.start_x = (int)data->player.pos_x - data->minimap.half;
 	data->minimap.start_y = (int)data->player.pos_y - data->minimap.half;
-
-	i = 0;
-	while (i < data->minimap.visible_cells)
+	i = -1;
+	while (++i < data->minimap.visible_cells)
 	{
-		j = 0;
-		while (j < data->minimap.visible_cells)
+		j = -1;
+		while (++j < data->minimap.visible_cells)
 		{
 			map_x = data->minimap.start_x + j;
 			map_y = data->minimap.start_y + i + data->map.map_index;
@@ -86,9 +84,7 @@ void	ft_draw_minimap(t_data *data)
 				&& map_y >= data->map.map_index && map_y < data->map.height)
 				ft_draw_minimap_cell(data, map_x, map_y,
 					i * data->minimap.visible_cells + j);
-			j++;
 		}
-		i++;
 	}
 	ft_draw_cell(data, data->minimap.half, data->minimap.half, 0xFF0000);
 }
