@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:40 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 19:51:53 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 14:11:51 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ static int	flood_fill(char **grid, int x, int y, int height)
 		return (1);
 	width = (int)ft_strlen(grid[y]);
 	if (x >= width)
+		return (1);
+	if (grid[y][x] == ' ')
 		return (1);
 	if (grid[y][x] != '0' && grid[y][x] != 'N' && grid[y][x] != 'S'
 		&& grid[y][x] != 'E' && grid[y][x] != 'W')

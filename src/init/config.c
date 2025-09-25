@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 22:51:53 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 14:13:47 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static int	ft_set_rgb_color(int *dst, char *line)
 	int		g;
 	int		b;
 
+	if (*dst != 0)
+		return (ft_print_error("Duplicate color definition"));
 	line += 1;
 	while (*line && ft_is_whitespace(*line))
 		line++;
