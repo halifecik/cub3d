@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:33 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 18:03:00 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 20:14:30 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ static void	ft_mouse_lock(t_data *data)
 {
 	if (!data->keys.l)
 	{
+		mlx_mouse_hide(data->graphics.mlx, data->graphics.window);
 		mlx_mouse_move(data->graphics.mlx, data->graphics.window,
 			SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
 	}
