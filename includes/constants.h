@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 18:02:19 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 /* Map characters */
 # define WALL '1'
 # define EMPTY '0'
+# define DOOR 'D'
 # define NORTH 'N'
 # define SOUTH 'S'
 # define EAST 'E'
@@ -37,6 +38,7 @@
 # define SOUTH_TEX 1
 # define EAST_TEX 2
 # define WEST_TEX 3
+# define DOOR_TEX 4
 
 /* Key codes */
 # define KEY_W 119
@@ -48,6 +50,7 @@
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
+# define KEY_E 101
 
 /* Pixel Colors */
 # define RED_PIXEL 0xFF0000
@@ -66,6 +69,14 @@
 
 /* Mathematical constants */
 # define PI 3.14159265359
+
+/* Door constants */
+# define DOOR_ANIMATION_SPEED 0.02
+# define DOOR_INTERACTION_RANGE 2.0
+# define DOOR_CLOSED 0.0
+# define DOOR_OPEN 1.0
+# define DOOR_FRAMES 8
+# define DOOR_TEX_BASE 4
 
 /* Text Colors */
 # define BLACK "\033[0;30m"
