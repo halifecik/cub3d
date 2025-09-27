@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 16:21:05 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/27 18:45:18 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,12 @@ void	clean_config(t_config *config);
 void	clean_graphics(t_graphics *gfx);
 
 // minimap
+int		ft_tile_color(char tile);
 void	ft_draw_minimap(t_data *data);
 void	ft_draw_full_map(t_data *data);
+void	ft_draw_pixel(t_data *data, int x, int y, int color);
+void	ft_draw_cell(t_data *data, int start_x, int start_y, int size, int color);
+void	ft_draw_frame(t_data *data, int start_x, int start_y, int width, int height);
 
 // doors
 void	ft_initialize_doors(t_map *map);
