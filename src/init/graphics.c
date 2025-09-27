@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 14:54:04 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 static int	ft_load_texture(t_data *data, char *path, int tex_index)
 {
@@ -28,6 +29,25 @@ static int	ft_load_texture(t_data *data, char *path, int tex_index)
 	return (SUCCESS);
 }
 
+static int	ft_load_door_textures(t_data *data)
+{
+	int		i;
+	char	door_path[50];
+
+	i = 0;
+	while (i < DOOR_FRAMES)
+	{
+		snprintf(door_path, sizeof(door_path), "./textures/door_%d.xpm", i);
+		if (ft_load_texture(data, door_path, DOOR_TEX_BASE + i))
+		{
+			if (ft_load_texture(data, "./textures/door.xpm", DOOR_TEX_BASE + i))
+				return (ERROR);
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
 static int	ft_load_textures(t_data *data)
 {
 	if (ft_load_texture(data, data->config.north_texture, NORTH_TEX))
@@ -37,6 +57,8 @@ static int	ft_load_textures(t_data *data)
 	if (ft_load_texture(data, data->config.east_texture, EAST_TEX))
 		return (ERROR);
 	if (ft_load_texture(data, data->config.west_texture, WEST_TEX))
+		return (ERROR);
+	if (ft_load_door_textures(data))
 		return (ERROR);
 	return (SUCCESS);
 }
