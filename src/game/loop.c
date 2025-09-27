@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:35 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 18:03:56 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_cleanup(t_data *data)
 	if (data->graphics.mlx)
 	{
 		i = 0;
-		while (i < 4)
+		while (i < 12)
 		{
 			if (data->graphics.textures[i].img)
 				mlx_destroy_image(data->graphics.mlx,
@@ -40,6 +40,8 @@ void	ft_cleanup(t_data *data)
 		mlx_destroy_display(data->graphics.mlx);
 		free(data->graphics.mlx);
 	}
+	if (data->map.doors)
+		free(data->map.doors);
 }
 
 int	ft_game_loop(t_data *data)
@@ -56,6 +58,7 @@ int	ft_game_loop(t_data *data)
 		ft_rotate_right(data);
 	if (data->keys.left)
 		ft_rotate_left(data);
+	ft_update_doors(data);
 	ft_render_frame(data);
 	if (data->keys.tab)
 		ft_draw_full_map(data);
