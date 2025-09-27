@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 14:37:14 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:52:35 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,14 @@ void	ft_initialize_config(t_config *config);
 int		ft_initialize_graphics(t_data *data);
 int		ft_set_player_location(t_data *data, t_map *map);
 
+int		ft_check_config_complete(t_config *config);
 int		ft_set_config(t_map *map, t_config *config);
 
 // parse
-int		ft_cub_extension(char *filename);
-int		ft_parse_map(t_data *data);
 int		ft_check_map(t_map *map);
+int		ft_parse_map(t_data *data);
+int		ft_cub_extension(char *filename);
+int		ft_parse_color_value(char *str, int *value);
 
 // raycast
 void	ft_calculate_step(t_data *data);
@@ -71,21 +73,13 @@ void	ft_texture_coordinates(t_data *data);
 int		ft_texture_color(t_data *data, int tex_y);
 void	ft_side_distance(t_data *data, double *side_dist_x,
 			double *side_dist_y);
-void	ft_calculate_side_dist(t_data *data, double *side_dist_x,
-			double *side_dist_y);
 void	ft_render_frame(t_data *data);
 
 // graphics
 int		ft_initialize_graphics(t_data *data);
-void	ft_cleanup_graphics(t_data *data);
 
 // game loop
 int		ft_game_loop(t_data *data);
-int		ft_handle_keypress(int keycode, t_data *data);
-int		ft_handle_close(t_data *data);
-void	ft_handle_keypress_2(int keycode, t_data *data);
-void	ft_handle_rotation(int keycode, t_data *data);
-int		ft_is_valid_position(t_data *data, double x, double y);
 
 // utils
 void	ft_rtrim(char *line);

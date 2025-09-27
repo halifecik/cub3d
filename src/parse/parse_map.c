@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 14:30:45 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/23 22:42:37 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,6 @@ static int	ft_grid_append_line(t_map *map, char *line)
 	return (0);
 }
 
-static	int	ft_line_empty(char *str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-	{
-		if (!ft_is_whitespace(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 static int	ft_read_map_lines(t_map *map, int fd)
 {
 	char	*line;
@@ -62,14 +46,9 @@ static int	ft_read_map_lines(t_map *map, int fd)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (!ft_line_empty(line))
-		{
-			ft_rtrim(line);
-			if (ft_grid_append_line(map, line))
-				return (1);
-		}
-		else
-			free(line);
+		ft_rtrim(line);
+		if (ft_grid_append_line(map, line))
+			return (1);
 		line = get_next_line(fd);
 	}
 	if (!map->grid)
@@ -94,5 +73,7 @@ int	ft_parse_map(t_data *data)
 		return (ft_print_error("Initialize player location error"));
 	if (ft_set_config(&data->map, &data->config))
 		return (ft_print_error("Config textures error"));
+	if (ft_check_config_complete(&data->config))
+		return (ft_print_error("Missing argument"));
 	return (0);
 }
