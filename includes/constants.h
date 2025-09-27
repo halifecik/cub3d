@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   constants.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/27 19:28:47 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@
 /* Pixel Colors */
 # define RED_PIXEL 0xFF0000
 # define GREEN_PIXEL 0x00FF00
+# define GRAY_PIXEL 0X444444
+# define LIGHT_GRAY_PIXEL 0xCCCCCC
+# define FANDANGO_PIXEL 0xB53389
 # define BLUE_PIXEL 0x0000FF
 # define WHITE_PIXEL 0xFFFFFF
 # define BLACK_PIXEL 0x000000

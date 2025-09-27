@@ -51,8 +51,9 @@ SOURCES =	main.c \
 			utils/cleanup/clean_data.c \
 			utils/cleanup/clean_graphics.c \
 			utils/cleanup/clean_map.c \
-			bonus/minimap.c \
-			bonus/full_minimap.c \
+			bonus/draw_minimap.c \
+			bonus/draw_full_map.c \
+			bonus/minimap_tools.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o)) $(GNL_OBJ)
