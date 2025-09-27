@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 22:52:35 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 14:50:32 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	ft_initialize_config(t_config *config);
 int		ft_initialize_graphics(t_data *data);
 int		ft_set_player_location(t_data *data, t_map *map);
 
+void    ft_initialize_minimap(t_minimap *minimap);
 int		ft_check_config_complete(t_config *config);
 int		ft_set_config(t_map *map, t_config *config);
 
