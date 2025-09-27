@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:26 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 18:48:25 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,6 @@ void	ft_initialize_map(t_map *map)
 	map->player_x = -1;
 	map->player_y = -1;
 	map->player_dir = '\0';
+	map->doors = NULL;
+	map->door_count = 0;
 }
