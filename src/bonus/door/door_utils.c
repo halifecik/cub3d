@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int	ft_is_player_on_door(t_data *data, t_door *door)
+int	ft_player_on_door(t_data *data, t_door *door)
 {
 	double px = data->player.pos_x;
 	double py = data->player.pos_y;
@@ -21,7 +21,7 @@ static double	ft_distance_to_door(t_data *data, int door_x, int door_y)
 	return (sqrt(dx * dx + dy * dy));
 }
 
-static t_door	*ft_find_closest_door(t_data *data)
+t_door	*ft_find_closest_door(t_data *data)
 {
 	int		i;
 	double	min_distance;

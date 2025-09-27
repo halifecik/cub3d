@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	clean_graphics(t_graphics *gfx)
+void	ft_clean_graphics(t_graphics *gfx)
 {
 	int	i;
 

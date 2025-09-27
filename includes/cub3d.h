@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 18:45:18 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/27 21:06:00 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ int		ft_print_error(char *msg);
 char	**ft_copy_map_lines(t_map *map, int *cpy_height);
 
 //cleanup
-void	clean_map(t_map *map);
-void	clean_data(t_data *data);
-int    ft_close_window(t_data *data);
-void	clean_config(t_config *config);
-void	clean_graphics(t_graphics *gfx);
+void	ft_clean_map(t_map *map);
+void	ft_clean_data(t_data *data);
+int		ft_close_window(t_data *data);
+void	ft_clean_config(t_config *config);
+void	ft_clean_graphics(t_graphics *gfx);
 
 // minimap
 int		ft_tile_color(char tile);
@@ -106,7 +106,9 @@ void	ft_draw_frame(t_data *data, int start_x, int start_y, int width, int height
 void	ft_initialize_doors(t_map *map);
 void	ft_update_doors(t_data *data);
 void	ft_interact_with_door(t_data *data);
-int		ft_is_door_at_position(t_data *data, int x, int y);
+int		ft_door_at_position(t_data *data, int x, int y);
 double	ft_get_door_animation_state(t_data *data, int x, int y);
+t_door	*ft_find_closest_door(t_data *data);
+int		ft_player_on_door(t_data *data, t_door *door);
 
 #endif

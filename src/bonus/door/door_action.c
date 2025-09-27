@@ -34,14 +34,14 @@ void	ft_interact_with_door(t_data *data)
 	door = ft_find_closest_door(data);
 	if (!door)
 		return ;
-	if (ft_is_player_on_door(data, door))
+	if (ft_player_on_door(data, door))
 		return ;
 	if (door->is_opening || door->is_closing)
 		return ;
 	ft_door_action_logic(door);
 }
 
-int	ft_is_door_at_position(t_data *data, int x, int y)
+int	ft_door_at_position(t_data *data, int x, int y)
 {
 	int	i;
 

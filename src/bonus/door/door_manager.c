@@ -80,7 +80,7 @@ static void	ft_update_door_animation(t_data *data, t_door *door)
 	}
 	else if (door->is_closing)
 	{
-		if (!ft_is_player_on_door(data, door))
+		if (!ft_player_on_door(data, door))
 		{
 			door->animation_state -= DOOR_ANIMATION_SPEED;
 			if (door->animation_state <= DOOR_CLOSED)

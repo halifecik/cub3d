@@ -6,13 +6,13 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:35:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 22:52:18 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/27 21:06:00 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_is_map_line(char *line)
+static int	ft_map_line(char *line)
 {
 	int	j;
 	int	valid;
@@ -61,7 +61,7 @@ static int	find_map_start(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		if (ft_is_map_line(map->grid[i]))
+		if (ft_map_line(map->grid[i]))
 			return (i);
 		i++;
 	}
