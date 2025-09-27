@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/27 16:21:05 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int		ft_key_press(int keycode, t_data *data);
 int		ft_key_release(int keycode, t_data *data);
 int		ft_mouse_press(int button, int x, int y, t_data *data);
 int		ft_mouse_move(int x, int y, t_data *data);
-int		ft_close_window(t_data *data);
-void	ft_cleanup(t_data *data);
 
 // movement
 void	ft_move_forward(t_data *data);
@@ -88,6 +86,13 @@ int		ft_is_whitespace(char c);
 void	ft_free_grid(char **grid);
 int		ft_print_error(char *msg);
 char	**ft_copy_map_lines(t_map *map, int *cpy_height);
+
+//cleanup
+void	clean_map(t_map *map);
+void	clean_data(t_data *data);
+int    ft_close_window(t_data *data);
+void	clean_config(t_config *config);
+void	clean_graphics(t_graphics *gfx);
 
 // minimap
 void	ft_draw_minimap(t_data *data);

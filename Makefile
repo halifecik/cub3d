@@ -47,6 +47,10 @@ SOURCES =	main.c \
             game/loop.c \
             game/actions.c \
             game/doors.c \
+			utils/cleanup/clean_config.c \
+			utils/cleanup/clean_data.c \
+			utils/cleanup/clean_graphics.c \
+			utils/cleanup/clean_map.c \
 			bonus/minimap.c \
 			bonus/full_minimap.c \
 

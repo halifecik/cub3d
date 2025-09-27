@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/27 16:38:23 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	ft_parse_map(t_data *data)
 		return (1);
 	if (ft_set_player_location(data, &data->map))
 		return (ft_print_error("Initialize player location error"));
+	ft_initialize_config(&data->config);
 	if (ft_set_config(&data->map, &data->config))
 		return (1);
 	if (ft_check_config_complete(&data->config))
