@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 18:02:43 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/26 19:15:41 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ typedef struct s_texture
 	int			line_length;
 	int			endian;
 }				t_texture;
+
+/* Door structure */
+typedef struct s_door
+{
+	int			x;
+	int			y;
+	double		animation_state;
+	int			is_opening;
+	int			is_closing;
+}				t_door;
 
 /* Player structure */
 typedef struct s_player
@@ -48,6 +58,8 @@ typedef struct s_map
 	int			player_y;
 	int			map_index;
 	char		player_dir;
+	t_door		*doors;
+	int			door_count;
 }				t_map;
 
 /* Configuration structure */
@@ -71,7 +83,7 @@ typedef struct s_graphics
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-	t_texture	textures[4];
+	t_texture	textures[12];
 }				t_graphics;
 
 /* Raycasting structure */
@@ -109,17 +121,18 @@ typedef struct s_keys
 	int			esc;
 	int			left;
 	int			right;
+	int			e;
 }				t_keys;
 
 typedef struct s_minimap
 {
 	int		half;
-    int     width;          // Toplam piksel genişliği
-    int     height;         // Toplam piksel yüksekliği
+    int     width;          
+    int     height;        
 	int		start_x;
 	int		start_y;
-    int     cell_size;      // Her hücre kaç piksel
-    int     visible_cells;  // Ekranda kaç hücre gösterilecek
+    int     cell_size;      
+    int     visible_cells; 
 }               t_minimap;
 
 /* Main game structure */
