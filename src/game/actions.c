@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:33 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 20:14:30 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	ft_key_press(int keycode, t_data *data)
 		data->keys.right = 1;
 	else if (keycode == KEY_TAB)
 		data->keys.tab = 1;
+	else if (keycode == KEY_E)
+		data->keys.e = 1;
 	return (0);
 }
 
@@ -56,6 +58,14 @@ int	ft_key_release(int keycode, t_data *data)
 		data->keys.right = 0;
 	else if (keycode == KEY_TAB)
 		data->keys.tab = 0;
+	else if (keycode == KEY_E)
+	{
+		if (data->keys.e)
+		{
+			ft_interact_with_door(data);
+			data->keys.e = 0;
+		}
+	}
 	return (0);
 }
 
