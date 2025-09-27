@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:53 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/20 19:37:54 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,22 @@
 static int	ft_texture_number(t_data *data)
 {
 	t_raycast	*ray;
+	char		cell;
+	double		door_state;
+	int			frame;
 
 	ray = &data->raycast;
+	cell = data->map.grid[ray->map_y + data->map.map_index][ray->map_x];
+	if (cell == 'D')
+	{
+		door_state = ft_get_door_animation_state(data, ray->map_x, ray->map_y);
+		frame = (int)(door_state * (DOOR_FRAMES - 1));
+		if (frame < 0)
+			frame = 0;
+		if (frame >= DOOR_FRAMES)
+			frame = DOOR_FRAMES - 1;
+		return (DOOR_TEX_BASE + frame);
+	}
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)

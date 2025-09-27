@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:47 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 21:25:07 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/26 19:24:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,56 @@ static void	ft_put_pixel(t_data *data, int x, int y, int color)
 	}
 }
 
+static void	ft_draw_door_line(t_data *data, int x, int y, double door_state)
+{
+	double	step;
+	int		tex_y;
+	int		color;
+	double	tex_pos;
+	int		door_bottom;
+
+	ft_texture_coordinates(data);
+	step = 1.0 * data->graphics.textures[data->raycast.tex_num].height
+		/ data->raycast.line_height;
+	door_bottom = data->raycast.draw_end - (int)(door_state * data->raycast.line_height);
+	tex_pos = (data->raycast.draw_start - SCREEN_HEIGHT
+			/ 2 + data->raycast.line_height / 2) * step;
+	while (++y < data->raycast.draw_start)
+		ft_put_pixel(data, x, y, data->config.ceiling_color);
+	while (y <= data->raycast.draw_end)
+	{
+		if (y <= door_bottom)
+		{
+			tex_y = (int)tex_pos
+				& (data->graphics.textures[data->raycast.tex_num].height - 1);
+			color = ft_texture_color(data, tex_y);
+			ft_put_pixel(data, x, y, color);
+		}
+		tex_pos += step;
+		y++;
+	}
+	y--;
+	while (++y < SCREEN_HEIGHT)
+		ft_put_pixel(data, x, y, data->config.floor_color);
+}
+
 static void	ft_draw_vertical_line(t_data *data, int x, int y)
 {
 	double	step;
 	int		tex_y;
 	int		color;
 	double	tex_pos;
+	char	cell;
+	double	door_state;
 
 	ft_texture_coordinates(data);
+	cell = data->map.grid[data->raycast.map_y + data->map.map_index][data->raycast.map_x];
+	if (cell == 'D')
+	{
+		door_state = ft_get_door_animation_state(data, data->raycast.map_x, data->raycast.map_y);
+		ft_draw_door_line(data, x, y, door_state);
+		return ;
+	}
 	step = 1.0 * data->graphics.textures[data->raycast.tex_num].height
 		/ data->raycast.line_height;
 	tex_pos = (data->raycast.draw_start - SCREEN_HEIGHT
