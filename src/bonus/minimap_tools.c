@@ -32,12 +32,12 @@ void	ft_draw_cell(t_data *data, int start_x, int start_y, int size, int color)
 int	ft_tile_color(char tile)
 {
 	if (tile == '1')
-		return 0x444444;
+		return (GRAY_PIXEL);
 	if (tile == 'D')
-		return 0xB53389;
+		return (FANDANGO_PIXEL);
 	if (tile == '0')
-		return 0xCCCCCC;
-	return 0x000000;
+		return (LIGHT_GRAY_PIXEL);
+	return (BLACK_PIXEL);
 }
 
 void	ft_draw_frame(t_data *data, int start_x, int start_y, int width, int height)
@@ -47,15 +47,15 @@ void	ft_draw_frame(t_data *data, int start_x, int start_y, int width, int height
 	i = 0;
 	while (i < width)
 	{
-		ft_draw_pixel(data, start_x + i, start_y, 0x000000);
-		ft_draw_pixel(data, start_x + i, start_y + height - 1, 0x000000);
+		ft_draw_pixel(data, start_x + i, start_y, BLACK_PIXEL);
+		ft_draw_pixel(data, start_x + i, start_y + height - 1, BLACK_PIXEL);
 		i++;
 	}
 	i = 0;
 	while (i < height)
 	{
-		ft_draw_pixel(data, start_x, start_y + i, 0x000000);
-		ft_draw_pixel(data, start_x + width - 1, start_y + i, 0x000000);
+		ft_draw_pixel(data, start_x, start_y + i, BLACK_PIXEL);
+		ft_draw_pixel(data, start_x + width - 1, start_y + i, BLACK_PIXEL);
 		i++;
 	}
 }

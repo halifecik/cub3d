@@ -5,10 +5,10 @@ static int	fullmap_cell_color(t_data *data, int map_x, int map_y)
 	int row_len;
 
 	if (map_x < 0 || map_y < 0 || map_y >= data->map.height - data->map.map_index)
-		return 0x000000;
+		return (BLACK_PIXEL);
 	row_len = ft_strlen(data->map.grid[map_y + data->map.map_index]);
 	if (map_x >= row_len)
-		return 0x000000;
+		return (BLACK_PIXEL);
 	return ft_tile_color(data->map.grid[map_y + data->map.map_index][map_x]);
 }
 
@@ -34,7 +34,7 @@ static void	draw_fullmap_cells(t_data *data, int cell_size, int offset_x, int of
 		}
 	}
 	ft_draw_cell(data, offset_x + (int)data->player.pos_x * cell_size,
-		offset_y + (int)data->player.pos_y * cell_size, cell_size, 0xFF0000);
+		offset_y + (int)data->player.pos_y * cell_size, cell_size, RED_PIXEL);
 }
 
 void	ft_draw_full_map(t_data *data)

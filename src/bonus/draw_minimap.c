@@ -16,10 +16,10 @@ static int	minimap_cell_color(t_data *data, int map_x, int map_y)
 	int row_len;
 
 	if (map_x < 0 || map_y < 0 || map_y >= data->map.height - data->map.map_index)
-		return 0x000000;
+		return (BLACK_PIXEL);
 	row_len = ft_strlen(data->map.grid[map_y + data->map.map_index]);
 	if (map_x >= row_len)
-		return 0x000000;
+		return (BLACK_PIXEL);
 	return ft_tile_color(data->map.grid[map_y + data->map.map_index][map_x]);
 }
 
@@ -58,7 +58,7 @@ void	ft_draw_minimap(t_data *data)
 	start_y = (int)data->player.pos_y - half;
 
 	draw_minimap_cells(data, start_x, start_y, cell_size);
-	ft_draw_cell(data, half * cell_size, half * cell_size, cell_size, 0xFF0000);
+	ft_draw_cell(data, half * cell_size, half * cell_size, cell_size, RED_PIXEL);
 	ft_draw_frame(data, 0, 0, data->minimap.visible_cells * cell_size,
 		data->minimap.visible_cells * cell_size);
 }
