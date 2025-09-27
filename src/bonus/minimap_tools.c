@@ -35,7 +35,9 @@ int	ft_tile_color(char tile)
 		return 0x444444;
 	if (tile == 'D')
 		return 0xB53389;
-	return 0xCCCCCC;
+	if (tile == '0')
+		return 0xCCCCCC;
+	return 0x000000;
 }
 
 void	ft_draw_frame(t_data *data, int start_x, int start_y, int width, int height)
