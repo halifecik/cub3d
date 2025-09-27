@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_loop.c                                        :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:35 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/22 19:48:01 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/23 17:46:43 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@ int	ft_game_loop(t_data *data)
 		ft_strafe_left(data);
 	if (data->keys.d)
 		ft_strafe_right(data);
+	if (data->keys.right)
+		ft_rotate_right(data);
+	if (data->keys.left)
+		ft_rotate_left(data);
 	ft_render_frame(data);
 	mlx_put_image_to_window(data->graphics.mlx, data->graphics.window,
 		data->graphics.img, 0, 0);
