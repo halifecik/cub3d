@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 19:28:47 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/27 20:39:49 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@
 /* Door constants */
 # define DOOR_ANIMATION_SPEED 0.02
 # define DOOR_INTERACTION_RANGE 2.0
+# define CAP_DOOR 0.7
 # define DOOR_CLOSED 0.0
 # define DOOR_OPEN 1.0
 # define DOOR_FRAMES 8
