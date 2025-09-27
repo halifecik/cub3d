@@ -5,10 +5,9 @@ static int	ft_is_player_on_door(t_data *data, t_door *door)
 	double px = data->player.pos_x;
 	double py = data->player.pos_y;
 
-	// Kapının sınırları: kapı kare merkezinden 0.5 birim yarıçap
 	if (px >= door->x - 0.2 && px <= door->x + 1.2 &&
 		py >= door->y - 0.2 && py <= door->y + 1.2)
-		return (1); // Player kapının kare alanında
+		return (1);
 	return (0);
 }
 

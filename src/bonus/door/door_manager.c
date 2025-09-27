@@ -67,6 +67,31 @@ void	ft_initialize_doors(t_map *map)
 	ft_populate_doors(map);
 }
 
+static void	ft_update_door_animation(t_data *data, t_door *door)
+{
+	if (door->is_opening)
+	{
+		door->animation_state += DOOR_ANIMATION_SPEED;
+		if (door->animation_state >= DOOR_OPEN)
+		{
+			door->animation_state = DOOR_OPEN;
+			door->is_opening = 0;
+		}
+	}
+	else if (door->is_closing)
+	{
+		if (!ft_is_player_on_door(data, door))
+		{
+			door->animation_state -= DOOR_ANIMATION_SPEED;
+			if (door->animation_state <= DOOR_CLOSED)
+			{
+				door->animation_state = DOOR_CLOSED;
+				door->is_closing = 0;
+			}
+		}
+	}
+}
+
 void	ft_update_doors(t_data *data)
 {
 	int i;
@@ -74,28 +99,7 @@ void	ft_update_doors(t_data *data)
 	i = 0;
 	while (i < data->map.door_count)
 	{
-		if (data->map.doors[i].is_opening)
-		{
-			data->map.doors[i].animation_state += DOOR_ANIMATION_SPEED;
-			if (data->map.doors[i].animation_state >= DOOR_OPEN)
-			{
-				data->map.doors[i].animation_state = DOOR_OPEN;
-				data->map.doors[i].is_opening = 0;
-			}
-		}
-		else if (data->map.doors[i].is_closing)
-		{
-			// Player kapının içindeyse kapanma durdurulur
-			if (!ft_is_player_on_door(data, &data->map.doors[i]))
-			{
-				data->map.doors[i].animation_state -= DOOR_ANIMATION_SPEED;
-				if (data->map.doors[i].animation_state <= DOOR_CLOSED)
-				{
-					data->map.doors[i].animation_state = DOOR_CLOSED;
-					data->map.doors[i].is_closing = 0;
-				}
-			}
-		}
+		ft_update_door_animation(data, &data->map.doors[i]);
 		i++;
 	}
 }

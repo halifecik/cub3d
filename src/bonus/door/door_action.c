@@ -1,17 +1,7 @@
 #include "cub3d.h"
 
-void	ft_interact_with_door(t_data *data)
+static  void	ft_door_action_logic(t_door *door)
 {
-	t_door	*door;
-
-	door = ft_find_closest_door(data);
-	if (!door)
-		return ;
-	// Player kapının içindeyse etkileşim yapma
-	if (ft_is_player_on_door(data, door))
-		return ;
-	if (door->is_opening || door->is_closing)
-		return ;
 	if (door->animation_state <= DOOR_CLOSED + 0.1)
 	{
 		door->is_opening = 1;
@@ -35,6 +25,20 @@ void	ft_interact_with_door(t_data *data)
 			door->is_opening = 0;
 		}
 	}
+}
+
+void	ft_interact_with_door(t_data *data)
+{
+	t_door	*door;
+
+	door = ft_find_closest_door(data);
+	if (!door)
+		return ;
+	if (ft_is_player_on_door(data, door))
+		return ;
+	if (door->is_opening || door->is_closing)
+		return ;
+	ft_door_action_logic(door);
 }
 
 int	ft_is_door_at_position(t_data *data, int x, int y)
