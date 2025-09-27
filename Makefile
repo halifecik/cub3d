@@ -46,6 +46,7 @@ SOURCES =	main.c \
             game/rotation.c \
             game/loop.c \
             game/actions.c \
+            game/doors.c \
 			bonus/minimap.c \
 			bonus/full_minimap.c \
 
