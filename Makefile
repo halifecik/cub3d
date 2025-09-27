@@ -46,14 +46,16 @@ SOURCES =	main.c \
             game/rotation.c \
             game/loop.c \
             game/actions.c \
-            game/doors.c \
 			utils/cleanup/clean_config.c \
 			utils/cleanup/clean_data.c \
 			utils/cleanup/clean_graphics.c \
 			utils/cleanup/clean_map.c \
-			bonus/draw_minimap.c \
-			bonus/draw_full_map.c \
-			bonus/minimap_tools.c \
+			bonus/minimap/draw_minimap.c \
+			bonus/minimap/draw_full_map.c \
+			bonus/minimap/minimap_tools.c \
+			bonus/door/door_action.c \
+			bonus/door/door_manager.c \
+			bonus/door/door_utils.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o)) $(GNL_OBJ)

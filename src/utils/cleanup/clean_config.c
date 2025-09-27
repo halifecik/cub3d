@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	clean_config(t_config *config)
+void	ft_clean_config(t_config *config)
 {
 	if (!config)
 		return ;

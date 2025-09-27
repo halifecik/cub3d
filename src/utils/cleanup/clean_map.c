@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	clean_map(t_map *map)
+void	ft_clean_map(t_map *map)
 {
 	int	i;
 
