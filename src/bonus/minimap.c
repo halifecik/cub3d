@@ -74,6 +74,8 @@ static void	ft_draw_minimap_cell(t_data *data, int map_x, int map_y, int cell_x,
 		tile = data->map.grid[map_y][map_x];
 		if (tile == '1')
 			color = 0x444444; // GRAY
+		else if (tile == 'D')
+			color = 0xB53389;
 		else
 			color = 0xCCCCCC; // LIGHT GRAY
 	}
