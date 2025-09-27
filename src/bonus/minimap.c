@@ -111,16 +111,14 @@ void	ft_draw_minimap(t_data *data)
 	ft_draw_minimap_frame(data, data->minimap.visible_cells * data->minimap.cell_size,
 		data->minimap.visible_cells * data->minimap.cell_size);
 }
-
 #include "cub3d.h"
-
-/* ------------------ Full Map Fonksiyonları ------------------ */
 
 static void	ft_draw_cell_screen(t_data *data, int start_x, int start_y,
 				int size, int color)
 {
 	int	x;
 	int	y;
+	char	*dst;
 
 	y = 0;
 	while (y < size)
@@ -128,7 +126,14 @@ static void	ft_draw_cell_screen(t_data *data, int start_x, int start_y,
 		x = 0;
 		while (x < size)
 		{
-			ft_put_pixel(data, start_x + x, start_y + y, color);
+			if (start_x + x >= 0 && start_x + x < SCREEN_WIDTH
+				&& start_y + y >= 0 && start_y + y < SCREEN_HEIGHT)
+			{
+				dst = data->graphics.img_data
+					+ ((start_y + y) * data->graphics.line_length
+					+ (start_x + x) * (data->graphics.bits_per_pixel / 8));
+				*(unsigned int *)dst = color;
+			}
 			x++;
 		}
 		y++;
@@ -172,11 +177,10 @@ void	ft_draw_full_map(t_data *data)
 		}
 		y++;
 	}
-
-	/* Player pozisyonunu map_index ve offset ile doğru göstermek */
+	// Oyuncuyu doğru pozisyonda çiz
 	ft_draw_cell_screen(data,
 		offset_x + (int)data->player.pos_x * cell_size,
-		offset_y + (int)(data->player.pos_y - data->map.map_index) * cell_size,
+		offset_y + (int)data->player.pos_y * cell_size,
 		cell_size,
 		0xFF0000);
 }
