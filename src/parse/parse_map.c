@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 22:42:37 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 14:19:08 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	ft_parse_map(t_data *data)
 	if (ft_set_player_location(data, &data->map))
 		return (ft_print_error("Initialize player location error"));
 	if (ft_set_config(&data->map, &data->config))
-		return (ft_print_error("Config textures error"));
+		return (1);
 	if (ft_check_config_complete(&data->config))
 		return (ft_print_error("Missing argument"));
 	return (0);
