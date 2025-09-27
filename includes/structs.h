@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 17:38:37 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:02:43 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,10 @@ typedef struct s_keys
 	int			s;
 	int			d;
 	int			l;
+	int			tab;
+	int			esc;
 	int			left;
 	int			right;
-	int			esc;
 }				t_keys;
 
 typedef struct s_minimap

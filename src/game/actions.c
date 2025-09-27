@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:33 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/23 17:40:31 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/25 18:03:00 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ft_key_press(int keycode, t_data *data)
 		data->keys.left = 1;
 	else if (keycode == KEY_RIGHT)
 		data->keys.right = 1;
+	else if (keycode == KEY_TAB)
+		data->keys.tab = 1;
 	return (0);
 }
 
@@ -52,6 +54,8 @@ int	ft_key_release(int keycode, t_data *data)
 		data->keys.left = 0;
 	else if (keycode == KEY_RIGHT)
 		data->keys.right = 0;
+	else if (keycode == KEY_TAB)
+		data->keys.tab = 0;
 	return (0);
 }
 
