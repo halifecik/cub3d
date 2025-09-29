@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:54:22 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:05:01 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 19:13:01 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,10 @@
 
 void	ft_initialize_minimap(t_minimap *minimap)
 {
-	minimap->half = 0;
 	minimap->start_x = 0;
 	minimap->start_y = 0;
 	minimap->cell_size = 20;
 	minimap->visible_cells = 15;
-	minimap->width = minimap->cell_size * minimap->visible_cells;
-	minimap->height = minimap->width;
 	minimap->current_cell_size = minimap->cell_size;
 }
 
