@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:05:23 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 21:01:50 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,14 +137,15 @@ typedef struct s_config
 // ======= Game Data ==========
 typedef struct s_data
 {
-	char		*map_file;
 	t_map		map;
 	t_keys		keys;
+	int			frame;
 	t_player	player;
 	t_config	config;
 	t_raycast	raycast;
 	t_minimap	minimap;
 	t_graphics	graphics;
+	char		*map_file;
 }				t_data;
 
 #endif

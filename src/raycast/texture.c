@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:53 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:57:06 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 20:44:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ static int	ft_get_door_texture(t_data *data)
 
 	ray = &data->raycast;
 	door_state = ft_get_door_animation_state(data, ray->map_x, ray->map_y);
+	if (door_state <= 0.1)
+	{
+		if ((data->frame / 60) % 2 == 0)
+			return (DOOR_TEX_BASE + 0);
+		else
+			return (DOOR_TEX_BASE + 1);
+	}
 	frame = (int)(door_state * (DOOR_FRAMES - 1));
 	if (frame < 0)
 		frame = 0;

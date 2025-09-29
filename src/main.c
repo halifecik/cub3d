@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/20 00:00:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 18:01:46 by hademirc         ###   ########.fr       */
+/*   Created: 2025/09/29 20:42:01 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/29 20:43:58 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(int argc, char **argv)
 	if (!data)
 		return (ft_print_error("Failed to allocate t_data"));
 	data->map_file = argv[1];
+	data->frame = 0;
 	ft_bzero(&data->keys, sizeof(t_keys));
 	if (ft_parse_map(data))
 		return (ft_print_error("Failed to parse .cub file"));
