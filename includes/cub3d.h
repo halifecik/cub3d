@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 16:40:00 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:05:10 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,9 @@ int		ft_tile_color(char tile);
 void	ft_draw_minimap(t_data *data);
 void	ft_draw_full_map(t_data *data);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
-void	ft_draw_cell(t_data *data, int start_x, int start_y, int size, int color);
-void	ft_draw_frame(t_data *data, int start_x, int start_y, int width, int height);
+void	ft_draw_cell(t_data *data, int start_x, int start_y, int size);
+void	ft_draw_colored_cell(t_data *data, int start_x, int start_y, int color);
+void	ft_draw_frame(t_data *data, int start_x, int start_y, int width);
 
 // doors
 void	ft_initialize_doors(t_map *map);

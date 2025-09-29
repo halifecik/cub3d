@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 16:42:57 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:05:23 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ typedef struct s_minimap
 	int		start_y;
 	int		cell_size;
 	int		visible_cells;
+	int		current_cell_size;
 }				t_minimap;
 
 /* Main game structure */
