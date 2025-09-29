@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door_action.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/29 16:50:49 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/29 16:51:15 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-static  void	ft_door_action_logic(t_door *door)
+static void	ft_door_action_logic(t_door *door)
 {
 	if (door->animation_state <= DOOR_CLOSED + 0.1)
 	{
