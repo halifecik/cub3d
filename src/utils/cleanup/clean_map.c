@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/29 17:08:47 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/29 17:09:16 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_clean_map(t_map *map)
@@ -11,8 +23,8 @@ void	ft_clean_map(t_map *map)
 		i = 0;
 		while (i < map->height)
 		{
-            if (map->grid[i])
-			    free(map->grid[i]);
+			if (map->grid[i])
+				free(map->grid[i]);
 			i++;
 		}
 		free(map->grid);
