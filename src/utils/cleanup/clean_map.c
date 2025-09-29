@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:08:47 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:09:16 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,20 @@ void	ft_clean_map(t_map *map)
 	{
 		free(map->doors);
 		map->doors = NULL;
+	}
+	if (map->sprites)
+	{
+		free(map->sprites);
+		map->sprites = NULL;
+	}
+	if (map->sprite_order)
+	{
+		free(map->sprite_order);
+		map->sprite_order = NULL;
+	}
+	if (map->sprite_distance)
+	{
+		free(map->sprite_distance);
+		map->sprite_distance = NULL;
 	}
 }

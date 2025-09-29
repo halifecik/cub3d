@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:47 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:58:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ static void	ft_draw_vertical_line(t_data *data, int x, int y)
 
 void	ft_render_frame(t_data *data)
 {
-	int	x;
-	int	y;
+	static double	z_buffer[SCREEN_WIDTH];
+	int				x;
+	int				y;
 
 	x = -1;
 	y = -1;
@@ -77,5 +78,8 @@ void	ft_render_frame(t_data *data)
 	{
 		ft_cast_ray(data, x);
 		ft_draw_vertical_line(data, x, y);
+		z_buffer[x] = data->raycast.perp_wall_dist;
 	}
+	ft_update_sprites(data);
+	ft_render_sprites(data, z_buffer);
 }
