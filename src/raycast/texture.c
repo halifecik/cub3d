@@ -6,31 +6,33 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:53 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:57:06 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_texture_number(t_data *data)
+static int	ft_get_door_texture(t_data *data)
 {
 	t_raycast	*ray;
-	char		cell;
 	double		door_state;
 	int			frame;
 
 	ray = &data->raycast;
-	cell = data->map.grid[ray->map_y + data->map.map_index][ray->map_x];
-	if (cell == 'D')
-	{
-		door_state = ft_get_door_animation_state(data, ray->map_x, ray->map_y);
-		frame = (int)(door_state * (DOOR_FRAMES - 1));
-		if (frame < 0)
-			frame = 0;
-		if (frame >= DOOR_FRAMES)
-			frame = DOOR_FRAMES - 1;
-		return (DOOR_TEX_BASE + frame);
-	}
+	door_state = ft_get_door_animation_state(data, ray->map_x, ray->map_y);
+	frame = (int)(door_state * (DOOR_FRAMES - 1));
+	if (frame < 0)
+		frame = 0;
+	if (frame >= DOOR_FRAMES)
+		frame = DOOR_FRAMES - 1;
+	return (DOOR_TEX_BASE + frame);
+}
+
+static int	ft_get_wall_texture(t_data *data)
+{
+	t_raycast	*ray;
+
+	ray = &data->raycast;
 	if (ray->side == 0)
 	{
 		if (ray->ray_dir_x > 0)
@@ -45,6 +47,18 @@ static int	ft_texture_number(t_data *data)
 		else
 			return (NORTH_TEX);
 	}
+}
+
+static int	ft_texture_number(t_data *data)
+{
+	t_raycast	*ray;
+	char		cell;
+
+	ray = &data->raycast;
+	cell = data->map.grid[ray->map_y + data->map.map_index][ray->map_x];
+	if (cell == 'D')
+		return (ft_get_door_texture(data));
+	return (ft_get_wall_texture(data));
 }
 
 void	ft_texture_coordinates(t_data *data)
