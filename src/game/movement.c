@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:36 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:57:01 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	ft_can_move_to(t_data *data, int x, int y)
 {
 	char	cell;
 	int		map_y;
+	double	door_state;
 
 	if (x < 0 || y < 0 || x >= data->map.width)
 		return (0);
@@ -27,7 +28,7 @@ static int	ft_can_move_to(t_data *data, int x, int y)
 		return (1);
 	if (cell == 'D')
 	{
-		double door_state = ft_get_door_animation_state(data, x, y);
+		door_state = ft_get_door_animation_state(data, x, y);
 		return (door_state >= 0.7);
 	}
 	return (0);
