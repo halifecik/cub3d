@@ -58,6 +58,11 @@ SOURCES =	main.c \
 			bonus/door/door_action.c \
 			bonus/door/door_manager.c \
 			bonus/door/door_utils.c \
+			bonus/sprite/sprite_init.c \
+			bonus/sprite/sprite_update.c \
+			bonus/sprite/sprite_sort.c \
+			bonus/sprite/sprite_render.c \
+			bonus/sprite/sprite_ui.c \
 
 SRCS	= $(addprefix $(SRCDIR)/, $(SOURCES))
 OBJS    = $(addprefix $(OBJDIR)/, $(SOURCES:.c=.o)) $(GNL_OBJ)
