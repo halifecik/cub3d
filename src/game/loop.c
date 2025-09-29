@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:35 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 16:19:08 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/29 20:43:58 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_game_loop(t_data *data)
 {
+	data->frame++;
 	if (data->keys.w)
 		ft_move_forward(data);
 	if (data->keys.s)

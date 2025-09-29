@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 18:38:40 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 20:45:50 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@
 
 // ===== Door Constants =======
 # define DOOR_OPEN 1.0
-# define DOOR_FRAMES 8
+# define DOOR_FRAMES 2
 # define DOOR_CLOSED 0.0
 # define DOOR_TEX_BASE 4
 # define DOOR_ANIMATION_SPEED 0.02
