@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 21:06:00 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/29 17:57:04 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ void	ft_initialize_config(t_config *config)
 	config->ceiling_color = 0;
 }
 
-int ft_check_config_complete(t_config *config)
+int	ft_check_config_complete(t_config *config)
 {
-    if (!config->north_texture || !config->south_texture
-        || !config->west_texture || !config->east_texture)
-        return (1);
-    if (config->floor_color == 0 && config->ceiling_color == 0)
-        return (1);
-    if (config->floor_color == 0)
-        return (1);
-    if (config->ceiling_color == 0)
-        return (1);
-    return (0);
+	if (!config->north_texture || !config->south_texture
+		|| !config->west_texture || !config->east_texture)
+		return (1);
+	if (config->floor_color == 0 && config->ceiling_color == 0)
+		return (1);
+	if (config->floor_color == 0)
+		return (1);
+	if (config->ceiling_color == 0)
+		return (1);
+	return (0);
 }
 
 static int	ft_set_texture_path(char **dst, char *line)
