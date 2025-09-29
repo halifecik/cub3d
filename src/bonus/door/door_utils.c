@@ -1,12 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/29 16:51:32 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/29 16:51:34 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	ft_player_on_door(t_data *data, t_door *door)
 {
-	double px = data->player.pos_x;
-	double py = data->player.pos_y;
+	double	px;
+	double	py;
 
-	if (px >= door->x - 0.2 && px <= door->x + 1.2 &&
-		py >= door->y - 0.2 && py <= door->y + 1.2)
+	px = data->player.pos_x;
+	py = data->player.pos_y;
+	if (px >= door->x - 0.2 && px <= door->x + 1.2
+		&& py >= door->y - 0.2 && py <= door->y + 1.2)
 		return (1);
 	return (0);
 }

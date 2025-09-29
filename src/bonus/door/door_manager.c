@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door_manager.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/29 16:50:54 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/29 16:52:13 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	ft_count_doors(t_map *map)
@@ -94,7 +106,7 @@ static void	ft_update_door_animation(t_data *data, t_door *door)
 
 void	ft_update_doors(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->map.door_count)
