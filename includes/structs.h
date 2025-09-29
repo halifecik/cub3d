@@ -6,26 +6,14 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:05:23 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 19:12:49 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-/* Texture structure */
-typedef struct s_texture
-{
-	void		*img;
-	char		*data;
-	int			width;
-	int			height;
-	int			bits_per_pixel;
-	int			line_length;
-	int			endian;
-}				t_texture;
-
-/* Door structure */
+// ========== Door ============
 typedef struct s_door
 {
 	int			x;
@@ -35,20 +23,22 @@ typedef struct s_door
 	int			is_closing;
 }				t_door;
 
-/* Player structure */
-typedef struct s_player
+// ========== Keys ============
+typedef struct s_keys
 {
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-	double		plane_x;
-	double		plane_y;
-	double		move_speed;
-	double		rot_speed;
-}				t_player;
+	int			w;
+	int			a;
+	int			s;
+	int			d;
+	int			l;
+	int			e;
+	int			tab;
+	int			esc;
+	int			left;
+	int			right;
+}				t_keys;
 
-/* Map structure */
+// ========== Map ===========
 typedef struct s_map
 {
 	char		**grid;
@@ -62,18 +52,42 @@ typedef struct s_map
 	int			door_count;
 }				t_map;
 
-/* Configuration structure */
-typedef struct s_config
+// ======== Player ===========
+typedef struct s_player
 {
-	char		*north_texture;
-	char		*south_texture;
-	char		*west_texture;
-	char		*east_texture;
-	int			floor_color;
-	int			ceiling_color;
-}				t_config;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		move_speed;
+	double		rot_speed;
+}				t_player;
 
-/* Graphics structure */
+// ======== Texture ===========
+typedef struct s_texture
+{
+	void		*img;
+	char		*data;
+	int			width;
+	int			height;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+}				t_texture;
+
+// ======== Minimap ===========
+typedef struct s_minimap
+{
+	int		start_x;
+	int		start_y;
+	int		cell_size;
+	int		visible_cells;
+	int		current_cell_size;
+}				t_minimap;
+
+// ======= Graphics ===========
 typedef struct s_graphics
 {
 	void		*mlx;
@@ -86,7 +100,7 @@ typedef struct s_graphics
 	t_texture	textures[12];
 }				t_graphics;
 
-/* Raycasting structure */
+// ======== Raycast ===========
 typedef struct s_raycast
 {
 	double		camera_x;
@@ -109,34 +123,18 @@ typedef struct s_raycast
 	int			tex_x;
 }				t_raycast;
 
-/* Key state tracking */
-typedef struct s_keys
+// ===== Configuration =======
+typedef struct s_config
 {
-	int			w;
-	int			a;
-	int			s;
-	int			d;
-	int			l;
-	int			tab;
-	int			esc;
-	int			left;
-	int			right;
-	int			e;
-}				t_keys;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	int			floor_color;
+	int			ceiling_color;
+}				t_config;
 
-typedef struct s_minimap
-{
-	int		half;
-	int		width;
-	int		height;
-	int		start_x;
-	int		start_y;
-	int		cell_size;
-	int		visible_cells;
-	int		current_cell_size;
-}				t_minimap;
-
-/* Main game structure */
+// ======= Game Data ==========
 typedef struct s_data
 {
 	char		*map_file;
