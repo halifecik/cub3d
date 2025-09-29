@@ -86,6 +86,6 @@ int	ft_initialize_graphics(t_data *data)
 	mlx_mouse_hide(data->graphics.mlx, data->graphics.window);
 	mlx_mouse_move(data->graphics.mlx, data->graphics.window, SCREEN_WIDTH / 2,
 		SCREEN_HEIGHT / 2);
-	ft_initialize_minimap(&data->minimap); // bonus part!!
+	ft_initialize_minimap(&data->minimap);
 	return (SUCCESS);
 }
