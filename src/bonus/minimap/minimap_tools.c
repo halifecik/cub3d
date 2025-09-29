@@ -1,21 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minimap_tools.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/29 16:54:16 by hademirc          #+#    #+#             */
+/*   Updated: 2025/09/29 17:05:04 by hademirc         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_draw_pixel(t_data *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	if (x < 0 || x >= SCREEN_WIDTH || y < 0 || y >= SCREEN_HEIGHT)
 		return ;
-	dst = data->graphics.img_data
-		+ (y * data->graphics.line_length + x * (data->graphics.bits_per_pixel / 8));
+	dst = data->graphics.img_data + (y * data->graphics.line_length
+			+ x * (data->graphics.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	ft_draw_cell(t_data *data, int start_x, int start_y, int size, int color)
+void	ft_draw_cell(t_data *data, int start_x, int start_y, int size)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
+	int	color;
 
+	color = GRAY_PIXEL;
+	y = 0;
+	while (y < size)
+	{
+		x = 0;
+		while (x < size)
+		{
+			ft_draw_pixel(data, start_x + x, start_y + y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	ft_draw_colored_cell(t_data *data, int start_x, int start_y, int color)
+{
+	int	x;
+	int	y;
+	int	size;
+
+	size = data->minimap.current_cell_size;
 	y = 0;
 	while (y < size)
 	{
@@ -40,10 +74,12 @@ int	ft_tile_color(char tile)
 	return (BLACK_PIXEL);
 }
 
-void	ft_draw_frame(t_data *data, int start_x, int start_y, int width, int height)
+void	ft_draw_frame(t_data *data, int start_x, int start_y, int width)
 {
-	int i;
+	int	i;
+	int	height;
 
+	height = width;
 	i = 0;
 	while (i < width)
 	{
