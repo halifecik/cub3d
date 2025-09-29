@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 20:45:50 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define NORTH 'N'
 # define SOUTH 'S'
 # define EMPTY '0'
+# define SPRITE 'X'
 
 // ===== Texture Indices ======
 # define EAST_TEX 2
@@ -37,6 +38,7 @@
 # define DOOR_TEX 4
 # define NORTH_TEX 0
 # define SOUTH_TEX 1
+# define COIN_TEX_BASE 6
 
 // ======== Key Codes =========
 # define KEY_A 97
@@ -78,6 +80,13 @@
 # define DOOR_TEX_BASE 4
 # define DOOR_ANIMATION_SPEED 0.02
 # define DOOR_INTERACTION_RANGE 2.0
+
+// ===== Sprite Constants =====
+# define COIN_FRAMES 2
+# define COIN_FLOAT_HEIGHT 15.0
+# define COIN_FLOAT_SPEED 0.08
+# define COIN_COLLECT_RANGE 1.0
+# define COIN_ANIMATION_SPEED 0.05
 
 // ====== Text Colors =========
 # define RED "\033[0;31m"

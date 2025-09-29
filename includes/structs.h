@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:46 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 21:01:50 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,27 @@ typedef struct s_door
 	int			is_opening;
 	int			is_closing;
 }				t_door;
+
+// ========= Sprite ===========
+typedef struct s_sprite
+{
+	double		x;
+	double		y;
+	double		distance;
+	double		float_offset;
+	double		animation_time;
+	int			texture_index;
+	int			collected;
+	double		transform_x;
+	double		transform_y;
+	int			sprite_screen_x;
+	int			sprite_height;
+	int			sprite_width;
+	int			draw_start_y;
+	int			draw_end_y;
+	int			draw_start_x;
+	int			draw_end_x;
+}				t_sprite;
 
 // ========== Keys ============
 typedef struct s_keys
@@ -50,6 +71,10 @@ typedef struct s_map
 	char		player_dir;
 	t_door		*doors;
 	int			door_count;
+	t_sprite	*sprites;
+	int			sprite_count;
+	int			*sprite_order;
+	double		*sprite_distance;
 }				t_map;
 
 // ======== Player ===========
@@ -146,6 +171,7 @@ typedef struct s_data
 	t_minimap	minimap;
 	t_graphics	graphics;
 	char		*map_file;
+	int			coins_collected;
 }				t_data;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:05:10 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:25:12 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int		ft_mouse_move(int x, int y, t_data *data);
 int		ft_initialize_graphics(t_data *data);
 void	ft_put_pixel(t_data *data, int x, int y, int color);
 void	ft_draw_door_line(t_data *data, int x, int y, double door_state);
+int		ft_load_texture(t_data *data, char *path, int tex_index);
+int		ft_load_texture(t_data *data, char *path, int tex_index);
 
 // =========== Init ===========
 void	ft_player_east(t_data *data);
@@ -97,6 +99,19 @@ void	ft_texture_coordinates(t_data *data);
 int		ft_texture_color(t_data *data, int tex_y);
 void	ft_side_distance(t_data *data, double *side_dist_x,
 			double *side_dist_y);
+
+// ========= Sprites ==========
+void	ft_initialize_sprites(t_data *data);
+void	ft_update_sprites(t_data *data);
+void	ft_render_sprites(t_data *data, double *z_buffer);
+void	ft_collect_sprites(t_data *data);
+void	ft_sort_sprites(t_data *data);
+void	ft_calculate_sprite_transform(t_data *data, int i);
+void	ft_draw_sprite(t_data *data, int i, double *z_buffer);
+int		ft_load_sprite_textures(t_data *data);
+void	ft_draw_coin_counter(t_data *data);
+void	ft_calculate_sprite_distance(t_data *data, int i);
+void	ft_update_map_grid(t_data *data, int i);
 
 // ========== Utils ===========
 void	ft_rtrim(char *line);
