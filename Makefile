@@ -36,8 +36,6 @@ SOURCES =	main.c \
             init/config.c \
             parse/parse_map.c \
             parse/check_map.c \
-            utils/utilities.c \
-			utils/map_tools.c \
             raycast/raycast.c \
             raycast/calculate.c \
             raycast/render.c \
@@ -46,10 +44,14 @@ SOURCES =	main.c \
             game/rotation.c \
             game/loop.c \
             game/actions.c \
+            game/mouse.c \
 			utils/cleanup/clean_config.c \
 			utils/cleanup/clean_data.c \
 			utils/cleanup/clean_graphics.c \
 			utils/cleanup/clean_map.c \
+            utils/render.c \
+			utils/map.c \
+			utils/utilities.c \
 			bonus/minimap/draw_minimap.c \
 			bonus/minimap/draw_full_map.c \
 			bonus/minimap/minimap_tools.c \
