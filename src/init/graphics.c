@@ -6,12 +6,11 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/26 19:15:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:31:36 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
 
 static int	ft_load_texture(t_data *data, char *path, int tex_index)
 {
@@ -31,13 +30,22 @@ static int	ft_load_texture(t_data *data, char *path, int tex_index)
 
 static int	ft_load_door_textures(t_data *data)
 {
-	int		i;
 	char	door_path[50];
+	char	*num_str;
+	char	*temp;
+	int		i;
 
 	i = 0;
 	while (i < DOOR_FRAMES)
 	{
-		snprintf(door_path, sizeof(door_path), "./textures/door_%d.xpm", i);
+		num_str = ft_itoa(i);
+		temp = ft_strjoin("./textures/door_", num_str);
+		ft_strlcpy(door_path, temp, sizeof(door_path));
+		free(temp);
+		temp = ft_strjoin(door_path, ".xpm");
+		ft_strlcpy(door_path, temp, sizeof(door_path));
+		free(temp);
+		free(num_str);
 		if (ft_load_texture(data, door_path, DOOR_TEX_BASE + i))
 		{
 			if (ft_load_texture(data, "./textures/door.xpm", DOOR_TEX_BASE + i))

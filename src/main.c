@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 00:00:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/25 14:49:45 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/29 18:01:46 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data->graphics.mlx, ft_game_loop, data);
 	mlx_hook(data->graphics.window, 2, 1L << 0, ft_key_press, data);
 	mlx_hook(data->graphics.window, 3, 1L << 1, ft_key_release, data);
-	mlx_mouse_hook(data->graphics.window, ft_mouse_press, data);
 	mlx_hook(data->graphics.window, 6, 1L << 6, ft_mouse_move, data);
 	mlx_hook(data->graphics.window, 17, 1L << 17, ft_close_window, data);
 	mlx_loop(data->graphics.mlx);
