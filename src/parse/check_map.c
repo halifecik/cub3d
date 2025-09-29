@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:40 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 21:06:00 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	check_chars(char **grid, int height)
 				|| grid[i][j] == 'W')
 				player_count++;
 			else if (!ft_is_whitespace(grid[i][j]) && grid[i][j] != '0'
-				&& grid[i][j] != '1' && grid[i][j] != 'D')
+				&& grid[i][j] != '1' && grid[i][j] != 'D' && grid[i][j] != 'X')
 				return (ft_print_error("Invalid character in map"));
 			j++;
 		}

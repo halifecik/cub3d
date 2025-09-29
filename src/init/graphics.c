@@ -6,13 +6,13 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:31:36 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_load_texture(t_data *data, char *path, int tex_index)
+int	ft_load_texture(t_data *data, char *path, int tex_index)
 {
 	t_texture	*texture;
 
@@ -67,6 +67,8 @@ static int	ft_load_textures(t_data *data)
 	if (ft_load_texture(data, data->config.west_texture, WEST_TEX))
 		return (ERROR);
 	if (ft_load_door_textures(data))
+		return (ERROR);
+	if (ft_load_sprite_textures(data))
 		return (ERROR);
 	return (SUCCESS);
 }

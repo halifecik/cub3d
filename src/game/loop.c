@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:30:35 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 20:43:58 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ int	ft_game_loop(t_data *data)
 		ft_draw_minimap(data);
 	mlx_put_image_to_window(data->graphics.mlx, data->graphics.window,
 		data->graphics.img, 0, 0);
+	ft_draw_coin_counter(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 20:42:01 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 20:43:58 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,13 @@ int	main(int argc, char **argv)
 		return (ft_print_error("Failed to allocate t_data"));
 	data->map_file = argv[1];
 	data->frame = 0;
+	data->coins_collected = 0;
 	ft_bzero(&data->keys, sizeof(t_keys));
 	if (ft_parse_map(data))
 		return (ft_print_error("Failed to parse .cub file"));
 	if (ft_initialize_graphics(data))
 		return (ft_print_error("Failed to initialize graphics"));
+	ft_initialize_sprites(data);
 	mlx_loop_hook(data->graphics.mlx, ft_game_loop, data);
 	mlx_hook(data->graphics.window, 2, 1L << 0, ft_key_press, data);
 	mlx_hook(data->graphics.window, 3, 1L << 1, ft_key_release, data);
