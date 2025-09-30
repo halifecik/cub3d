@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   clean_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:08:47 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:41:03 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_clean_map(t_map *map)
+static void	ft_clean_map_core(t_map *map)
 {
 	int	i;
 
-	if (!map)
-		return ;
 	if (map->grid)
 	{
 		i = 0;
@@ -35,6 +33,10 @@ void	ft_clean_map(t_map *map)
 		free(map->doors);
 		map->doors = NULL;
 	}
+}
+
+static void	ft_clean_map_sprites(t_map *map)
+{
 	if (map->sprites)
 	{
 		free(map->sprites);
@@ -50,4 +52,15 @@ void	ft_clean_map(t_map *map)
 		free(map->sprite_distance);
 		map->sprite_distance = NULL;
 	}
+}
+
+void	ft_clean_map(t_map *map)
+{
+	if (!map)
+		return ;
+	if (!map->grid && !map->doors && !map->sprites
+		&& !map->sprite_order && !map->sprite_distance)
+		return ;
+	ft_clean_map_core(map);
+	ft_clean_map_sprites(map);
 }

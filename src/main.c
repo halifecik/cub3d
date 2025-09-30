@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 20:42:01 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:28:02 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int argc, char **argv)
 	data->coins_collected = 0;
 	ft_bzero(&data->keys, sizeof(t_keys));
 	if (ft_parse_map(data))
-		return (ft_print_error("Failed to parse .cub file"));
+		return (ft_clean_map(&data->map), free(data), 1);
 	if (ft_initialize_graphics(data))
 		return (ft_print_error("Failed to initialize graphics"));
 	ft_initialize_sprites(data);
