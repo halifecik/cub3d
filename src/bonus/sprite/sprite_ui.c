@@ -6,29 +6,11 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:30:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/09/30 15:10:02 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-static void	ft_draw_text_background(t_data *data, int x, int y, int width)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < 25)
-	{
-		j = 0;
-		while (j < width)
-		{
-			ft_put_pixel(data, x + j, y + i, 0x000000);
-			j++;
-		}
-		i++;
-	}
-}
 
 static char	*ft_create_coin_text(int coins_collected)
 {
@@ -48,21 +30,41 @@ static char	*ft_create_coin_text(int coins_collected)
 	return (result);
 }
 
+static void	ft_draw_bold_text(t_data *data, int x, int y, char *text)
+{
+	int	color;
+	int	i;
+	int	j;
+
+	color = WHITE_PIXEL;
+	i = 0;
+	while (i < 2)
+	{
+		j = 0;
+		while (j < 2)
+		{
+			mlx_string_put(data->graphics.mlx, data->graphics.window,
+				x + i, y + j, color, text);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_draw_coin_counter(t_data *data)
 {
 	char	*coin_text;
+	char	*total_text;
 	int		text_x;
 	int		text_y;
-	int		text_width;
 
 	coin_text = ft_create_coin_text(data->coins_collected);
+	total_text = ft_strjoin("Total coin: ", ft_itoa(data->map.sprite_count));
 	if (!coin_text)
 		return ;
-	text_width = ft_strlen(coin_text) * 8;
-	text_x = SCREEN_WIDTH - text_width - 20;
+	text_x = 5;
 	text_y = 20;
-	ft_draw_text_background(data, text_x - 5, text_y - 5, text_width + 10);
-	mlx_string_put(data->graphics.mlx, data->graphics.window,
-		text_x, text_y + 15, WHITE_PIXEL, coin_text);
+	ft_draw_bold_text(data, text_x, text_y, coin_text);
+	ft_draw_bold_text(data, 5, 40, total_text);
 	free(coin_text);
 }
