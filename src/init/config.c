@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:59:49 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 20:13:22 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	ft_set_config(t_map *map, t_config *config)
 				free(trimmed);
 				return (1);
 			}
-			free(trimmed);	
+			free(trimmed);
 		}
 	}
 	return (0);

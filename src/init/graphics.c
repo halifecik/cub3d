@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 19:27:54 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 20:13:41 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	ft_load_textures(t_data *data)
 
 static void	ft_set_graphics(t_graphics *gfx)
 {
-	int i;
+	int	i;
 
 	gfx->mlx = NULL;
 	gfx->window = NULL;
