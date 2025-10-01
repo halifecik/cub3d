@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:56 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 21:06:00 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 18:31:54 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,23 @@ void	ft_rtrim(char *str)
 		str[len] = '\0';
 		len--;
 	}
+}
+
+char	*ft_str_whitespace(void)
+{
+	char	*str;
+
+	str = malloc(7);
+	if (!str)
+		return (NULL);
+	str[0] = ' ';
+	str[1] = '\t';
+	str[2] = '\n';
+	str[3] = '\v';
+	str[4] = '\f';
+	str[5] = '\r';
+	str[6] = '\0';
+	return (str);
 }
 
 void	ft_free_grid(char **grid)
