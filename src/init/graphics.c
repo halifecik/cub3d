@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 12:49:11 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	ft_load_door_textures(t_data *data)
 	while (i < DOOR_FRAMES)
 	{
 		num_str = ft_itoa(i);
-		temp = ft_strjoin("./textures/door_", num_str);
+		temp = ft_strjoin("./textures/door/door_", num_str);
 		ft_strlcpy(door_path, temp, sizeof(door_path));
 		free(temp);
 		temp = ft_strjoin(door_path, ".xpm");
@@ -48,7 +48,8 @@ static int	ft_load_door_textures(t_data *data)
 		free(num_str);
 		if (ft_load_texture(data, door_path, DOOR_TEX_BASE + i))
 		{
-			if (ft_load_texture(data, "./textures/door.xpm", DOOR_TEX_BASE + i))
+			if (ft_load_texture(data, "./textures/door/door.xpm", DOOR_TEX_BASE
+					+ i))
 				return (ERROR);
 		}
 		i++;

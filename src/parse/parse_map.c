@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/30 12:40:22 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 12:49:27 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	ft_parse_map(t_data *data)
 	if (ft_set_config(&data->map, &data->config))
 		return (ft_clean_config(&data->config), 1);
 	if (ft_check_config_complete(&data->config))
-		return (ft_clean_config(&data->config), ft_print_error("Missing argument config"));
+		return (ft_clean_config(&data->config),
+			ft_print_error("Missing argument config"));
 	ft_initialize_doors(&data->map);
 	return (0);
 }
