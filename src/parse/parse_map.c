@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_mandatory.h"
 
 static int	ft_grid_append_line(t_map *map, char *line)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_mandatory.h"
 
 void	ft_player_north(t_data *data)
 {

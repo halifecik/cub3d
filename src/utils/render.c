@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_mandatory.h"
 
 void	ft_put_pixel(t_data *data, int x, int y, int color)
 {

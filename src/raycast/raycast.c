@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_mandatory.h"
 
 # ifdef BONUS
 static int	ft_should_hit_door(t_data *data, int map_x, int map_y)

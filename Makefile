@@ -54,9 +54,32 @@ MANDATORY_SOURCES =	main.c \
 					utils/map.c \
 					utils/utilities.c
 
-# Bonus Sources (includes all mandatory + bonus features)
-BONUS_SOURCES = $(MANDATORY_SOURCES) \
+# Bonus Sources
+BONUS_SOURCES =	main_bonus.c \
+				init/map.c \
+				init/player.c \
+				init/direction.c \
+				init/raycast.c \
+				init/graphics.c \
+				init/config.c \
+				parse/parse_map.c \
+				parse/check_map.c \
+				raycast/raycast.c \
+				raycast/calculate.c \
+				raycast/render.c \
+				raycast/texture.c \
+				game/movement.c \
+				game/rotation.c \
+				game/loop_bonus.c \
+				game/actions_bonus.c \
 				game/mouse_bonus.c \
+				utils/cleanup/clean_config.c \
+				utils/cleanup/clean_data.c \
+				utils/cleanup/clean_graphics.c \
+				utils/cleanup/clean_map.c \
+				utils/render.c \
+				utils/map.c \
+				utils/utilities.c \
 				bonus/minimap/draw_minimap_bonus.c \
 				bonus/minimap/draw_full_map_bonus.c \
 				bonus/minimap/minimap_tools_bonus.c \
@@ -111,12 +134,12 @@ $(OBJDIR)/gnl/get_next_line_utils.o: $(GNL_DIR)/get_next_line_utils.c
 $(OBJDIR_BONUS)/gnl/get_next_line.o: $(GNL_DIR)/get_next_line.c
 	@mkdir -p $(OBJDIR_BONUS)/gnl
 	@echo "$(YELLOW)Compiling $< (bonus)...$(RESET)"
-	@$(CC) $(CFLAGS) -DBONUS=1 -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR_BONUS)/gnl/get_next_line_utils.o: $(GNL_DIR)/get_next_line_utils.c
 	@mkdir -p $(OBJDIR_BONUS)/gnl
 	@echo "$(YELLOW)Compiling $< (bonus)...$(RESET)"
-	@$(CC) $(CFLAGS) -DBONUS=1 -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Mandatory binary
 $(NAME): $(LIBFT) $(MLXLIB) $(MANDATORY_OBJS)
@@ -127,7 +150,7 @@ $(NAME): $(LIBFT) $(MLXLIB) $(MANDATORY_OBJS)
 # Bonus binary
 $(BONUS_NAME): $(LIBFT) $(MLXLIB) $(BONUS_OBJS)
 	@echo "$(CYAN)Linking bonus objects...$(RESET)"
-	@$(CC) $(CFLAGS) -DBONUS=1 $(BONUS_OBJS) -L $(MLXDIR) -L $(LIBFTDIR) $(MLXFLAGS) -lft -o $(BONUS_NAME)
+	@$(CC) $(CFLAGS) $(BONUS_OBJS) -L $(MLXDIR) -L $(LIBFTDIR) $(MLXFLAGS) -lft -o $(BONUS_NAME)
 	@echo "$(GREEN)Build complete: $(BONUS_NAME)$(RESET)"
 
 # Mandatory object compilation
@@ -140,7 +163,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 $(OBJDIR_BONUS)/%.o: $(SRCDIR)/%.c
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $< (bonus)...$(RESET)"
-	@$(CC) $(CFLAGS) -DBONUS=1 -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"

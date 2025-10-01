@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   actions.c                                          :+:      :+:    :+:   */
+/*   actions_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 static void	ft_handle_movement_keys(int keycode, t_data *data)
 {
@@ -37,6 +37,10 @@ static void	ft_handle_special_keys(int keycode, t_data *data)
 		data->keys.left = 1;
 	else if (keycode == KEY_RIGHT)
 		data->keys.right = 1;
+	else if (keycode == KEY_TAB)
+		data->keys.tab = 1;
+	else if (keycode == KEY_E)
+		data->keys.e = 1;
 }
 
 int	ft_key_press(int keycode, t_data *data)
@@ -62,5 +66,15 @@ int	ft_key_release(int keycode, t_data *data)
 		data->keys.left = 0;
 	else if (keycode == KEY_RIGHT)
 		data->keys.right = 0;
+	else if (keycode == KEY_TAB)
+		data->keys.tab = 0;
+	else if (keycode == KEY_E)
+	{
+		if (data->keys.e)
+		{
+			ft_interact_with_door(data);
+			data->keys.e = 0;
+		}
+	}
 	return (0);
 }

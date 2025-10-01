@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 static int	ft_get_sprite_pixel_color(t_data *data, int sprite_idx, int tex_x,
 		int tex_y)

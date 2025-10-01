@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loop.c                                             :+:      :+:    :+:   */
+/*   loop_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 int	ft_game_loop(t_data *data)
 {
@@ -27,8 +27,14 @@ int	ft_game_loop(t_data *data)
 		ft_rotate_right(data);
 	if (data->keys.left)
 		ft_rotate_left(data);
+	ft_update_doors(data);
 	ft_render_frame(data);
+	if (data->keys.tab)
+		ft_draw_full_map(data);
+	else
+		ft_draw_minimap(data);
 	mlx_put_image_to_window(data->graphics.mlx, data->graphics.window,
 		data->graphics.img, 0, 0);
+	ft_draw_coin_counter(data);
 	return (0);
 }
