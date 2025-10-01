@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprite_update.c                                    :+:      :+:    :+:   */
+/*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:00:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 22:25:12 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:47:35 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +82,4 @@ void	ft_update_sprites(t_data *data)
 		i++;
 	}
 	ft_collect_sprites(data);
-}
-
-void	ft_calculate_sprite_distance(t_data *data, int i)
-{
-	double	dx;
-	double	dy;
-
-	dx = data->player.pos_x - data->map.sprites[i].x;
-	dy = data->player.pos_y - data->map.sprites[i].y;
-	data->map.sprites[i].distance = dx * dx + dy * dy;
-	data->map.sprite_distance[i] = data->map.sprites[i].distance;
 }

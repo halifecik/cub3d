@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:32:58 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 18:43:27 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ void	ft_draw_sprite(t_data *data, int i, double *z_buffer);
 int		ft_load_sprite_textures(t_data *data);
 void	ft_draw_coin_counter(t_data *data);
 void	ft_calculate_sprite_distance(t_data *data, int i);
+void	ft_calculate_sprite_bounds(t_data *data, int sprite_idx);
+int		ft_calculate_tex_y(t_data *data, int sprite_idx, int y,
+			t_texture *texture);
 void	ft_update_map_grid(t_data *data, int i);
 
 // ========== Utils ===========
