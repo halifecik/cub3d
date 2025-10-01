@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:00:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 22:25:12 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 16:25:55 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static int	ft_build_sprite_path(char *sprite_path, int i)
 	num_str = ft_itoa(i);
 	if (!num_str)
 		return (ERROR);
-	temp = ft_strjoin("./textures/coin_", num_str);
+	temp = ft_strjoin("./textures/sprite/coin_", num_str);
 	if (!temp)
 	{
 		free(num_str);

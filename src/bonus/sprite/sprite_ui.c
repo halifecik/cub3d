@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:30:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/30 15:10:02 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 13:00:00 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_draw_coin_counter(t_data *data)
 	int		text_y;
 
 	coin_text = ft_create_coin_text(data->coins_collected);
-	total_text = ft_strjoin("Total coin: ", ft_itoa(data->map.sprite_count));
+	total_text = ft_strjoin("Total Coins: ", ft_itoa(data->map.sprite_count));
 	if (!coin_text)
 		return ;
 	text_x = 5;
