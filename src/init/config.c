@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:57:04 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:35:38 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,7 @@ void	ft_initialize_config(t_config *config)
 	config->east_texture = NULL;
 	config->floor_color = 0;
 	config->ceiling_color = 0;
-}
-
-int	ft_check_config_complete(t_config *config)
-{
-	if (!config->north_texture || !config->south_texture
-		|| !config->west_texture || !config->east_texture)
-		return (1);
-	if (config->floor_color == 0 && config->ceiling_color == 0)
-		return (1);
-	if (config->floor_color == 0)
-		return (1);
-	if (config->ceiling_color == 0)
-		return (1);
-	return (0);
+	config->wspc = ft_str_whitespace();
 }
 
 static int	ft_set_texture_path(char **dst, char *line)
@@ -86,31 +73,40 @@ static int	ft_set_rgb_color(int *dst, char *line)
 	return (0);
 }
 
+static int	ft_check_line(char *line, t_config *config)
+{
+	if (!ft_strncmp(line, "NO", 2))
+		return (ft_set_texture_path(&config->north_texture, line));
+	if (!ft_strncmp(line, "SO", 2))
+		return (ft_set_texture_path(&config->south_texture, line));
+	if (!ft_strncmp(line, "WE", 2))
+		return (ft_set_texture_path(&config->west_texture, line));
+	if (!ft_strncmp(line, "EA", 2))
+		return (ft_set_texture_path(&config->east_texture, line));
+	if (!ft_strncmp(line, "F", 1))
+		return (ft_set_rgb_color(&config->floor_color, line));
+	if (!ft_strncmp(line, "C", 1))
+		return (ft_set_rgb_color(&config->ceiling_color, line));
+	return (0);
+}
+
 int	ft_set_config(t_map *map, t_config *config)
 {
-	int	i;
+	int		i;
+	char	*trimmed;
 
 	i = -1;
 	while (++i < map->map_index)
 	{
-		if (!ft_strncmp(map->grid[i], "NO", 2))
-			if (ft_set_texture_path(&config->north_texture, map->grid[i]))
-				return (1);
-		if (!ft_strncmp(map->grid[i], "SO", 2))
-			if (ft_set_texture_path(&config->south_texture, map->grid[i]))
-				return (1);
-		if (!ft_strncmp(map->grid[i], "WE", 2))
-			if (ft_set_texture_path(&config->west_texture, map->grid[i]))
-				return (1);
-		if (!ft_strncmp(map->grid[i], "EA", 2))
-			if (ft_set_texture_path(&config->east_texture, map->grid[i]))
-				return (1);
-		if (!ft_strncmp(map->grid[i], "F", 1))
-			if (ft_set_rgb_color(&config->floor_color, map->grid[i]))
-				return (1);
-		if (!ft_strncmp(map->grid[i], "C", 1))
-			if (ft_set_rgb_color(&config->ceiling_color, map->grid[i]))
-				return (1);
+		trimmed = ft_strtrim(map->grid[i], config->wspc);
+		if (!trimmed)
+			return (1);
+		if (ft_check_line(trimmed, config))
+		{
+			free(trimmed);
+			return (1);
+		}
+		free(trimmed);
 	}
 	return (0);
 }

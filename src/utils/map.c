@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_tools.c                                        :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:35:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/27 21:06:00 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 18:35:02 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ static int	ft_map_line(char *line)
 		j++;
 	}
 	return (valid);
+}
+
+int	ft_check_config_complete(t_config *config)
+{
+	if (!config->north_texture || !config->south_texture
+		|| !config->west_texture || !config->east_texture)
+		return (1);
+	if (!config->floor_color || !config->ceiling_color)
+		return (1);
+	return (0);
 }
 
 int	ft_parse_color_value(char *str, int *value)
