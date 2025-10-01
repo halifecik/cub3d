@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:34 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 12:49:11 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 19:27:54 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,33 @@ static int	ft_load_textures(t_data *data)
 	return (SUCCESS);
 }
 
+static void	ft_set_graphics(t_graphics *gfx)
+{
+	int i;
+
+	gfx->mlx = NULL;
+	gfx->window = NULL;
+	gfx->img = NULL;
+	gfx->img_data = NULL;
+	gfx->bits_per_pixel = 0;
+	gfx->line_length = 0;
+	gfx->endian = 0;
+	i = -1;
+	while (++i < 12)
+	{
+		gfx->textures[i].img = NULL;
+		gfx->textures[i].data = NULL;
+		gfx->textures[i].width = 0;
+		gfx->textures[i].height = 0;
+		gfx->textures[i].bits_per_pixel = 0;
+		gfx->textures[i].line_length = 0;
+		gfx->textures[i].endian = 0;
+	}
+}
+
 int	ft_initialize_graphics(t_data *data)
 {
+	ft_set_graphics(&data->graphics);
 	data->graphics.mlx = mlx_init();
 	if (!data->graphics.mlx)
 		return (ERROR);
