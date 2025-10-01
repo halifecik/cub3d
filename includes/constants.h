@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 17:11:34 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:17:18 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define DOOR_TEX 4
 # define NORTH_TEX 0
 # define SOUTH_TEX 1
-# define COIN_TEX_BASE 6
+# define COIN_TEX_BASE 8
 
 // ======== Key Codes =========
 # define KEY_A 97
