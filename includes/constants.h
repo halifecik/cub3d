@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 22:02:42 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 16:38:13 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@
 
 // ===== Door Constants =======
 # define DOOR_OPEN 1.0
-# define DOOR_FRAMES 2
+# define DOOR_FRAMES 4
 # define DOOR_CLOSED 0.0
 # define DOOR_TEX_BASE 4
-# define DOOR_ANIMATION_SPEED 0.02
+# define DOOR_ANIMATION_SPEED 0.05
 # define DOOR_INTERACTION_RANGE 2.0
 
 // ===== Sprite Constants =====
