@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 20:42:01 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 16:31:23 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 20:16:03 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_print_error(char *msg)
 	write(1, "\n" RESET, 5);
 	if (msg[0] == 97)
 		write(1, RED "Usage: " MAGENTA "./cub3d maps/map.cub\n", 43);
-	return (EXIT_FAILURE);
+	return (1);
 }
 
 int	main(int argc, char **argv)
@@ -52,5 +52,5 @@ int	main(int argc, char **argv)
 	mlx_hook(data->graphics.window, 6, 1L << 6, ft_mouse_move, data);
 	mlx_hook(data->graphics.window, 17, 1L << 17, ft_close_window, data);
 	mlx_loop(data->graphics.mlx);
-	return (EXIT_SUCCESS);
+	return (SUCCESS);
 }

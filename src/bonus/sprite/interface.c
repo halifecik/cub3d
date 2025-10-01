@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:30:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 19:06:26 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 20:21:52 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	ft_draw_coin_counter(t_data *data)
 	free(itoa_str);
 	if (!total_text)
 		return (free(coin_text));
-	text_x = 5;
+	text_x = 1150;
 	text_y = 20;
-	ft_draw_bold_text(data, text_x, text_y, coin_text);
-	ft_draw_bold_text(data, 5, 40, total_text);
+	ft_draw_bold_text(data, text_x, text_y, total_text);
+	ft_draw_bold_text(data, text_x, text_y + 20, coin_text);
 	free(coin_text);
 	free(total_text);
 }
