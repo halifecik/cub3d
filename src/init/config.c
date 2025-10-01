@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:35:38 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 18:59:49 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,18 @@ int	ft_set_config(t_map *map, t_config *config)
 	i = -1;
 	while (++i < map->map_index)
 	{
-		trimmed = ft_strtrim(map->grid[i], config->wspc);
-		if (!trimmed)
-			return (1);
-		if (ft_check_line(trimmed, config))
+		if (map->grid[i] && map->grid[i][0] != '\0')
 		{
-			free(trimmed);
-			return (1);
+			trimmed = ft_strtrim(map->grid[i], config->wspc);
+			if (!trimmed)
+				return (1);
+			if (ft_check_line(trimmed, config))
+			{
+				free(trimmed);
+				return (1);
+			}
+			free(trimmed);	
 		}
-		free(trimmed);
 	}
 	return (0);
 }

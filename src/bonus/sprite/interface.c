@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interface.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:30:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:47:23 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 19:06:26 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,18 @@ void	ft_draw_coin_counter(t_data *data)
 {
 	char	*coin_text;
 	char	*total_text;
+	char	*itoa_str;
 	int		text_x;
 	int		text_y;
 
 	coin_text = ft_create_coin_text(data->coins_collected);
-	total_text = ft_strjoin("Total Coins: ", ft_itoa(data->map.sprite_count));
-	if (!coin_text)
-		return ;
+	itoa_str = ft_itoa(data->map.sprite_count);
+	if (!coin_text || !itoa_str)
+		return (free(coin_text), free(itoa_str));
+	total_text = ft_strjoin("Total Coins: ", itoa_str);
+	free(itoa_str);
+	if (!total_text)
+		return (free(coin_text));
 	text_x = 5;
 	text_y = 20;
 	ft_draw_bold_text(data, text_x, text_y, coin_text);
