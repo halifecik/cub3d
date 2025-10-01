@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_ui.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:30:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 13:00:00 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:53:47 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,5 @@ void	ft_draw_coin_counter(t_data *data)
 	ft_draw_bold_text(data, text_x, text_y, coin_text);
 	ft_draw_bold_text(data, 5, 40, total_text);
 	free(coin_text);
+	free(total_text);
 }
