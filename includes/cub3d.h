@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
 /*   Updated: 2025/10/01 18:43:27 by hademirc         ###   ########.fr       */
@@ -118,6 +118,7 @@ void	ft_update_map_grid(t_data *data, int i);
 
 // ========== Utils ===========
 void	ft_rtrim(char *line);
+char	*ft_str_whitespace(void);
 int		ft_is_whitespace(char c);
 void	ft_free_grid(char **grid);
 int		ft_print_error(char *msg);
