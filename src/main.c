@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 20:42:01 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/30 12:28:02 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/01 16:31:23 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ int	ft_print_error(char *msg)
 		write(1, &msg[i++], 1);
 	write(1, "\n" RESET, 5);
 	if (msg[0] == 97)
-	{
-		write(1, RED "\n============================\n", 37);
-		write(1, "Usage: " MAGENTA "./cub3d maps/map.cub\n", 36);
-		write(1, RED "============================\n" RESET, 40);
-	}
+		write(1, RED "Usage: " MAGENTA "./cub3d maps/map.cub\n", 43);
 	return (EXIT_FAILURE);
 }
 
