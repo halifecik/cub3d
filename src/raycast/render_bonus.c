@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 static void	ft_draw_ceiling_and_floor(t_data *data, int x)
 {
@@ -49,14 +49,32 @@ static void	ft_draw_wall_texture(t_data *data, int x)
 
 static void	ft_draw_vertical_line(t_data *data, int x, int y)
 {
+
+	char	cell;
+	double	door_state;
+
 	(void)y;
 	ft_texture_coordinates(data);
+
+	cell = data->map.grid[data->raycast.map_y + data->map.map_index]
+	[data->raycast.map_x];
+	if (cell == 'D')
+	{
+		door_state = ft_get_door_animation_state(data, data->raycast.map_x,
+				data->raycast.map_y);
+		ft_draw_door_line(data, x, y, door_state);
+		return ;
+	}
+
 	ft_draw_ceiling_and_floor(data, x);
 	ft_draw_wall_texture(data, x);
 }
 
 void	ft_render_frame(t_data *data)
 {
+
+	static double	z_buffer[SCREEN_WIDTH];
+
 	int				x;
 	int				y;
 
@@ -66,5 +84,12 @@ void	ft_render_frame(t_data *data)
 	{
 		ft_cast_ray(data, x);
 		ft_draw_vertical_line(data, x, y);
+
+		z_buffer[x] = data->raycast.perp_wall_dist;
+
 	}
+
+	ft_update_sprites(data);
+	ft_render_sprites(data, z_buffer);
+
 }

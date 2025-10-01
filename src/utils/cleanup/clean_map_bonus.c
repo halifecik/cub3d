@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 static void	ft_clean_map_core(t_map *map)
 {
@@ -28,16 +28,50 @@ static void	ft_clean_map_core(t_map *map)
 		free(map->grid);
 		map->grid = NULL;
 	}
+
+	if (map->doors)
+	{
+		free(map->doors);
+		map->doors = NULL;
+	}
+
 }
 
 static void	ft_clean_map_sprites(t_map *map)
 {
+
+	if (map->sprites)
+	{
+		free(map->sprites);
+		map->sprites = NULL;
+	}
+	if (map->sprite_order)
+	{
+		free(map->sprite_order);
+		map->sprite_order = NULL;
+	}
+	if (map->sprite_distance)
+	{
+		free(map->sprite_distance);
+		map->sprite_distance = NULL;
+	}
+# else
+	(void)map;
+
 }
 
 void	ft_clean_map(t_map *map)
 {
 	if (!map)
 		return ;
+
+	if (!map->grid && !map->doors && !map->sprites
+		&& !map->sprite_order && !map->sprite_distance)
+		return ;
+# else
+	if (!map->grid)
+		return ;
+
 	ft_clean_map_core(map);
 	ft_clean_map_sprites(map);
 }

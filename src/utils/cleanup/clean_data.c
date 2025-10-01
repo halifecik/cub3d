@@ -16,11 +16,6 @@ void	ft_clean_data(t_data *data)
 {
 	if (!data)
 		return ;
-# ifdef BONUS
-	if (data->map.grid || data->map.doors)
-# else
-	if (data->map.grid)
-# endif
 		ft_clean_map(&data->map);
 	ft_clean_config(&data->config);
 	ft_clean_graphics(&data->graphics);

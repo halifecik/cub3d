@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_MANDATORY_H
+# define CUB3D_MANDATORY_H
 
 # include "../minilibx-linux/mlx.h"
 # include "constants.h"
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
-# include "structs.h"
+# include "structs_mandatory.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>

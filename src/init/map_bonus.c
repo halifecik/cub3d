@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 void	ft_initialize_map(t_map *map)
 {
@@ -23,4 +23,12 @@ void	ft_initialize_map(t_map *map)
 	map->player_x = -1;
 	map->player_y = -1;
 	map->player_dir = '\0';
+
+	map->doors = NULL;
+	map->door_count = 0;
+	map->sprites = NULL;
+	map->sprite_count = 0;
+	map->sprite_order = NULL;
+	map->sprite_distance = NULL;
+
 }

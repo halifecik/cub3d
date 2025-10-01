@@ -10,7 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
+
+static int	ft_get_door_texture(t_data *data)
+{
+	t_raycast	*ray;
+	double		door_state;
+	int			frame;
+
+	ray = &data->raycast;
+	door_state = ft_get_door_animation_state(data, ray->map_x, ray->map_y);
+	if (door_state <= 0.1)
+	{
+		if ((data->frame / DOOR_TEXTURE_FRAME_RATE) % 2 == 0)
+			return (DOOR_TEX_BASE + 0);
+		else
+			return (DOOR_TEX_BASE + 1);
+	}
+	frame = (int)(door_state * (DOOR_FRAMES - 1));
+	if (frame < 0)
+		frame = 0;
+	if (frame >= DOOR_FRAMES)
+		frame = DOOR_FRAMES - 1;
+	return (DOOR_TEX_BASE + frame);
+}
 
 static int	ft_get_wall_texture(t_data *data)
 {
@@ -35,6 +58,15 @@ static int	ft_get_wall_texture(t_data *data)
 
 static int	ft_texture_number(t_data *data)
 {
+
+	t_raycast	*ray;
+	char		cell;
+
+	ray = &data->raycast;
+	cell = data->map.grid[ray->map_y + data->map.map_index][ray->map_x];
+	if (cell == 'D')
+		return (ft_get_door_texture(data));
+
 	return (ft_get_wall_texture(data));
 }
 

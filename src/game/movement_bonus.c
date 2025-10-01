@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
+/*   movement_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 static int	ft_can_move_to(t_data *data, int x, int y)
 {
 	char	cell;
 	int		map_y;
+	double	door_state;
 
 	if (x < 0 || y < 0 || x >= data->map.width)
 		return (0);
@@ -25,6 +26,11 @@ static int	ft_can_move_to(t_data *data, int x, int y)
 	cell = data->map.grid[map_y][x];
 	if (cell == '0')
 		return (1);
+	if (cell == 'D')
+	{
+		door_state = ft_get_door_animation_state(data, x, y);
+		return (door_state >= 0.7);
+	}
 	return (0);
 }
 

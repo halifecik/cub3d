@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_graphics.c                                   :+:      :+:    :+:   */
+/*   clean_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/29 17:08:53 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:09:10 by hademirc         ###   ########.fr       */
+/*   Created: 2025/09/29 17:08:58 by hademirc          #+#    #+#             */
+/*   Updated: 2025/10/01 20:16:11 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
-void	ft_clean_graphics(t_graphics *gfx)
+void	ft_clean_data(t_data *data)
 {
-	int	i;
-	int	max_textures;
-
-	if (!gfx)
+	if (!data)
 		return ;
-	i = 0;
-	while (i < max_textures)
-	{
-		if (gfx->textures[i].img)
-			mlx_destroy_image(gfx->mlx, gfx->textures[i].img);
-		i++;
-	}
-	if (gfx->img)
-		mlx_destroy_image(gfx->mlx, gfx->img);
-	if (gfx->window)
-		mlx_destroy_window(gfx->mlx, gfx->window);
-	if (gfx->mlx)
-		mlx_destroy_display(gfx->mlx);
-	free(gfx->mlx);
+
+	if (data->map.grid || data->map.doors)
+# else
+	if (data->map.grid)
+
+		ft_clean_map(&data->map);
+	ft_clean_config(&data->config);
+	ft_clean_graphics(&data->graphics);
+}
+
+int	ft_close_window(t_data *data)
+{
+	ft_clean_data(data);
+	exit(SUCCESS);
+	return (0);
 }

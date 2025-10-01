@@ -10,7 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
+
+static int	ft_should_hit_door(t_data *data, int map_x, int map_y)
+{
+	double	door_state;
+	double	hit_chance;
+
+	door_state = ft_get_door_animation_state(data, map_x, map_y);
+	if (door_state >= 0.98)
+		return (0);
+	hit_chance = 1.0 - door_state;
+	return ((rand() % 100) < (int)(hit_chance * 100));
+}
 
 static int	ft_hit_wall_or_door(t_data *data, int map_x, int map_y)
 {
@@ -22,6 +34,10 @@ static int	ft_hit_wall_or_door(t_data *data, int map_x, int map_y)
 	cell = data->map.grid[map_y + data->map.map_index][map_x];
 	if (cell == '1')
 		return (1);
+
+	if (cell == 'D')
+		return (ft_should_hit_door(data, map_x, map_y));
+
 	return (0);
 }
 

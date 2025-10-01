@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 static int	ft_grid_append_line(t_map *map, char *line)
 {
@@ -77,5 +77,8 @@ int	ft_parse_map(t_data *data)
 	if (ft_check_config_complete(&data->config))
 		return (ft_clean_config(&data->config),
 			ft_print_error("Missing argument config"));
+
+	ft_initialize_doors(&data->map);
+
 	return (0);
 }

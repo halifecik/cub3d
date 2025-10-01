@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 int	ft_load_texture(t_data *data, char *path, int tex_index)
 {
@@ -30,7 +30,30 @@ int	ft_load_texture(t_data *data, char *path, int tex_index)
 
 static int	ft_load_door_textures(t_data *data)
 {
-	(void)data;
+	char	door_path[50];
+	char	*num_str;
+	char	*temp;
+	int		i;
+
+	i = 0;
+	while (i < DOOR_FRAMES)
+	{
+		num_str = ft_itoa(i);
+		temp = ft_strjoin("./textures/door/door_", num_str);
+		ft_strlcpy(door_path, temp, sizeof(door_path));
+		free(temp);
+		temp = ft_strjoin(door_path, ".xpm");
+		ft_strlcpy(door_path, temp, sizeof(door_path));
+		free(temp);
+		free(num_str);
+		if (ft_load_texture(data, door_path, DOOR_TEX_BASE + i))
+		{
+			if (ft_load_texture(data, "./textures/door/door.xpm", DOOR_TEX_BASE
+					+ i))
+				return (ERROR);
+		}
+		i++;
+	}
 	return (SUCCESS);
 }
 
@@ -45,6 +68,8 @@ static int	ft_load_textures(t_data *data)
 	if (ft_load_texture(data, data->config.west_texture, WEST_TEX))
 		return (ERROR);
 	if (ft_load_door_textures(data))
+		return (ERROR);
+	if (ft_load_sprite_textures(data))
 		return (ERROR);
 	return (SUCCESS);
 }
@@ -61,7 +86,7 @@ static void	ft_set_graphics(t_graphics *gfx)
 	gfx->bits_per_pixel = 0;
 	gfx->line_length = 0;
 	gfx->endian = 0;
-	max_textures = 4;
+	max_textures = 12;
 	i = -1;
 	while (++i < max_textures)
 	{
@@ -96,5 +121,9 @@ int	ft_initialize_graphics(t_data *data)
 		return (ERROR);
 	if (ft_load_textures(data))
 		return (ERROR);
+	mlx_mouse_hide(data->graphics.mlx, data->graphics.window);
+	mlx_mouse_move(data->graphics.mlx, data->graphics.window, SCREEN_WIDTH / 2,
+		SCREEN_HEIGHT / 2);
+	ft_initialize_minimap(&data->minimap);
 	return (SUCCESS);
 }

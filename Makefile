@@ -56,27 +56,27 @@ MANDATORY_SOURCES =	main.c \
 
 # Bonus Sources
 BONUS_SOURCES =	main_bonus.c \
-				init/map.c \
+				init/map_bonus.c \
 				init/player.c \
 				init/direction.c \
 				init/raycast.c \
-				init/graphics.c \
+				init/graphics_bonus.c \
 				init/config.c \
-				parse/parse_map.c \
+				parse/parse_map_bonus.c \
 				parse/check_map.c \
-				raycast/raycast.c \
+				raycast/raycast_bonus.c \
 				raycast/calculate.c \
-				raycast/render.c \
-				raycast/texture.c \
-				game/movement.c \
-				game/rotation.c \
+				raycast/render_bonus.c \
+				raycast/texture_bonus.c \
+				game/movement_bonus.c \
+				game/rotation_bonus.c \
 				game/loop_bonus.c \
 				game/actions_bonus.c \
 				game/mouse_bonus.c \
 				utils/cleanup/clean_config.c \
-				utils/cleanup/clean_data.c \
-				utils/cleanup/clean_graphics.c \
-				utils/cleanup/clean_map.c \
+				utils/cleanup/clean_data_bonus.c \
+				utils/cleanup/clean_graphics_bonus.c \
+				utils/cleanup/clean_map_bonus.c \
 				utils/render.c \
 				utils/map.c \
 				utils/utilities.c \

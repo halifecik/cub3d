@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d_mandatory.h"
+#include "cub3d_bonus.h"
 
 void	ft_clean_graphics(t_graphics *gfx)
 {
@@ -19,6 +19,11 @@ void	ft_clean_graphics(t_graphics *gfx)
 
 	if (!gfx)
 		return ;
+
+	max_textures = 12;
+# else
+	max_textures = 4;
+
 	i = 0;
 	while (i < max_textures)
 	{
