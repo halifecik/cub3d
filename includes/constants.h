@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:28:03 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 20:17:40 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,6 @@
 // ======= Error Codes ========
 # define ERROR -1
 # define SUCCESS 0
-# define MAP_ERROR -4
-# define MLX_ERROR -5
-# define FILE_ERROR -3
-# define MALLOC_ERROR -2
-
-// = Mathematical Constants ===
-# define PI 3.14159265359
 
 // ===== Door Constants =======
 # define DOOR_OPEN 1.0

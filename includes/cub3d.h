@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:44 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:43:27 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 20:33:32 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include <math.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "structs.h"
-# include "constants.h"
-# include "libft/libft.h"
-# include "gnl/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
+# include "constants.h"
+# include "gnl/get_next_line.h"
+# include "libft/libft.h"
+# include "structs.h"
+# include <fcntl.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 // ========= Cleanup ==========
 void	ft_clean_map(t_map *map);
@@ -32,8 +32,8 @@ void	ft_clean_config(t_config *config);
 void	ft_clean_graphics(t_graphics *gfx);
 
 // ========== Doors ===========
-void	ft_update_doors(t_data *data);
 int		ft_tile_color(char tile);
+void	ft_update_doors(t_data *data);
 void	ft_initialize_doors(t_map *map);
 void	ft_interact_with_door(t_data *data);
 t_door	*ft_find_closest_door(t_data *data);
@@ -71,17 +71,16 @@ int		ft_set_player_location(t_data *data, t_map *map);
 void	ft_draw_minimap(t_data *data);
 void	ft_draw_full_map(t_data *data);
 void	ft_draw_pixel(t_data *data, int x, int y, int color);
-void	ft_draw_cell(t_data *data, int start_x, int start_y, int size);
 void	ft_draw_frame(t_data *data, int start_x, int start_y, int width);
 void	ft_draw_colored_cell(t_data *data, int start_x, int start_y, int color);
 
 // ========= Movement ==========
-void	ft_move_forward(t_data *data);
-void	ft_move_backward(t_data *data);
 void	ft_strafe_left(t_data *data);
-void	ft_strafe_right(t_data *data);
 void	ft_rotate_left(t_data *data);
+void	ft_move_forward(t_data *data);
+void	ft_strafe_right(t_data *data);
 void	ft_rotate_right(t_data *data);
+void	ft_move_backward(t_data *data);
 
 // ========== Parse ===========
 int		ft_check_map(t_map *map);
@@ -101,25 +100,25 @@ void	ft_side_distance(t_data *data, double *side_dist_x,
 			double *side_dist_y);
 
 // ========= Sprites ==========
-void	ft_initialize_sprites(t_data *data);
-void	ft_update_sprites(t_data *data);
-void	ft_render_sprites(t_data *data, double *z_buffer);
-void	ft_collect_sprites(t_data *data);
 void	ft_sort_sprites(t_data *data);
+void	ft_update_sprites(t_data *data);
+void	ft_collect_sprites(t_data *data);
+void	ft_draw_coin_counter(t_data *data);
+void	ft_initialize_sprites(t_data *data);
+int		ft_load_sprite_textures(t_data *data);
+void	ft_update_map_grid(t_data *data, int i);
+void	ft_calculate_sprite_distance(t_data *data, int i);
+void	ft_render_sprites(t_data *data, double *z_buffer);
 void	ft_calculate_sprite_transform(t_data *data, int i);
 void	ft_draw_sprite(t_data *data, int i, double *z_buffer);
-int		ft_load_sprite_textures(t_data *data);
-void	ft_draw_coin_counter(t_data *data);
-void	ft_calculate_sprite_distance(t_data *data, int i);
 void	ft_calculate_sprite_bounds(t_data *data, int sprite_idx);
 int		ft_calculate_tex_y(t_data *data, int sprite_idx, int y,
 			t_texture *texture);
-void	ft_update_map_grid(t_data *data, int i);
 
 // ========== Utils ===========
 void	ft_rtrim(char *line);
-char	*ft_str_whitespace(void);
 int		ft_is_whitespace(char c);
+char	*ft_str_whitespace(void);
 void	ft_free_grid(char **grid);
 int		ft_print_error(char *msg);
 int		ft_parse_color_value(char *str, int *value);
