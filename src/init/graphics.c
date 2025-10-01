@@ -30,6 +30,7 @@ int	ft_load_texture(t_data *data, char *path, int tex_index)
 
 static int	ft_load_door_textures(t_data *data)
 {
+# ifdef BONUS
 	char	door_path[50];
 	char	*num_str;
 	char	*temp;
@@ -54,6 +55,9 @@ static int	ft_load_door_textures(t_data *data)
 		}
 		i++;
 	}
+# else
+	(void)data;
+# endif
 	return (SUCCESS);
 }
 
@@ -69,14 +73,17 @@ static int	ft_load_textures(t_data *data)
 		return (ERROR);
 	if (ft_load_door_textures(data))
 		return (ERROR);
+# ifdef BONUS
 	if (ft_load_sprite_textures(data))
 		return (ERROR);
+# endif
 	return (SUCCESS);
 }
 
 static void	ft_set_graphics(t_graphics *gfx)
 {
 	int	i;
+	int	max_textures;
 
 	gfx->mlx = NULL;
 	gfx->window = NULL;
@@ -85,8 +92,13 @@ static void	ft_set_graphics(t_graphics *gfx)
 	gfx->bits_per_pixel = 0;
 	gfx->line_length = 0;
 	gfx->endian = 0;
+# ifdef BONUS
+	max_textures = 12;
+# else
+	max_textures = 4;
+# endif
 	i = -1;
-	while (++i < 12)
+	while (++i < max_textures)
 	{
 		gfx->textures[i].img = NULL;
 		gfx->textures[i].data = NULL;
@@ -119,9 +131,11 @@ int	ft_initialize_graphics(t_data *data)
 		return (ERROR);
 	if (ft_load_textures(data))
 		return (ERROR);
+# ifdef BONUS
 	mlx_mouse_hide(data->graphics.mlx, data->graphics.window);
 	mlx_mouse_move(data->graphics.mlx, data->graphics.window, SCREEN_WIDTH / 2,
 		SCREEN_HEIGHT / 2);
 	ft_initialize_minimap(&data->minimap);
+# endif
 	return (SUCCESS);
 }

@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 
+# ifdef BONUS
 static int	ft_should_hit_door(t_data *data, int map_x, int map_y)
 {
 	double	door_state;
@@ -23,6 +24,7 @@ static int	ft_should_hit_door(t_data *data, int map_x, int map_y)
 	hit_chance = 1.0 - door_state;
 	return ((rand() % 100) < (int)(hit_chance * 100));
 }
+# endif
 
 static int	ft_hit_wall_or_door(t_data *data, int map_x, int map_y)
 {
@@ -34,8 +36,10 @@ static int	ft_hit_wall_or_door(t_data *data, int map_x, int map_y)
 	cell = data->map.grid[map_y + data->map.map_index][map_x];
 	if (cell == '1')
 		return (1);
+# ifdef BONUS
 	if (cell == 'D')
 		return (ft_should_hit_door(data, map_x, map_y));
+# endif
 	return (0);
 }
 

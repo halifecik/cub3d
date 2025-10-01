@@ -27,14 +27,20 @@ int	ft_game_loop(t_data *data)
 		ft_rotate_right(data);
 	if (data->keys.left)
 		ft_rotate_left(data);
+# ifdef BONUS
 	ft_update_doors(data);
+# endif
 	ft_render_frame(data);
+# ifdef BONUS
 	if (data->keys.tab)
 		ft_draw_full_map(data);
 	else
 		ft_draw_minimap(data);
+# endif
 	mlx_put_image_to_window(data->graphics.mlx, data->graphics.window,
 		data->graphics.img, 0, 0);
+# ifdef BONUS
 	ft_draw_coin_counter(data);
+# endif
 	return (0);
 }

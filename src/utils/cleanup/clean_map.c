@@ -28,15 +28,18 @@ static void	ft_clean_map_core(t_map *map)
 		free(map->grid);
 		map->grid = NULL;
 	}
+# ifdef BONUS
 	if (map->doors)
 	{
 		free(map->doors);
 		map->doors = NULL;
 	}
+# endif
 }
 
 static void	ft_clean_map_sprites(t_map *map)
 {
+# ifdef BONUS
 	if (map->sprites)
 	{
 		free(map->sprites);
@@ -52,15 +55,23 @@ static void	ft_clean_map_sprites(t_map *map)
 		free(map->sprite_distance);
 		map->sprite_distance = NULL;
 	}
+# else
+	(void)map;
+# endif
 }
 
 void	ft_clean_map(t_map *map)
 {
 	if (!map)
 		return ;
+# ifdef BONUS
 	if (!map->grid && !map->doors && !map->sprites
 		&& !map->sprite_order && !map->sprite_distance)
 		return ;
+# else
+	if (!map->grid)
+		return ;
+# endif
 	ft_clean_map_core(map);
 	ft_clean_map_sprites(map);
 }

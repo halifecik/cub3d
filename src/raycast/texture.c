@@ -12,6 +12,7 @@
 
 #include "cub3d.h"
 
+# ifdef BONUS
 static int	ft_get_door_texture(t_data *data)
 {
 	t_raycast	*ray;
@@ -34,6 +35,7 @@ static int	ft_get_door_texture(t_data *data)
 		frame = DOOR_FRAMES - 1;
 	return (DOOR_TEX_BASE + frame);
 }
+# endif
 
 static int	ft_get_wall_texture(t_data *data)
 {
@@ -58,6 +60,7 @@ static int	ft_get_wall_texture(t_data *data)
 
 static int	ft_texture_number(t_data *data)
 {
+# ifdef BONUS
 	t_raycast	*ray;
 	char		cell;
 
@@ -65,6 +68,7 @@ static int	ft_texture_number(t_data *data)
 	cell = data->map.grid[ray->map_y + data->map.map_index][ray->map_x];
 	if (cell == 'D')
 		return (ft_get_door_texture(data));
+# endif
 	return (ft_get_wall_texture(data));
 }
 

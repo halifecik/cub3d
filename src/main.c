@@ -39,17 +39,23 @@ int	main(int argc, char **argv)
 		return (ft_print_error("Failed to allocate t_data"));
 	data->map_file = argv[1];
 	data->frame = 0;
+# ifdef BONUS
 	data->coins_collected = 0;
+# endif
 	ft_bzero(&data->keys, sizeof(t_keys));
 	if (ft_parse_map(data))
 		return (ft_clean_map(&data->map), free(data), 1);
 	if (ft_initialize_graphics(data))
 		return (ft_print_error("Failed to initialize graphics"));
+# ifdef BONUS
 	ft_initialize_sprites(data);
+# endif
 	mlx_loop_hook(data->graphics.mlx, ft_game_loop, data);
 	mlx_hook(data->graphics.window, 2, 1L << 0, ft_key_press, data);
 	mlx_hook(data->graphics.window, 3, 1L << 1, ft_key_release, data);
+# ifdef BONUS
 	mlx_hook(data->graphics.window, 6, 1L << 6, ft_mouse_move, data);
+# endif
 	mlx_hook(data->graphics.window, 17, 1L << 17, ft_close_window, data);
 	mlx_loop(data->graphics.mlx);
 	return (SUCCESS);

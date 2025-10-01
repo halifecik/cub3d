@@ -16,7 +16,9 @@ static int	ft_can_move_to(t_data *data, int x, int y)
 {
 	char	cell;
 	int		map_y;
+# ifdef BONUS
 	double	door_state;
+# endif
 
 	if (x < 0 || y < 0 || x >= data->map.width)
 		return (0);
@@ -26,11 +28,13 @@ static int	ft_can_move_to(t_data *data, int x, int y)
 	cell = data->map.grid[map_y][x];
 	if (cell == '0')
 		return (1);
+# ifdef BONUS
 	if (cell == 'D')
 	{
 		door_state = ft_get_door_animation_state(data, x, y);
 		return (door_state >= 0.7);
 	}
+# endif
 	return (0);
 }
 

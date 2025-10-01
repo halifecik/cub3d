@@ -49,10 +49,14 @@ static void	ft_draw_wall_texture(t_data *data, int x)
 
 static void	ft_draw_vertical_line(t_data *data, int x, int y)
 {
+# ifdef BONUS
 	char	cell;
 	double	door_state;
+# endif
 
+	(void)y;
 	ft_texture_coordinates(data);
+# ifdef BONUS
 	cell = data->map.grid[data->raycast.map_y + data->map.map_index]
 	[data->raycast.map_x];
 	if (cell == 'D')
@@ -62,13 +66,16 @@ static void	ft_draw_vertical_line(t_data *data, int x, int y)
 		ft_draw_door_line(data, x, y, door_state);
 		return ;
 	}
+# endif
 	ft_draw_ceiling_and_floor(data, x);
 	ft_draw_wall_texture(data, x);
 }
 
 void	ft_render_frame(t_data *data)
 {
+# ifdef BONUS
 	static double	z_buffer[SCREEN_WIDTH];
+# endif
 	int				x;
 	int				y;
 
@@ -78,8 +85,12 @@ void	ft_render_frame(t_data *data)
 	{
 		ft_cast_ray(data, x);
 		ft_draw_vertical_line(data, x, y);
+# ifdef BONUS
 		z_buffer[x] = data->raycast.perp_wall_dist;
+# endif
 	}
+# ifdef BONUS
 	ft_update_sprites(data);
 	ft_render_sprites(data, z_buffer);
+# endif
 }

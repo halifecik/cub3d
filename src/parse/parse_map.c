@@ -77,6 +77,8 @@ int	ft_parse_map(t_data *data)
 	if (ft_check_config_complete(&data->config))
 		return (ft_clean_config(&data->config),
 			ft_print_error("Missing argument config"));
+# ifdef BONUS
 	ft_initialize_doors(&data->map);
+# endif
 	return (0);
 }

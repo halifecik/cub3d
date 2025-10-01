@@ -15,11 +15,17 @@
 void	ft_clean_graphics(t_graphics *gfx)
 {
 	int	i;
+	int	max_textures;
 
 	if (!gfx)
 		return ;
+# ifdef BONUS
+	max_textures = 12;
+# else
+	max_textures = 4;
+# endif
 	i = 0;
-	while (i < 12)
+	while (i < max_textures)
 	{
 		if (gfx->textures[i].img)
 			mlx_destroy_image(gfx->mlx, gfx->textures[i].img);

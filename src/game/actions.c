@@ -37,10 +37,12 @@ static void	ft_handle_special_keys(int keycode, t_data *data)
 		data->keys.left = 1;
 	else if (keycode == KEY_RIGHT)
 		data->keys.right = 1;
+# ifdef BONUS
 	else if (keycode == KEY_TAB)
 		data->keys.tab = 1;
 	else if (keycode == KEY_E)
 		data->keys.e = 1;
+# endif
 }
 
 int	ft_key_press(int keycode, t_data *data)
@@ -66,6 +68,7 @@ int	ft_key_release(int keycode, t_data *data)
 		data->keys.left = 0;
 	else if (keycode == KEY_RIGHT)
 		data->keys.right = 0;
+# ifdef BONUS
 	else if (keycode == KEY_TAB)
 		data->keys.tab = 0;
 	else if (keycode == KEY_E)
@@ -76,5 +79,6 @@ int	ft_key_release(int keycode, t_data *data)
 			data->keys.e = 0;
 		}
 	}
+# endif
 	return (0);
 }

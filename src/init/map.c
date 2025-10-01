@@ -23,10 +23,12 @@ void	ft_initialize_map(t_map *map)
 	map->player_x = -1;
 	map->player_y = -1;
 	map->player_dir = '\0';
+# ifdef BONUS
 	map->doors = NULL;
 	map->door_count = 0;
 	map->sprites = NULL;
 	map->sprite_count = 0;
 	map->sprite_order = NULL;
 	map->sprite_distance = NULL;
+# endif
 }
