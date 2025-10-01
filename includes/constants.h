@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:17:18 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 18:28:03 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,14 @@
 # define DOOR_TEX_BASE 4
 # define DOOR_ANIMATION_SPEED 0.05
 # define DOOR_INTERACTION_RANGE 2.0
+# define DOOR_TEXTURE_FRAME_RATE 30
 
 // ===== Sprite Constants =====
 # define COIN_FRAMES 2
 # define COIN_FLOAT_HEIGHT 15.0
 # define COIN_FLOAT_SPEED 0.08
 # define COIN_COLLECT_RANGE 1.0
-# define COIN_ANIMATION_SPEED 0.05
+# define COIN_ANIMATION_SPEED 0.03
 
 // ====== Text Colors =========
 # define RED "\033[0;31m"
