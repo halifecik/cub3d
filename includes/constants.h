@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:23:42 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 16:38:13 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:11:34 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define BLACK_PIXEL 0x000000
 # define GREEN_PIXEL 0x00FF00
 # define WHITE_PIXEL 0xFFFFFF
-# define FANDANGO_PIXEL 0xB53389
+# define PURPLE_PIXEL 0x500CA2
 # define LIGHT_GRAY_PIXEL 0xCCCCCC
 
 // ======= Error Codes ========

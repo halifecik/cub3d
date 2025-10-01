@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:54:16 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/30 15:01:00 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:11:27 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	ft_tile_color(char tile)
 	if (tile == '1')
 		return (GRAY_PIXEL);
 	if (tile == 'D')
-		return (FANDANGO_PIXEL);
+		return (PURPLE_PIXEL);
 	if (tile == '0' || tile == 'X')
 		return (LIGHT_GRAY_PIXEL);
 	return (BLACK_PIXEL);
