@@ -6,7 +6,7 @@
 /*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:54:16 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 17:11:27 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/01 20:33:37 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@ void	ft_draw_pixel(t_data *data, int x, int y, int color)
 	dst = data->graphics.img_data + (y * data->graphics.line_length
 			+ x * (data->graphics.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	ft_draw_cell(t_data *data, int start_x, int start_y, int size)
-{
-	int	x;
-	int	y;
-	int	color;
-
-	color = GRAY_PIXEL;
-	y = 0;
-	while (y < size)
-	{
-		x = 0;
-		while (x < size)
-		{
-			ft_draw_pixel(data, start_x + x, start_y + y, color);
-			x++;
-		}
-		y++;
-	}
 }
 
 void	ft_draw_colored_cell(t_data *data, int start_x, int start_y, int color)
