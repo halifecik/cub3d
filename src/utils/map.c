@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 14:35:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:35:02 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/02 17:21:33 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,27 @@ int	ft_check_config_complete(t_config *config)
 int	ft_parse_color_value(char *str, int *value)
 {
 	int	i;
+	int	start;
+	int	end;
 
 	if (!str || !*str)
 		return (1);
-	i = 0;
-	while (str[i])
+	start = 0;
+	while (str[start] && ft_is_whitespace(str[start]))
+		start++;
+	if (!str[start])
+		return (1);
+	end = ft_strlen(str) - 1;
+	while (end >= start && ft_is_whitespace(str[end]))
+		end--;
+	i = start;
+	while (i <= end)
 	{
 		if (!ft_isdigit(str[i]))
 			return (1);
 		i++;
 	}
-	*value = ft_atoi(str);
+	*value = ft_atoi(str + start);
 	if (*value < 0 || *value > 255)
 		return (1);
 	return (0);

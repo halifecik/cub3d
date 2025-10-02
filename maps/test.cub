@@ -1,36 +1,10 @@
-NO ./textures/coin_0.xpm
+NO ./textures/wall/front.xpm
+SO ./textures/wall/front.xpm
+WE ./textures/wall/side.xpm
+EA ./textures/wall/side.xpm
 
-
-
-                                                    SO ./textures/coin_0.xpm
-
-C 89,89,89
-
-
-WE ./textures/coin_0.xpm
-
-
-
-
-EA ./textures/coin_0.xpm
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-F 42,42,42
+F 255, 69,0
+C 30,144,255
 
 11111111111111111
 1010000D0000X0001
