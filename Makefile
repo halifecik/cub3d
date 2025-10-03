@@ -36,6 +36,7 @@ SOURCES =	main.c \
             init/config.c \
             parse/parse_map.c \
             parse/check_map.c \
+			parse/boundary_map.c \
             raycast/raycast.c \
             raycast/calculate.c \
             raycast/render.c \
@@ -50,7 +51,8 @@ SOURCES =	main.c \
 			utils/cleanup/clean_graphics.c \
 			utils/cleanup/clean_map.c \
             utils/render.c \
-			utils/map.c \
+			utils/map/helper_utils.c \
+			utils/map/check_utils.c \
 			utils/utilities.c \
 			bonus/minimap/draw_minimap.c \
 			bonus/minimap/draw_full_map.c \

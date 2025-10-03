@@ -31,18 +31,18 @@ static int	ft_set_texture_path(char **dst, char *line)
 	while (*line && ft_is_whitespace(*line))
 		line++;
 	if (*dst != NULL)
-		return (ft_print_error("Duplicate texture definition"));
+		return (ft_perror("Duplicate texture definition"));
 	if (*line == '\0')
-		return (ft_print_error("Missing texture path"));
+		return (ft_perror("Missing texture path"));
 	if (!ft_strnstr(line, ".xpm", ft_strlen(line)))
-		return (ft_print_error("Texture must be a .xpm file"));
+		return (ft_perror("Texture must be a .xpm file"));
 	fd = open(line, O_RDONLY);
 	if (fd < 0)
-		return (ft_print_error("Texture file not found"));
+		return (ft_perror("Texture file not found"));
 	close(fd);
 	*dst = ft_strdup(line);
 	if (!*dst)
-		return (ft_print_error("Malloc fail in texture_path"));
+		return (ft_perror("Malloc fail in texture_path"));
 	return (0);
 }
 
@@ -54,20 +54,20 @@ static int	ft_set_rgb_color(int *dst, char *line)
 	int		b;
 
 	if (*dst != 0)
-		return (ft_print_error("Duplicate color definition"));
+		return (ft_perror("Duplicate color definition"));
 	line += 1;
 	while (*line && ft_is_whitespace(*line))
 		line++;
 	split = ft_split(line, ',');
 	if (!split)
-		return (ft_print_error("Malloc fail in rgb"));
+		return (ft_perror("Malloc fail in rgb"));
 	if (!split[0] || !split[1] || !split[2] || split[3])
-		return (ft_free_grid(split), ft_print_error("Invalid RGB format"));
+		return (ft_free_grid(split), ft_perror("Invalid RGB format"));
 	if (ft_parse_color_value(split[0], &r)
 		|| ft_parse_color_value(split[1], &g)
 		|| ft_parse_color_value(split[2], &b))
 		return (ft_free_grid(split),
-			ft_print_error("RGB values must be numbers between 0 and 255"));
+			ft_perror("RGB values must be numbers between 0 and 255"));
 	*dst = (r << 16) | (g << 8) | b;
 	ft_free_grid(split);
 	return (0);

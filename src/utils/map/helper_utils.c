@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   helper_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 14:35:43 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/02 17:21:33 by mugenan          ###   ########.fr       */
+/*   Created: 2025/10/02 20:04:40 by hademirc          #+#    #+#             */
+/*   Updated: 2025/10/02 20:19:41 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 static int	ft_map_line(char *line)
 {
-	int	j;
+	int	i;
 	int	valid;
 
 	if (!line)
 		return (0);
-	j = 0;
+	i = 0;
 	valid = 0;
-	while (line[j])
+	while (line[i])
 	{
-		if (line[j] == '0' || line[j] == '1' || line[j] == 'N'
-			|| line[j] == 'S' || line[j] == 'E' || line[j] == 'W')
+		if (line[i] == '0' || line[i] == '1' || line[i] == 'N' || line[i] == 'S'
+			|| line[i] == 'E' || line[i] == 'W')
 			valid = 1;
-		else if (!ft_is_whitespace(line[j]))
+		else if (!ft_is_whitespace(line[i]))
 			return (0);
-		j++;
+		i++;
 	}
 	return (valid);
 }
@@ -72,7 +72,7 @@ int	ft_parse_color_value(char *str, int *value)
 	return (0);
 }
 
-static int	find_map_start(t_map *map)
+int	ft_find_map_start(t_map *map)
 {
 	int	i;
 
@@ -88,27 +88,30 @@ static int	find_map_start(t_map *map)
 	return (-1);
 }
 
-char	**ft_copy_map_lines(t_map *map, int *cpy_height)
+int	find_player_start(t_map *map, char **grid, int height)
 {
-	char	**copy;
-	int		start;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
+	int	found;
 
-	if (!map || !map->grid)
-		return (NULL);
-	start = find_map_start(map);
-	if (start == -1)
-		return (NULL);
-	map->map_index = start;
-	*cpy_height = map->height - start;
-	copy = ft_calloc(*cpy_height + 1, sizeof(char *));
-	if (!copy)
-		return (NULL);
-	i = start;
-	j = 0;
-	while (i < map->height)
-		copy[j++] = ft_strdup(map->grid[i++]);
-	copy[j] = NULL;
-	return (copy);
+	found = 0;
+	i = -1;
+	while (++i < height)
+	{
+		j = -1;
+		while (grid[i][++j])
+		{
+			if (grid[i][j] == 'N' || grid[i][j] == 'S' || grid[i][j] == 'E'
+				|| grid[i][j] == 'W')
+			{
+				map->player_x = j;
+				map->player_y = i;
+				map->player_dir = grid[i][j];
+				found++;
+			}
+		}
+	}
+	if (found != 1)
+		return (ft_perror("Must only have singular player"));
+	return (0);
 }
