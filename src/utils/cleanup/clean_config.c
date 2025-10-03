@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:09:02 by hademirc          #+#    #+#             */
-/*   Updated: 2025/09/29 17:09:03 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:01:12 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@ void	ft_clean_config(t_config *config)
 		free(config->west_texture);
 	if (config->east_texture)
 		free(config->east_texture);
+	if (config->wspc)
+		free(config->wspc);
 }
