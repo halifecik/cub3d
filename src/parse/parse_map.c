@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:27:58 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/03 18:43:49 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_grid_append_line(t_map *map, char *line)
 	if (!new_grid)
 	{
 		free(line);
-		return (ft_print_error("Malloc fail grid"));
+		return (ft_perror("Malloc fail grid"));
 	}
 	i = 0;
 	while (i < map->height - 1)
@@ -63,20 +63,20 @@ int	ft_parse_map(t_data *data)
 	ft_initialize_map(&data->map);
 	fd = open(data->map_file, O_RDONLY);
 	if (fd < 0)
-		return (ft_print_error("Cannot open .cub file"));
+		return (ft_perror("Cannot open .cub file"));
 	if (ft_read_map_lines(&data->map, fd))
-		return (close(fd), ft_print_error("Map is empty"));
+		return (close(fd), ft_perror("Map is empty"));
 	close(fd);
 	if (ft_check_map(&data->map))
 		return (1);
 	if (ft_set_player_location(data, &data->map))
-		return (ft_print_error("Initialize player location error"));
+		return (ft_perror("Initialize player location error"));
 	ft_initialize_config(&data->config);
 	if (ft_set_config(&data->map, &data->config))
 		return (ft_clean_config(&data->config), 1);
 	if (ft_check_config_complete(&data->config))
 		return (ft_clean_config(&data->config),
-			ft_print_error("Missing argument config"));
+			ft_perror("Missing argument config"));
 	ft_initialize_doors(&data->map);
 	return (0);
 }

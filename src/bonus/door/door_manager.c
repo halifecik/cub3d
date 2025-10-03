@@ -73,7 +73,7 @@ void	ft_initialize_doors(t_map *map)
 	map->doors = ft_calloc(map->door_count, sizeof(t_door));
 	if (!map->doors)
 	{
-		ft_print_error("Failed to allocate memory for doors");
+		ft_perror("Failed to allocate memory for doors");
 		return ;
 	}
 	ft_populate_doors(map);

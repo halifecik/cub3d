@@ -116,12 +116,16 @@ int		ft_calculate_tex_y(t_data *data, int sprite_idx, int y,
 			t_texture *texture);
 
 // ========== Utils ===========
+int		ft_perror(char *msg);
 void	ft_rtrim(char *line);
 int		ft_is_whitespace(char c);
 char	*ft_str_whitespace(void);
 void	ft_free_grid(char **grid);
-int		ft_print_error(char *msg);
+int		ft_find_map_start(t_map *map);
 int		ft_parse_color_value(char *str, int *value);
-char	**ft_copy_map_lines(t_map *map, int *cpy_height);
+int		ft_check_boundary_zeros(char **grid, int height);
+void	ft_mark_map(char **grid, int x, int y, int height);
+int		ft_flood_fill(char **grid, int x, int y, int height);
+int		ft_check_separated_map(char **grid, int height, t_map *map);
 
 #endif

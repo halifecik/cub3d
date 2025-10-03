@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 20:42:01 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 20:16:03 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/03 13:53:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ft_print_error(char *msg)
+int	ft_perror(char *msg)
 {
 	int	i;
 
@@ -31,12 +31,12 @@ int	main(int argc, char **argv)
 	t_data	*data;
 
 	if (argc != 2)
-		return (ft_print_error("argc is not enough!"));
+		return (ft_perror("argc is not enough!"));
 	if (ft_cub_extension(argv[1]))
-		return (ft_print_error("File must have .cub extension"));
+		return (ft_perror("File must have .cub extension"));
 	data = malloc(sizeof(t_data));
 	if (!data)
-		return (ft_print_error("Failed to allocate t_data"));
+		return (ft_perror("Failed to allocate t_data"));
 	data->map_file = argv[1];
 	data->frame = 0;
 	data->coins_collected = 0;
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	if (ft_parse_map(data))
 		return (ft_clean_map(&data->map), free(data), 1);
 	if (ft_initialize_graphics(data))
-		return (ft_print_error("Failed to initialize graphics"));
+		return (ft_perror("Failed to initialize graphics"));
 	ft_initialize_sprites(data);
 	mlx_loop_hook(data->graphics.mlx, ft_game_loop, data);
 	mlx_hook(data->graphics.window, 2, 1L << 0, ft_key_press, data);
