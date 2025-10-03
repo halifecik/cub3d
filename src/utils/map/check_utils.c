@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 20:05:13 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/03 13:47:16 by codespace        ###   ########.fr       */
+/*   Updated: 2025/10/03 19:43:47 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	ft_check_separated_map(char **grid, int height, t_map *map)
 	i = -1;
 	while (++i < height)
 	{
-		j = 0;
-		while (grid[i][j])
+		j = -1;
+		while (grid[i][++j])
 		{
 			if ((grid[i][j] == '0' || grid[i][j] == '1' || grid[i][j] == 'N'
 					|| grid[i][j] == 'S' || grid[i][j] == 'E'
@@ -102,7 +102,6 @@ int	ft_check_separated_map(char **grid, int height, t_map *map)
 					return (ft_perror("Map contains separated areas"));
 				ft_mark_map(grid, j, i, height);
 			}
-			j++;
 		}
 	}
 	return (0);

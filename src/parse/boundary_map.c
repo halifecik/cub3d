@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   boundary_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 15:33:53 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/03 13:29:59 by codespace        ###   ########.fr       */
+/*   Updated: 2025/10/03 19:43:53 by hademirc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static int	ft_boundary_condition(char **grid, int height, int index_x,
 	j = index_y;
 	width = (int)ft_strlen(grid[i]);
 	if (grid[i][j] == '0' || grid[i][j] == 'N' || grid[i][j] == 'S'
-		|| grid[i][j] == 'E' || grid[i][j] == 'W'
-		||  grid[i][j] == 'X' ||  grid[i][j] == 'D')
+		|| grid[i][j] == 'E' || grid[i][j] == 'W' || grid[i][j] == 'X'
+		|| grid[i][j] == 'D')
 	{
 		if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
 			return (1);
