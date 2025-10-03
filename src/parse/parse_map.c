@@ -6,7 +6,7 @@
 /*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 19:37:37 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/02 19:51:16 by mugenan          ###   ########.fr       */
+/*   Updated: 2025/10/03 18:43:49 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,6 @@ int	ft_parse_map(t_data *data)
 	if (ft_check_config_complete(&data->config))
 		return (ft_clean_config(&data->config),
 			ft_perror("Missing argument config"));
+	ft_initialize_doors(&data->map);
 	return (0);
 }

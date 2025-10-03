@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 21:00:00 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 18:47:26 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/03 18:40:37 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,14 @@ static void	ft_draw_sprite_stripe(t_data *data, int sprite_idx, int stripe,
 void	ft_draw_sprite(t_data *data, int sprite_idx, double *z_buffer)
 {
 	int			stripe;
+	t_texture	*texture;
 
 	if (data->map.sprites[sprite_idx].transform_y <= 0
 		|| data->map.sprites[sprite_idx].sprite_width <= 0
 		|| data->map.sprites[sprite_idx].sprite_height <= 0)
 		return ;
+	texture = &data->graphics.textures[data->map.sprites[sprite_idx]
+		.texture_index];
 	ft_calculate_sprite_bounds(data, sprite_idx);
 	stripe = data->map.sprites[sprite_idx].draw_start_x;
 	while (stripe < data->map.sprites[sprite_idx].draw_end_x)
