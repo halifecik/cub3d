@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 20:05:13 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/02 20:06:27 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/03 13:47:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ void	ft_mark_map(char **grid, int x, int y, int height)
 	if (grid[y][x] == 'M' || grid[y][x] == ' ')
 		return ;
 	if (grid[y][x] != '0' && grid[y][x] != '1' && grid[y][x] != 'N'
-		&& grid[y][x] != 'S' && grid[y][x] != 'E' && grid[y][x] != 'W')
+		&& grid[y][x] != 'S' && grid[y][x] != 'E' && grid[y][x] != 'W'
+		&& grid[y][x] != 'D' && grid[y][x] != 'X')
 		return ;
 	grid[y][x] = 'M';
 	ft_mark_map(grid, x + 1, y, height);
@@ -93,7 +94,8 @@ int	ft_check_separated_map(char **grid, int height, t_map *map)
 		{
 			if ((grid[i][j] == '0' || grid[i][j] == '1' || grid[i][j] == 'N'
 					|| grid[i][j] == 'S' || grid[i][j] == 'E'
-					|| grid[i][j] == 'W') && grid[i][j] != 'M')
+					|| grid[i][j] == 'W' || grid[i][j] == 'D'
+					|| grid [i][j] == 'X') && grid[i][j] != 'M')
 			{
 				map_regions++;
 				if (map_regions > 1)
