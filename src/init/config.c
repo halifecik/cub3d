@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hademirc <hademirc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mugenan <mugenan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:31:23 by hademirc          #+#    #+#             */
-/*   Updated: 2025/10/01 20:13:22 by hademirc         ###   ########.fr       */
+/*   Updated: 2025/10/03 20:00:13 by mugenan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	ft_set_texture_path(char **dst, char *line)
 	int		fd;
 
 	line += 2;
+	if (!ft_is_whitespace(*line))
+		return (ft_perror("Missing space after texture identifier"));
 	while (*line && ft_is_whitespace(*line))
 		line++;
 	if (*dst != NULL)
@@ -56,13 +58,15 @@ static int	ft_set_rgb_color(int *dst, char *line)
 	if (*dst != 0)
 		return (ft_perror("Duplicate color definition"));
 	line += 1;
+	if (!ft_is_whitespace(*line))
+		return (ft_perror("Missing space after color identifier"));
 	while (*line && ft_is_whitespace(*line))
 		line++;
 	split = ft_split(line, ',');
 	if (!split)
 		return (ft_perror("Malloc fail in rgb"));
 	if (!split[0] || !split[1] || !split[2] || split[3])
-		return (ft_free_grid(split), ft_perror("Invalid RGB format"));
+		return (ft_perror("Invalid RGB format"));
 	if (ft_parse_color_value(split[0], &r)
 		|| ft_parse_color_value(split[1], &g)
 		|| ft_parse_color_value(split[2], &b))
